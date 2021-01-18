@@ -16,7 +16,7 @@ namespace Logiciel_Devis_Facture
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Logiciel_Devis_Facture());
         }
     }
 }
