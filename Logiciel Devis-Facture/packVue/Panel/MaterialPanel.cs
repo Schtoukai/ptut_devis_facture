@@ -23,7 +23,6 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             this.Controls.Add(this.list);
             addMateriauButton.Text = "Ajouter un Matériau";
             addMateriauButton.BackColor = Color.Lime;
-            sbar.BackColor = Color.Purple;
             //this.BackColor = Color.Red;
             this.ResumeLayout(false);
             this.PerformLayout();
