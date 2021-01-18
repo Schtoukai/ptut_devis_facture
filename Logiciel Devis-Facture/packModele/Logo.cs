@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CreationDatabase
+namespace Logiciel_Devis_Facture.packModele
 {
     class Logo
     {
@@ -27,32 +27,32 @@ namespace CreationDatabase
 
         void setName(string a) {
             name = a;
-        };
+        }
         void setFormat(string a){
             format = a;
-        };
+        }
         void setPathing(string a) {
             pathing = a;
         }
         void setWidth(int a) {
             width = a;
-        };
+        }
         void setHeight(int a){
             height = a;
-        };
+        }
 
         string getName()
         {
             return name;
-        };
+        }
         string getFormat()
         {
             return format;
-        };
+        }
         string getPathing()
         {
             return pathing;
-        };
+        }
         int getHeight()
         {
             return height;
