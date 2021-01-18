@@ -23,7 +23,6 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             this.Controls.Add(this.list);
             addClientButton.Text = "Ajouter un Client";
             addClientButton.BackColor = Color.Lime;
-            sbar.BackColor = Color.Purple;
             //this.BackColor = Color.Red;
             this.ResumeLayout(false);
             this.PerformLayout();
