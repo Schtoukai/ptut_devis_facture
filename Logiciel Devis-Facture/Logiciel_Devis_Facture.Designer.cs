@@ -34,14 +34,14 @@ namespace Logiciel_Devis_Facture
         private void InitializeComponent()
         {
             this.NavLayoutPanel = new FlowLayoutPanel();
-            this.monEntrepriseButton = new Bouton();
-            this.Devis_FactureButton = new Bouton();
-            this.ClientButton = new Bouton();
-            this.MateriauButton = new Bouton();
-            this.clientPanel = new ClientPanel();
-            this.materiauPanel = new MateriauPanel();
-            this.devis_FacturePanel = new Devis_FacturePanel();
-            this.entreprisePanel = new EntreprisePanel();
+            this.monEntrepriseButton = new myButton();
+            this.Devis_FactureButton = new myButton();
+            this.ClientButton = new myButton();
+            this.MateriauButton = new myButton();
+            this.clientPanel = new CustomerPanel();
+            this.materiauPanel = new MaterialPanel();
+            this.devis_FacturePanel = new QuoteAndInvoicePanel();
+            this.entreprisePanel = new CompanyPanel();
             this.NavLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -158,14 +158,14 @@ namespace Logiciel_Devis_Facture
 
         #endregion
         private FlowLayoutPanel NavLayoutPanel;
-        private Bouton monEntrepriseButton;
-        private Bouton Devis_FactureButton;
-        private Bouton ClientButton;
-        private Bouton MateriauButton;
-        private ClientPanel clientPanel;
-        private MateriauPanel materiauPanel;
-        private Devis_FacturePanel devis_FacturePanel;
-        private EntreprisePanel entreprisePanel;
+        private myButton monEntrepriseButton;
+        private myButton Devis_FactureButton;
+        private myButton ClientButton;
+        private myButton MateriauButton;
+        private CustomerPanel clientPanel;
+        private MaterialPanel materiauPanel;
+        private QuoteAndInvoicePanel devis_FacturePanel;
+        private CompanyPanel entreprisePanel;
     }
 }
 

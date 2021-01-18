@@ -56,19 +56,19 @@
     <Compile Include="packVue\Panel\AbstractPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="packVue\Bouton.cs">
+    <Compile Include="packVue\myButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="packVue\Panel\ClientPanel.cs">
+    <Compile Include="packVue\Panel\CustomerPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="packVue\Panel\Devis_FacturePanel.cs">
+    <Compile Include="packVue\Panel\QuoteAndInvoicePanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="packVue\Panel\EntreprisePanel.cs">
+    <Compile Include="packVue\Panel\CompanyPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="packVue\Panel\MateriauPanel.cs">
+    <Compile Include="packVue\Panel\MaterialPanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="packVue\SearchBar.cs">
