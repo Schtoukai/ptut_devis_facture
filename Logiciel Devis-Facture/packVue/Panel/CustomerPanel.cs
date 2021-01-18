@@ -57,5 +57,10 @@ namespace Logiciel_Devis_Facture.packVue.Panel
         {
             throw new NotImplementedException();
         }
+
+        public override void SetFontSize(int buttonWidth, int buttonHeight)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
