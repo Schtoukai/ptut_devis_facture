@@ -34,108 +34,108 @@ namespace Logiciel_Devis_Facture
         private void InitializeComponent()
         {
             this.NavLayoutPanel = new FlowLayoutPanel();
-            this.monEntrepriseButton = new myButton();
-            this.Devis_FactureButton = new myButton();
-            this.ClientButton = new myButton();
-            this.MateriauButton = new myButton();
-            this.clientPanel = new CustomerPanel();
-            this.materiauPanel = new MaterialPanel();
-            this.devis_FacturePanel = new QuoteAndInvoicePanel();
-            this.entreprisePanel = new CompanyPanel();
+            this.myCompanyButton = new myButton();
+            this.Quote_InvoiceButton = new myButton();
+            this.CustomerButton = new myButton();
+            this.MaterialButton = new myButton();
+            this.customerPanel = new CustomerPanel();
+            this.materialPanel = new MaterialPanel();
+            this.quote_InvoicePanel = new QuoteAndInvoicePanel();
+            this.companyPanel = new CompanyPanel();
             this.NavLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // NavLayoutPanel
             // 
             this.NavLayoutPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.NavLayoutPanel.Controls.Add(this.monEntrepriseButton);
-            this.NavLayoutPanel.Controls.Add(this.Devis_FactureButton);
-            this.NavLayoutPanel.Controls.Add(this.ClientButton);
-            this.NavLayoutPanel.Controls.Add(this.MateriauButton);
+            this.NavLayoutPanel.Controls.Add(this.myCompanyButton);
+            this.NavLayoutPanel.Controls.Add(this.Quote_InvoiceButton);
+            this.NavLayoutPanel.Controls.Add(this.CustomerButton);
+            this.NavLayoutPanel.Controls.Add(this.MaterialButton);
             this.NavLayoutPanel.Location = new System.Drawing.Point(1, 0);
             this.NavLayoutPanel.Name = "NavLayoutPanel";
             this.NavLayoutPanel.Size = new System.Drawing.Size(1411, 52);
             this.NavLayoutPanel.TabIndex = 3;
             // 
-            // monEntrepriseButton
+            // myCompanyButton
             // 
-            this.monEntrepriseButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.monEntrepriseButton.FlatAppearance.BorderSize = 0;
-            this.monEntrepriseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.monEntrepriseButton.ForeColor = System.Drawing.Color.White;
-            this.monEntrepriseButton.Location = new System.Drawing.Point(3, 3);
-            this.monEntrepriseButton.Name = "monEntrepriseButton";
-            this.monEntrepriseButton.Size = new System.Drawing.Size(202, 49);
-            this.monEntrepriseButton.TabIndex = 0;
-            this.monEntrepriseButton.Text = "Mon Entreprise";
-            this.monEntrepriseButton.Click += new System.EventHandler(this.EntrepriseButton_Click);
+            this.myCompanyButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.myCompanyButton.FlatAppearance.BorderSize = 0;
+            this.myCompanyButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.myCompanyButton.ForeColor = System.Drawing.Color.White;
+            this.myCompanyButton.Location = new System.Drawing.Point(3, 3);
+            this.myCompanyButton.Name = "monEntrepriseButton";
+            this.myCompanyButton.Size = new System.Drawing.Size(202, 49);
+            this.myCompanyButton.TabIndex = 0;
+            this.myCompanyButton.Text = "Mon Entreprise";
+            this.myCompanyButton.Click += new System.EventHandler(this.CompanyButton_Click);
             // 
-            // Devis_FactureButton
+            // Quote_InvoiceButton
             // 
-            this.Devis_FactureButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.Devis_FactureButton.FlatAppearance.BorderSize = 0;
-            this.Devis_FactureButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Devis_FactureButton.ForeColor = System.Drawing.Color.White;
-            this.Devis_FactureButton.Location = new System.Drawing.Point(211, 3);
-            this.Devis_FactureButton.Name = "Devis_FactureButton";
-            this.Devis_FactureButton.Size = new System.Drawing.Size(237, 49);
-            this.Devis_FactureButton.TabIndex = 1;
-            this.Devis_FactureButton.Text = "Devis & Facture";
-            this.Devis_FactureButton.Click += new System.EventHandler(this.Devis_FactureButton_Click);
+            this.Quote_InvoiceButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.Quote_InvoiceButton.FlatAppearance.BorderSize = 0;
+            this.Quote_InvoiceButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Quote_InvoiceButton.ForeColor = System.Drawing.Color.White;
+            this.Quote_InvoiceButton.Location = new System.Drawing.Point(211, 3);
+            this.Quote_InvoiceButton.Name = "Quote_InvoiceButton";
+            this.Quote_InvoiceButton.Size = new System.Drawing.Size(237, 49);
+            this.Quote_InvoiceButton.TabIndex = 1;
+            this.Quote_InvoiceButton.Text = "Devis & Facture";
+            this.Quote_InvoiceButton.Click += new System.EventHandler(this.Quote_InvoiceButton_Click);
             // 
-            // ClientButton
+            // CustomerButton
             // 
-            this.ClientButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientButton.FlatAppearance.BorderSize = 0;
-            this.ClientButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ClientButton.ForeColor = System.Drawing.Color.White;
-            this.ClientButton.Location = new System.Drawing.Point(454, 3);
-            this.ClientButton.Name = "ClientButton";
-            this.ClientButton.Size = new System.Drawing.Size(249, 49);
-            this.ClientButton.TabIndex = 2;
-            this.ClientButton.Text = "Mes Clients";
-            this.ClientButton.Click += new System.EventHandler(this.ClientButton_Click);
+            this.CustomerButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.CustomerButton.FlatAppearance.BorderSize = 0;
+            this.CustomerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CustomerButton.ForeColor = System.Drawing.Color.White;
+            this.CustomerButton.Location = new System.Drawing.Point(454, 3);
+            this.CustomerButton.Name = "CustomerButton";
+            this.CustomerButton.Size = new System.Drawing.Size(249, 49);
+            this.CustomerButton.TabIndex = 2;
+            this.CustomerButton.Text = "Mes Clients";
+            this.CustomerButton.Click += new System.EventHandler(this.CustomerButton_Click);
             // 
-            // MateriauButton
+            // MaterialButton
             // 
-            this.MateriauButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.MateriauButton.FlatAppearance.BorderSize = 0;
-            this.MateriauButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MateriauButton.ForeColor = System.Drawing.Color.White;
-            this.MateriauButton.Location = new System.Drawing.Point(709, 3);
-            this.MateriauButton.Name = "MateriauButton";
-            this.MateriauButton.Size = new System.Drawing.Size(313, 49);
-            this.MateriauButton.TabIndex = 3;
-            this.MateriauButton.Text = "Mes Matériaux";
-            this.MateriauButton.Click += new System.EventHandler(this.MateriauButton_Click);
+            this.MaterialButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.MaterialButton.FlatAppearance.BorderSize = 0;
+            this.MaterialButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MaterialButton.ForeColor = System.Drawing.Color.White;
+            this.MaterialButton.Location = new System.Drawing.Point(709, 3);
+            this.MaterialButton.Name = "MaterialButton";
+            this.MaterialButton.Size = new System.Drawing.Size(313, 49);
+            this.MaterialButton.TabIndex = 3;
+            this.MaterialButton.Text = "Mes Matériaux";
+            this.MaterialButton.Click += new System.EventHandler(this.MaterialButton_Click);
             // 
-            // clientPanel
+            // customerPanel
             // 
-            this.clientPanel.Location = new System.Drawing.Point(0, 0);
-            this.clientPanel.Name = "clientPanel";
-            this.clientPanel.Size = new System.Drawing.Size(200, 100);
-            this.clientPanel.TabIndex = 1;
+            this.customerPanel.Location = new System.Drawing.Point(0, 0);
+            this.customerPanel.Name = "customerPanel";
+            this.customerPanel.Size = new System.Drawing.Size(200, 100);
+            this.customerPanel.TabIndex = 1;
             // 
-            // materiauPanel
+            // materialPanel
             // 
-            this.materiauPanel.Location = new System.Drawing.Point(0, 0);
-            this.materiauPanel.Name = "materiauPanel";
-            this.materiauPanel.Size = new System.Drawing.Size(200, 100);
-            this.materiauPanel.TabIndex = 1;
+            this.materialPanel.Location = new System.Drawing.Point(0, 0);
+            this.materialPanel.Name = "materialPanel";
+            this.materialPanel.Size = new System.Drawing.Size(200, 100);
+            this.materialPanel.TabIndex = 1;
             //
-            // devis_facturePanel
+            // quote_InvoicePanel
             //
-            this.devis_FacturePanel.Location = new System.Drawing.Point(0, 0);
-            this.devis_FacturePanel.Name = "materiauPanel";
-            this.devis_FacturePanel.Size = new System.Drawing.Size(200, 100);
-            this.devis_FacturePanel.TabIndex = 1;
+            this.quote_InvoicePanel.Location = new System.Drawing.Point(0, 0);
+            this.quote_InvoicePanel.Name = "materialPanel";
+            this.quote_InvoicePanel.Size = new System.Drawing.Size(200, 100);
+            this.quote_InvoicePanel.TabIndex = 1;
             //
-            // entreprisePanel
+            // companyPanel
             //
-            this.entreprisePanel.Location = new System.Drawing.Point(0, 0);
-            this.entreprisePanel.Name = "materiauPanel";
-            this.entreprisePanel.Size = new System.Drawing.Size(200, 100);
-            this.entreprisePanel.TabIndex = 1;
+            this.companyPanel.Location = new System.Drawing.Point(0, 0);
+            this.companyPanel.Name = "materialPanel";
+            this.companyPanel.Size = new System.Drawing.Size(200, 100);
+            this.companyPanel.TabIndex = 1;
             // 
             // Form1
             // 
@@ -143,14 +143,14 @@ namespace Logiciel_Devis_Facture
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1920, 1055);
             this.Controls.Add(this.NavLayoutPanel);
-            this.Controls.Add(this.clientPanel);
-            this.Controls.Add(this.materiauPanel);
-            this.Controls.Add(this.devis_FacturePanel);
-            this.Controls.Add(this.entreprisePanel);
+            this.Controls.Add(this.customerPanel);
+            this.Controls.Add(this.materialPanel);
+            this.Controls.Add(this.quote_InvoicePanel);
+            this.Controls.Add(this.companyPanel);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.Resize += new System.EventHandler(this.Form1_Resize);
+            this.Load += new System.EventHandler(this.Logiciel_Load);
+            this.Resize += new System.EventHandler(this.Logiciel_Resize);
             this.NavLayoutPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -158,14 +158,14 @@ namespace Logiciel_Devis_Facture
 
         #endregion
         private FlowLayoutPanel NavLayoutPanel;
-        private myButton monEntrepriseButton;
-        private myButton Devis_FactureButton;
-        private myButton ClientButton;
-        private myButton MateriauButton;
-        private CustomerPanel clientPanel;
-        private MaterialPanel materiauPanel;
-        private QuoteAndInvoicePanel devis_FacturePanel;
-        private CompanyPanel entreprisePanel;
+        private myButton myCompanyButton;
+        private myButton Quote_InvoiceButton;
+        private myButton CustomerButton;
+        private myButton MaterialButton;
+        private CustomerPanel customerPanel;
+        private MaterialPanel materialPanel;
+        private QuoteAndInvoicePanel quote_InvoicePanel;
+        private CompanyPanel companyPanel;
     }
 }
 

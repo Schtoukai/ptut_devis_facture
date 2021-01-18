@@ -19,64 +19,64 @@ namespace Logiciel_Devis_Facture
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Logiciel_Load(object sender, EventArgs e)
         {
-            entreprisePanel.BringToFront();
+            companyPanel.BringToFront();
             this.WindowState = FormWindowState.Maximized;
-            Form1_Resize(sender,e);
-            this.clientPanel.addItem("Bonjour");
-            this.clientPanel.addItem("Au Revoir");
-            this.materiauPanel.addItem("Au Revoir");
-            this.materiauPanel.addItem("Bonjour");
+            Logiciel_Resize(sender,e);
+            this.customerPanel.addItem("Bonjour");
+            this.customerPanel.addItem("Au Revoir");
+            this.materialPanel.addItem("Au Revoir");
+            this.materialPanel.addItem("Bonjour");
         }
 
-        private void Form1_Resize(object sender, EventArgs e)
+        private void Logiciel_Resize(object sender, EventArgs e)
         {
 
             NavLayoutPanel.Width = this.Width;
             NavLayoutPanel.Height = this.Height / 10;
 
             int buttonWidth = this.Width / 6;
-            this.monEntrepriseButton.SetSize(buttonWidth, NavLayoutPanel.Height);
-            this.Devis_FactureButton.SetSize(buttonWidth, NavLayoutPanel.Height);
-            this.ClientButton.SetSize(buttonWidth, NavLayoutPanel.Height);
-            this.MateriauButton.SetSize(buttonWidth, NavLayoutPanel.Height);
+            this.myCompanyButton.SetSize(buttonWidth, NavLayoutPanel.Height);
+            this.Quote_InvoiceButton.SetSize(buttonWidth, NavLayoutPanel.Height);
+            this.CustomerButton.SetSize(buttonWidth, NavLayoutPanel.Height);
+            this.MaterialButton.SetSize(buttonWidth, NavLayoutPanel.Height);
 
             int margin = (int)((NavLayoutPanel.Width - 4 * buttonWidth) / 8.25);
-            this.monEntrepriseButton.SetMargin(margin, 0, margin, 0);
-            this.Devis_FactureButton.SetMargin(margin, 0, margin, 0);
-            this.ClientButton.SetMargin(margin, 0, margin, 0);
-            this.MateriauButton.SetMargin(margin, 0, margin, 0);
+            this.myCompanyButton.SetMargin(margin, 0, margin, 0);
+            this.Quote_InvoiceButton.SetMargin(margin, 0, margin, 0);
+            this.CustomerButton.SetMargin(margin, 0, margin, 0);
+            this.MaterialButton.SetMargin(margin, 0, margin, 0);
 
-            clientPanel.SetSize(this.Width*4/3, this.Height);
-            materiauPanel.SetSize(this.Width*4/3, this.Height);
-            devis_FacturePanel.SetSize(this.Width * 4 / 3, this.Height);
-            entreprisePanel.SetSize(this.Width * 4 / 3, this.Height);
+            customerPanel.SetSize(this.Width*4/3, this.Height);
+            materialPanel.SetSize(this.Width*4/3, this.Height);
+            quote_InvoicePanel.SetSize(this.Width * 4 / 3, this.Height);
+            companyPanel.SetSize(this.Width * 4 / 3, this.Height);
 
-            clientPanel.SetLocation(0, NavLayoutPanel.Height*3/2);
-            materiauPanel.SetLocation(0, NavLayoutPanel.Height*3/2);
-            devis_FacturePanel.SetLocation(0, NavLayoutPanel.Height * 3 / 2);
-            entreprisePanel.SetLocation(0, NavLayoutPanel.Height * 3 / 2);
+            customerPanel.SetLocation(0, NavLayoutPanel.Height*3/2);
+            materialPanel.SetLocation(0, NavLayoutPanel.Height*3/2);
+            quote_InvoicePanel.SetLocation(0, NavLayoutPanel.Height * 3 / 2);
+            companyPanel.SetLocation(0, NavLayoutPanel.Height * 3 / 2);
         }
 
-        private void ClientButton_Click(object sender, EventArgs e)
+        private void CustomerButton_Click(object sender, EventArgs e)
         {
-            clientPanel.BringToFront();
+            customerPanel.BringToFront();
         }
 
-        private void MateriauButton_Click(object sender, EventArgs e)
+        private void MaterialButton_Click(object sender, EventArgs e)
         {
-            materiauPanel.BringToFront();
+            materialPanel.BringToFront();
         }
 
-        private void Devis_FactureButton_Click(object sender, EventArgs e)
+        private void Quote_InvoiceButton_Click(object sender, EventArgs e)
         {
-            devis_FacturePanel.BringToFront();
+            quote_InvoicePanel.BringToFront();
         }
 
-        private void EntrepriseButton_Click(object sender, EventArgs e)
+        private void CompanyButton_Click(object sender, EventArgs e)
         {
-            entreprisePanel.BringToFront();
+            companyPanel.BringToFront();
         }
     }
 }
