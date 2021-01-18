@@ -15,11 +15,14 @@ namespace Logiciel_Devis_Facture.packVue.Panel
         private SearchBar phone;
         private SearchBar mail;
         private SearchBar website;
+        private SearchBar logo;
         private Label nameLabel;
         private Label addressLabel;
         private Label phoneLabel;
         private Label mailLabel;
         private Label websiteLabel;
+        private Label logoLabel;
+        private OpenFileDialog file;
 
         public CompanyPanel()
         {
@@ -28,85 +31,82 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             phone = new SearchBar();
             mail = new SearchBar();
             website = new SearchBar();
+            logo = new SearchBar();
             nameLabel = new Label();
-            nameLabel.Font = new Font("Calibri", 18);
-            nameLabel.BorderStyle = BorderStyle.FixedSingle;
-            nameLabel.TextAlign = ContentAlignment.MiddleCenter;
-            nameLabel.Text = "Nom";
+            nameLabel.Text = "Nom :";
             addressLabel = new Label();
-            addressLabel.Font = new Font("Calibri", 18);
-            addressLabel.BorderStyle = BorderStyle.FixedSingle;
-            addressLabel.TextAlign = ContentAlignment.MiddleCenter;
-            addressLabel.Text = "Adresse";
+            addressLabel.Text = "Adresse postale :";
             phoneLabel = new Label();
-            phoneLabel.Font = new Font("Calibri", 18);
-            phoneLabel.BorderStyle = BorderStyle.FixedSingle;
-            phoneLabel.TextAlign = ContentAlignment.MiddleCenter;
-            phoneLabel.Text = "Téléphone";
+            phoneLabel.Text = "Téléphone :";
             mailLabel = new Label();
-            mailLabel.Font = new Font("Calibri", 18);
-            mailLabel.BorderStyle = BorderStyle.FixedSingle;
-            mailLabel.TextAlign = ContentAlignment.MiddleCenter;
-            mailLabel.Text = "Email";
+            mailLabel.Text = "Adresse Mail :";
             websiteLabel = new Label();
-            websiteLabel.Font = new Font("Calibri", 18);
-            websiteLabel.BorderStyle = BorderStyle.FixedSingle;
-            websiteLabel.TextAlign = ContentAlignment.MiddleCenter;
-            websiteLabel.Text = "Site web";
+            websiteLabel.Text = "Site web :";
+            logoLabel = new Label();
+            logoLabel.Text = "Logo :";
+            file = new OpenFileDialog();
             this.Controls.Add(name);
             this.Controls.Add(address);
             this.Controls.Add(phone);
             this.Controls.Add(mail);
             this.Controls.Add(website);
+            this.Controls.Add(logo);
             this.Controls.Add(nameLabel);
             this.Controls.Add(addressLabel);
             this.Controls.Add(phoneLabel);
             this.Controls.Add(mailLabel);
             this.Controls.Add(websiteLabel);
-            //this.BackColor = Color.Red;
-            /*name.BackColor = Color.Purple;
-            address.BackColor = Color.Purple;
-            phone.BackColor = Color.Purple;
-            mail.BackColor = Color.Purple;
-            website.BackColor = Color.Purple;*/
-            nameLabel.ForeColor = Color.Blue;
-            addressLabel.ForeColor = Color.Blue;
-            phoneLabel.ForeColor = Color.Blue;
-            mailLabel.ForeColor = Color.Blue;
-            websiteLabel.ForeColor = Color.Blue;
+            this.Controls.Add(logoLabel);
         }
 
         public override void SetSize(int width, int height)
         {
             this.Size = new System.Drawing.Size(width * 3 / 4, height * 3 / 4);
-            name.SetSize(this.Width * 2 / 5, 0);
-            address.SetSize(this.Width * 2 / 5, 0);
-            phone.SetSize(this.Width * 2 / 5, 0);
-            mail.SetSize(this.Width * 2 / 5, 0);
-            website.SetSize(this.Width * 2 / 5, 0);
-            nameLabel.Size = new System.Drawing.Size(this.Width / 20, 0);
-            addressLabel.Size = new System.Drawing.Size(this.Width / 20, 0);
-            phoneLabel.Size = new System.Drawing.Size(this.Width / 20, 0);
-            mailLabel.Size = new System.Drawing.Size(this.Width / 20, 0);
-            websiteLabel.Size = new System.Drawing.Size(this.Width / 20, 0);
+            int elementHeight = this.Height / 6;
+            int fontHeight = this.Height / 30;
+            name.SetFontSize(0, elementHeight);
+            name.SetSize(this.Width /2,0);
+            address.SetFontSize(0, elementHeight);
+            address.SetSize(this.Width / 2, 0);
+            phone.SetFontSize(0, elementHeight);
+            phone.SetSize(this.Width / 2, 0);
+            mail.SetFontSize(0, elementHeight);
+            mail.SetSize(this.Width / 2, 0);
+            website.SetFontSize(0, elementHeight);
+            website.SetSize(this.Width / 2, 0);
+            nameLabel.Font = new Font("Arial", fontHeight, FontStyle.Regular);
+            nameLabel.AutoSize = true;
+            addressLabel.Font = new Font("Arial", fontHeight, FontStyle.Regular);
+            addressLabel.AutoSize = true;
+            phoneLabel.Font = new Font("Arial", fontHeight, FontStyle.Regular);
+            phoneLabel.AutoSize = true;
+            mailLabel.Font = new Font("Arial", fontHeight, FontStyle.Regular);
+            mailLabel.AutoSize = true;
+            websiteLabel.Font = new Font("Arial", fontHeight, FontStyle.Regular);
+            websiteLabel.AutoSize = true;
         }
 
         public override void SetLocation(int x, int y)
         {
             this.Location = new System.Drawing.Point(x, y);
             name.Location = new System.Drawing.Point((this.Size.Width - name.Width) / 2, y);
-            nameLabel.Location = new System.Drawing.Point(name.Location.X-nameLabel.Width, y);
-            address.Location = new System.Drawing.Point(name.Location.X,name.Location.Y+2*name.Size.Height);
-            addressLabel.Location = new System.Drawing.Point(name.Location.X - nameLabel.Width, y);
-            phone.Location = new System.Drawing.Point(name.Location.X, address.Location.Y + 2 * name.Size.Height);
-            phoneLabel.Location = new System.Drawing.Point(name.Location.X - nameLabel.Width, y);
-            mail.Location = new System.Drawing.Point(name.Location.X, phone.Location.Y + 2 * name.Size.Height);
-            mailLabel.Location = new System.Drawing.Point(name.Location.X - nameLabel.Width, y);
-            website.Location = new System.Drawing.Point(name.Location.X, mail.Location.Y + 2 * name.Size.Height);
-            websiteLabel.Location = new System.Drawing.Point(name.Location.X - nameLabel.Width, y);
+            nameLabel.Location = new System.Drawing.Point(name.Location.X - nameLabel.Width, y);
+            address.Location = new System.Drawing.Point((this.Size.Width - address.Width) / 2, y + 2*name.Height);
+            addressLabel.Location = new System.Drawing.Point(address.Location.X - addressLabel.Width, y + 2*name.Height);
+            phone.Location = new System.Drawing.Point((this.Size.Width - phone.Width) / 2, y + 4*name.Height);
+            phoneLabel.Location = new System.Drawing.Point(phone.Location.X - phoneLabel.Width, y + 4*name.Height);
+            mail.Location = new System.Drawing.Point((this.Size.Width - mail.Width) / 2, y + 6 * name.Height);
+            mailLabel.Location = new System.Drawing.Point(mail.Location.X - mailLabel.Width, y + 6 * name.Height);
+            website.Location = new System.Drawing.Point((this.Size.Width - website.Width) / 2, y + 8 * name.Height);
+            websiteLabel.Location = new System.Drawing.Point(website.Location.X - websiteLabel.Width, y + 8 * name.Height);
         }
 
         public override void SetMargin(int left, int top, int right, int bottom)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void SetFontSize(int buttonWidth, int buttonHeight)
         {
             throw new NotImplementedException();
         }
