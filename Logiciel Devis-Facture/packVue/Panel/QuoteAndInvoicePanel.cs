@@ -64,5 +64,10 @@ namespace Logiciel_Devis_Facture.packVue.Panel
         {
             this.addDevis_FactureButton.Click += new System.EventHandler(this.addDevis_Facture_Click);
         }
+
+        public override void SetFontSize(int buttonWidth, int buttonHeight)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
