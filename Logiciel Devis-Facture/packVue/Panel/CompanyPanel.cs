@@ -74,8 +74,8 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             this.Controls.Add(cancelButton);
 
             logoButton.Click += new System.EventHandler(LogoButton_Click);
-            saveButton.Click += new System.EventHandler();
-            cancelButton.Click += new System.EventHandler();
+            saveButton.Click += new System.EventHandler(SaveButton_Click);
+            cancelButton.Click += new System.EventHandler(CancelButton_Click);
         }
 
         public override void SetSize(int width, int height)
@@ -84,17 +84,17 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             int elementHeight = this.Height / 6;
             int elementWidth = this.Width / 2;
             int fontHeight = this.Height / 30;
-            name.SetFontSize(0, elementHeight);
+            name.SetFontSize(elementHeight);
             name.SetSize(elementWidth,0);
-            address.SetFontSize(0, elementHeight);
+            address.SetFontSize(elementHeight);
             address.SetSize(elementWidth, 0);
-            phone.SetFontSize(0, elementHeight);
+            phone.SetFontSize(elementHeight);
             phone.SetSize(elementWidth, 0);
-            mail.SetFontSize(0, elementHeight);
+            mail.SetFontSize(elementHeight);
             mail.SetSize(elementWidth, 0);
-            website.SetFontSize(0, elementHeight);
+            website.SetFontSize(elementHeight);
             website.SetSize(elementWidth, 0);
-            logo.SetFontSize(0, elementHeight); 
+            logo.SetFontSize(elementHeight); 
             logo.SetSize(elementWidth*3/4, 0);
             titleLabel.Font = new Font("Arial", fontHeight, FontStyle.Bold);
             titleLabel.AutoSize = true;
@@ -139,7 +139,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             throw new NotImplementedException();
         }
 
-        public override void SetFontSize(int buttonWidth, int buttonHeight)
+        public override void SetFontSize(int size)
         {
             throw new NotImplementedException();
         }
@@ -165,6 +165,11 @@ namespace Logiciel_Devis_Facture.packVue.Panel
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CancelButton_Click(object sender, EventArgs e)
         {
 
         }

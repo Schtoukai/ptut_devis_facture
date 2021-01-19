@@ -36,7 +36,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
         {
             this.Size = new System.Drawing.Size(width * 3 / 4, height * 3 / 4);
             addDevis_FactureButton.SetSize(this.Width / 6, this.Height / 12);
-            sbar.SetFontSize(0, this.Height / 12);
+            sbar.SetFontSize(this.Height / 12);
             sbar.SetSize(this.Width * 2 / 5, 0);
             listDevis.Size = new System.Drawing.Size(this.Width * 2 / 5, this.Height / 2);
             listFacture.Size = listDevis.Size;
@@ -65,7 +65,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             this.addDevis_FactureButton.Click += new System.EventHandler(this.addDevis_Facture_Click);
         }
 
-        public override void SetFontSize(int buttonWidth, int buttonHeight)
+        public override void SetFontSize(int size)
         {
             throw new NotImplementedException();
         }
