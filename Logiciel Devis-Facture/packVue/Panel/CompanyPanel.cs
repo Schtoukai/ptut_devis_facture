@@ -10,6 +10,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
 {
     class CompanyPanel : AbstractPanel, PanelTool
     {
+        public const double PointToEm = 15*0.083333334163205;
         private SearchBar name;
         private SearchBar address;
         private SearchBar phone;
@@ -74,41 +75,40 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             this.Controls.Add(cancelButton);
 
             logoButton.Click += new System.EventHandler(LogoButton_Click);
-            saveButton.Click += new System.EventHandler();
-            cancelButton.Click += new System.EventHandler();
+            saveButton.Click += new System.EventHandler(SaveButton_Click);
+            cancelButton.Click += new System.EventHandler(CancelButton_Click);
         }
 
         public override void SetSize(int width, int height)
         {
-            this.Size = new System.Drawing.Size(width * 3 / 4, height * 3 / 4);
-            int elementHeight = this.Height / 6;
-            int elementWidth = this.Width / 2;
-            int fontHeight = this.Height / 30;
-            name.SetFontSize(0, elementHeight);
+            this.Size = new System.Drawing.Size(width, height);
+            int fontHeight = this.Height/45;
+            int elementWidth = this.Width/2;
+            name.SetFontSize(fontHeight);
             name.SetSize(elementWidth,0);
-            address.SetFontSize(0, elementHeight);
+            address.SetFontSize(fontHeight);
             address.SetSize(elementWidth, 0);
-            phone.SetFontSize(0, elementHeight);
+            phone.SetFontSize(fontHeight);
             phone.SetSize(elementWidth, 0);
-            mail.SetFontSize(0, elementHeight);
+            mail.SetFontSize(fontHeight);
             mail.SetSize(elementWidth, 0);
-            website.SetFontSize(0, elementHeight);
+            website.SetFontSize(fontHeight);
             website.SetSize(elementWidth, 0);
-            logo.SetFontSize(0, elementHeight); 
+            logo.SetFontSize(fontHeight); 
             logo.SetSize(elementWidth*3/4, 0);
-            titleLabel.Font = new Font("Arial", fontHeight, FontStyle.Bold);
+            titleLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Bold);
             titleLabel.AutoSize = true;
-            nameLabel.Font = new Font("Arial", fontHeight, FontStyle.Regular);
+            nameLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
             nameLabel.AutoSize = true;
-            addressLabel.Font = new Font("Arial", fontHeight, FontStyle.Regular);
+            addressLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
             addressLabel.AutoSize = true;
-            phoneLabel.Font = new Font("Arial", fontHeight, FontStyle.Regular);
+            phoneLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
             phoneLabel.AutoSize = true;
-            mailLabel.Font = new Font("Arial", fontHeight, FontStyle.Regular);
+            mailLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
             mailLabel.AutoSize = true;
-            websiteLabel.Font = new Font("Arial", fontHeight, FontStyle.Regular);
+            websiteLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
             websiteLabel.AutoSize = true;
-            logoLabel.Font = new Font("Arial", fontHeight, FontStyle.Regular);
+            logoLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
             logoLabel.AutoSize = true;
             logoButton.SetSize(elementWidth/ 4, logoLabel.Height);
         }
@@ -118,7 +118,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             this.Location = new System.Drawing.Point(x, y);
             int barHeight = name.Height;
             int barWidth = name.Width;
-            titleLabel.Location = new System.Drawing.Point((this.Size.Width - barWidth) / 4,y/4);
+            titleLabel.Location = new System.Drawing.Point((this.Size.Width - titleLabel.Width) / 2,y/4);
             name.Location = new System.Drawing.Point((this.Size.Width - barWidth) / 2, y);
             nameLabel.Location = new System.Drawing.Point(name.Location.X - nameLabel.Width, y);
             address.Location = new System.Drawing.Point((this.Size.Width - barWidth) / 2, y + 2* barHeight);
@@ -139,7 +139,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             throw new NotImplementedException();
         }
 
-        public override void SetFontSize(int buttonWidth, int buttonHeight)
+        public override void SetFontSize(int size)
         {
             throw new NotImplementedException();
         }
@@ -165,6 +165,11 @@ namespace Logiciel_Devis_Facture.packVue.Panel
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CancelButton_Click(object sender, EventArgs e)
         {
 
         }
