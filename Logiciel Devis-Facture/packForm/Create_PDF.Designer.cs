@@ -1,4 +1,5 @@
 ﻿
+using Logiciel_Devis_Facture.packModele;
 using System.Windows.Forms;
 
 namespace Logiciel_Devis_Facture
@@ -49,6 +50,7 @@ namespace Logiciel_Devis_Facture
             this.labelNewInvoice = new System.Windows.Forms.Label();
             this.labelDate = new System.Windows.Forms.Label();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.myPDF = new PDF();
             this.SuspendLayout();
             // 
             // labelName
@@ -181,6 +183,7 @@ namespace Logiciel_Devis_Facture
             this.textBoxNumero.Name = "textBoxNumero";
             this.textBoxNumero.Size = new System.Drawing.Size(365, 22);
             this.textBoxNumero.TabIndex = 15;
+            this.textBoxNumero.Enabled = false;
             // 
             // labelInvoiceInfo
             // 
@@ -197,7 +200,7 @@ namespace Logiciel_Devis_Facture
             // 
             this.labelNewInvoice.AutoSize = true;
             this.labelNewInvoice.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNewInvoice.Location = new System.Drawing.Point(402, 20);
+            this.labelNewInvoice.Location = new System.Drawing.Point(367, 19);
             this.labelNewInvoice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelNewInvoice.Name = "labelNewInvoice";
             this.labelNewInvoice.Size = new System.Drawing.Size(416, 52);
@@ -221,6 +224,7 @@ namespace Logiciel_Devis_Facture
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.Size = new System.Drawing.Size(220, 22);
             this.dateTimePicker.TabIndex = 19;
+            this.dateTimePicker.Enabled = false;
             // 
             // Create_PDF
             // 
@@ -252,6 +256,7 @@ namespace Logiciel_Devis_Facture
             this.Text = "Nouveau document";
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
@@ -274,5 +279,6 @@ namespace Logiciel_Devis_Facture
         private System.Windows.Forms.Label labelNewInvoice;
         private System.Windows.Forms.Label labelDate;
         private System.Windows.Forms.DateTimePicker dateTimePicker;
+        private PDF myPDF;
     }
 }

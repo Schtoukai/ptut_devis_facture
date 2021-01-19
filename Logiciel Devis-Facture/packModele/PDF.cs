@@ -51,7 +51,7 @@ namespace Logiciel_Devis_Facture.packModele
             return this.date;
         }
 
-        /*public bool generatePDF()
+        public bool generatePDF(TextBox textBoxName, TextBox textBoxStreet, TextBox textBoxCity, TextBox textBoxPhone, TextBox textBoxMail)
         {
             //Si tous les champs ne sont pas remplis
             if (textBoxName.Text == "" || textBoxStreet.Text == "" || textBoxCity.Text == "" || textBoxPhone.Text == "" || textBoxMail.Text == "")
@@ -143,6 +143,6 @@ namespace Logiciel_Devis_Facture.packModele
                 MessageBox.Show("Facture créée");
             }
             return true;
-        }*/
+        }
     }
 }

@@ -14,17 +14,16 @@ namespace Logiciel_Devis_Facture
     public partial class Create_PDF : Form
     {
 
-        packModele.PDF myPDF;
-
         public Create_PDF()
         {
             InitializeComponent();
-            myPDF = new PDF();
+            
         }
 
         private void buttonValidate_Click(object sender, EventArgs e)
         {
-            //myPDF.generatePDF();
+            myPDF.generatePDF(textBoxName, textBoxStreet, textBoxCity, textBoxPhone, textBoxMail);
+            this.Visible = false;
         }
     }
 }
