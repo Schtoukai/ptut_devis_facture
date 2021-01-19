@@ -82,9 +82,9 @@ namespace Logiciel_Devis_Facture
             this.Quote_InvoiceButton.TabIndex = 1;
             this.Quote_InvoiceButton.Text = "Devis & Facture";
             this.Quote_InvoiceButton.Click += new System.EventHandler(this.Quote_InvoiceButton_Click);
-            // 
+            //
             // CustomerButton
-            // 
+            //
             this.CustomerButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.CustomerButton.FlatAppearance.BorderSize = 0;
             this.CustomerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
