@@ -16,6 +16,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
         private SearchBar mail;
         private SearchBar website;
         private SearchBar logo;
+        private Label titleLabel;
         private Label nameLabel;
         private Label addressLabel;
         private Label phoneLabel;
@@ -23,6 +24,8 @@ namespace Logiciel_Devis_Facture.packVue.Panel
         private Label websiteLabel;
         private Label logoLabel;
         private myButton logoButton;
+        private myButton saveButton;
+        private myButton cancelButton;
 
         public CompanyPanel()
         {
@@ -32,6 +35,9 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             mail = new SearchBar();
             website = new SearchBar();
             logo = new SearchBar();
+
+            titleLabel = new Label();
+            titleLabel.Text = "Modifier les informations de mon entreprise: ";
             nameLabel = new Label();
             nameLabel.Text = "Nom :";
             addressLabel = new Label();
@@ -44,13 +50,19 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             websiteLabel.Text = "Site web :";
             logoLabel = new Label();
             logoLabel.Text = "Logo :";
+            logo.Enabled = false;
+
             logoButton = new myButton();
+            saveButton = new myButton();
+            cancelButton = new myButton();
+
             this.Controls.Add(name);
             this.Controls.Add(address);
             this.Controls.Add(phone);
             this.Controls.Add(mail);
             this.Controls.Add(website);
             this.Controls.Add(logo);
+            this.Controls.Add(titleLabel);
             this.Controls.Add(nameLabel);
             this.Controls.Add(addressLabel);
             this.Controls.Add(phoneLabel);
@@ -58,7 +70,12 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             this.Controls.Add(websiteLabel);
             this.Controls.Add(logoLabel);
             this.Controls.Add(logoButton);
+            this.Controls.Add(saveButton);
+            this.Controls.Add(cancelButton);
+
             logoButton.Click += new System.EventHandler(LogoButton_Click);
+            saveButton.Click += new System.EventHandler();
+            cancelButton.Click += new System.EventHandler();
         }
 
         public override void SetSize(int width, int height)
@@ -79,6 +96,8 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             website.SetSize(elementWidth, 0);
             logo.SetFontSize(0, elementHeight); 
             logo.SetSize(elementWidth*3/4, 0);
+            titleLabel.Font = new Font("Arial", fontHeight, FontStyle.Bold);
+            titleLabel.AutoSize = true;
             nameLabel.Font = new Font("Arial", fontHeight, FontStyle.Regular);
             nameLabel.AutoSize = true;
             addressLabel.Font = new Font("Arial", fontHeight, FontStyle.Regular);
@@ -99,6 +118,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             this.Location = new System.Drawing.Point(x, y);
             int barHeight = name.Height;
             int barWidth = name.Width;
+            titleLabel.Location = new System.Drawing.Point((this.Size.Width - barWidth) / 4,y/4);
             name.Location = new System.Drawing.Point((this.Size.Width - barWidth) / 2, y);
             nameLabel.Location = new System.Drawing.Point(name.Location.X - nameLabel.Width, y);
             address.Location = new System.Drawing.Point((this.Size.Width - barWidth) / 2, y + 2* barHeight);
@@ -125,6 +145,26 @@ namespace Logiciel_Devis_Facture.packVue.Panel
         }
 
         private void LogoButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog file = new OpenFileDialog();
+            file.Filter = "Logo(*JPG,*PNG) | *JPG;*PNG";
+            file.Title = "Selectionner un logo";
+            DialogResult resultat = file.ShowDialog();
+            if (resultat == DialogResult.OK)
+            {
+                try
+                {
+                    string fileName = file.FileName;
+                    logo.Text = file.FileName;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
         {
 
         }
