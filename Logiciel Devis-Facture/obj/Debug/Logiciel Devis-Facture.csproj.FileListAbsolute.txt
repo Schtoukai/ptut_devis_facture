@@ -33,3 +33,18 @@ C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\ite
 C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\itextsharp.xml
 C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\obj\Debug\Logiciel_Devis_Facture.Create_PDF.resources
 C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\obj\Debug\Logiciel Devis-Facture.csproj.CopyComplete
+C:\Users\33684\Documents\0_IUT\2_A\GitHub\Ptut\ptut_devis_facture\Logiciel Devis-Facture\bin\Debug\Logiciel Devis-Facture.exe.config
+C:\Users\33684\Documents\0_IUT\2_A\GitHub\Ptut\ptut_devis_facture\Logiciel Devis-Facture\bin\Debug\Logiciel Devis-Facture.exe
+C:\Users\33684\Documents\0_IUT\2_A\GitHub\Ptut\ptut_devis_facture\Logiciel Devis-Facture\bin\Debug\Logiciel Devis-Facture.pdb
+C:\Users\33684\Documents\0_IUT\2_A\GitHub\Ptut\ptut_devis_facture\Logiciel Devis-Facture\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\33684\Documents\0_IUT\2_A\GitHub\Ptut\ptut_devis_facture\Logiciel Devis-Facture\bin\Debug\itextsharp.dll
+C:\Users\33684\Documents\0_IUT\2_A\GitHub\Ptut\ptut_devis_facture\Logiciel Devis-Facture\bin\Debug\itextsharp.xml
+C:\Users\33684\Documents\0_IUT\2_A\GitHub\Ptut\ptut_devis_facture\Logiciel Devis-Facture\obj\Debug\Logiciel Devis-Facture.csprojAssemblyReference.cache
+C:\Users\33684\Documents\0_IUT\2_A\GitHub\Ptut\ptut_devis_facture\Logiciel Devis-Facture\obj\Debug\Logiciel_Devis_Facture.Logiciel_Devis_Facture.resources
+C:\Users\33684\Documents\0_IUT\2_A\GitHub\Ptut\ptut_devis_facture\Logiciel Devis-Facture\obj\Debug\Logiciel_Devis_Facture.Create_PDF.resources
+C:\Users\33684\Documents\0_IUT\2_A\GitHub\Ptut\ptut_devis_facture\Logiciel Devis-Facture\obj\Debug\Logiciel_Devis_Facture.Properties.Resources.resources
+C:\Users\33684\Documents\0_IUT\2_A\GitHub\Ptut\ptut_devis_facture\Logiciel Devis-Facture\obj\Debug\Logiciel Devis-Facture.csproj.GenerateResource.cache
+C:\Users\33684\Documents\0_IUT\2_A\GitHub\Ptut\ptut_devis_facture\Logiciel Devis-Facture\obj\Debug\Logiciel Devis-Facture.csproj.CoreCompileInputs.cache
+C:\Users\33684\Documents\0_IUT\2_A\GitHub\Ptut\ptut_devis_facture\Logiciel Devis-Facture\obj\Debug\Logiciel Devis-Facture.csproj.CopyComplete
+C:\Users\33684\Documents\0_IUT\2_A\GitHub\Ptut\ptut_devis_facture\Logiciel Devis-Facture\obj\Debug\Logiciel Devis-Facture.exe
+C:\Users\33684\Documents\0_IUT\2_A\GitHub\Ptut\ptut_devis_facture\Logiciel Devis-Facture\obj\Debug\Logiciel Devis-Facture.pdb
