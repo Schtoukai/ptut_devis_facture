@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Logiciel_Devis_Facture.packVue.Panel
 {
-    class QuoteAndInvoicePanel : AbstractPanel
+    class QuoteAndpdfPanel : AbstractPanel
     {
         private myButton addDevis_FactureButton;
         private SearchBar sbar;
         private System.Windows.Forms.ListBox listDevis;
         private System.Windows.Forms.ListBox listFacture;
 
-        public QuoteAndInvoicePanel()
+        public QuoteAndpdfPanel()
         {
             listDevis = new System.Windows.Forms.ListBox();
             listFacture = new System.Windows.Forms.ListBox();

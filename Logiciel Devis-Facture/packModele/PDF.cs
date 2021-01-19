@@ -1,6 +1,7 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 
@@ -63,15 +64,16 @@ namespace Logiciel_Devis_Facture.packModele
             else
             {
                 //Création du PDF
-                Document invoice = new Document();
-                PdfWriter writer = PdfWriter.GetInstance(invoice, new FileStream("C:/Users/julie/Desktop/Facture.pdf", FileMode.Create));
-                invoice.Open();
+                Document pdf = new Document();
+                String pdfName = "myPDF.pdf";
+                PdfWriter writer = PdfWriter.GetInstance(pdf, new FileStream(pdfName, FileMode.Create));
+                pdf.Open();
 
                 //Ajout du logo de l'entreprise
-                Image i1 = Image.GetInstance("C:/Users/julie/Desktop/IUT Info/2A/ptut/PDFCreator/PDFCreator/images/logo.png");
+                /*Image i1 = Image.GetInstance("C:/Users/julie/Desktop/IUT Info/2A/ptut/PDFCreator/PDFCreator/images/logo.png");
                 i1.ScaleAbsoluteWidth(141);
                 i1.ScaleAbsoluteHeight(100);
-                invoice.Add(i1);
+                pdf.Add(i1);*/
 
                 //On ajoute un espace entre le logo et l'info de l'entreprise
                 var spacer = new Paragraph("")
@@ -79,7 +81,7 @@ namespace Logiciel_Devis_Facture.packModele
                     SpacingBefore = 5f,
                     SpacingAfter = 0f,
                 };
-                invoice.Add(spacer);
+                pdf.Add(spacer);
 
                 //Informations de l'entreprise
                 PdfPTable companyInfo = new PdfPTable(1);
@@ -105,7 +107,7 @@ namespace Logiciel_Devis_Facture.packModele
                 companyInfo.WidthPercentage = 30;
                 companyInfo.HorizontalAlignment = Element.ALIGN_LEFT;
 
-                invoice.Add(companyInfo);
+                pdf.Add(companyInfo);
 
                 //Informations du client
                 PdfPTable clientInfo = new PdfPTable(1);
@@ -134,13 +136,13 @@ namespace Logiciel_Devis_Facture.packModele
                 clientCadre.AddCell(clientInfo);
                 clientCadre.HorizontalAlignment = Element.ALIGN_RIGHT;
                 clientCadre.WidthPercentage = 40;
-                invoice.Add(clientCadre);
+                pdf.Add(clientCadre);
 
                 //On valide le PDF
-                invoice.Close();
+                pdf.Close();
 
-                //Message de validation
-                MessageBox.Show("Facture créée");
+                //On ouvre le PDF
+                Process.Start(pdfName);
             }
             return true;
         }

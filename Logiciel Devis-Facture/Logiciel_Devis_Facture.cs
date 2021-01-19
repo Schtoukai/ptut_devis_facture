@@ -38,24 +38,24 @@ namespace Logiciel_Devis_Facture
 
             int buttonWidth = this.Width / 6;
             this.myCompanyButton.SetSize(buttonWidth, NavLayoutPanel.Height);
-            this.Quote_InvoiceButton.SetSize(buttonWidth, NavLayoutPanel.Height);
+            this.Quote_pdfButton.SetSize(buttonWidth, NavLayoutPanel.Height);
             this.CustomerButton.SetSize(buttonWidth, NavLayoutPanel.Height);
             this.MaterialButton.SetSize(buttonWidth, NavLayoutPanel.Height);
 
             int margin = (int)((NavLayoutPanel.Width - 4 * buttonWidth) / 8.25);
             this.myCompanyButton.SetMargin(margin, 0, margin, 0);
-            this.Quote_InvoiceButton.SetMargin(margin, 0, margin, 0);
+            this.Quote_pdfButton.SetMargin(margin, 0, margin, 0);
             this.CustomerButton.SetMargin(margin, 0, margin, 0);
             this.MaterialButton.SetMargin(margin, 0, margin, 0);
 
             customerPanel.SetSize(this.Width*4/3, this.Height);
             materialPanel.SetSize(this.Width*4/3, this.Height);
-            quote_InvoicePanel.SetSize(this.Width * 4 / 3, this.Height);
+            quote_pdfPanel.SetSize(this.Width * 4 / 3, this.Height);
             companyPanel.SetSize(this.Width * 4 / 3, this.Height);
 
             customerPanel.SetLocation(0, NavLayoutPanel.Height*3/2);
             materialPanel.SetLocation(0, NavLayoutPanel.Height*3/2);
-            quote_InvoicePanel.SetLocation(0, NavLayoutPanel.Height * 3 / 2);
+            quote_pdfPanel.SetLocation(0, NavLayoutPanel.Height * 3 / 2);
             companyPanel.SetLocation(0, NavLayoutPanel.Height * 3 / 2);
         }
 
@@ -69,9 +69,9 @@ namespace Logiciel_Devis_Facture
             materialPanel.BringToFront();
         }
 
-        private void Quote_InvoiceButton_Click(object sender, EventArgs e)
+        private void Quote_pdfButton_Click(object sender, EventArgs e)
         {
-            quote_InvoicePanel.BringToFront();
+            quote_pdfPanel.BringToFront();
         }
 
         private void CompanyButton_Click(object sender, EventArgs e)

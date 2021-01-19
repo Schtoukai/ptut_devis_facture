@@ -46,10 +46,12 @@ namespace Logiciel_Devis_Facture
             this.labelClientInfo = new System.Windows.Forms.Label();
             this.labelNumero = new System.Windows.Forms.Label();
             this.textBoxNumero = new System.Windows.Forms.TextBox();
-            this.labelInvoiceInfo = new System.Windows.Forms.Label();
-            this.labelNewInvoice = new System.Windows.Forms.Label();
+            this.labelpdfInfo = new System.Windows.Forms.Label();
+            this.labelNewpdf = new System.Windows.Forms.Label();
             this.labelDate = new System.Windows.Forms.Label();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.isFactureButton = new System.Windows.Forms.RadioButton();
+            this.isQuoteButton = new System.Windows.Forms.RadioButton();
             this.myPDF = new PDF();
             this.SuspendLayout();
             // 
@@ -179,33 +181,33 @@ namespace Logiciel_Devis_Facture
             // 
             // textBoxNumero
             // 
+            this.textBoxNumero.Enabled = false;
             this.textBoxNumero.Location = new System.Drawing.Point(710, 204);
             this.textBoxNumero.Name = "textBoxNumero";
             this.textBoxNumero.Size = new System.Drawing.Size(365, 22);
             this.textBoxNumero.TabIndex = 15;
-            this.textBoxNumero.Enabled = false;
             // 
-            // labelInvoiceInfo
+            // labelpdfInfo
             // 
-            this.labelInvoiceInfo.AutoSize = true;
-            this.labelInvoiceInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelInvoiceInfo.Location = new System.Drawing.Point(687, 94);
-            this.labelInvoiceInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelInvoiceInfo.Name = "labelInvoiceInfo";
-            this.labelInvoiceInfo.Size = new System.Drawing.Size(366, 36);
-            this.labelInvoiceInfo.TabIndex = 16;
-            this.labelInvoiceInfo.Text = "Information du document";
+            this.labelpdfInfo.AutoSize = true;
+            this.labelpdfInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelpdfInfo.Location = new System.Drawing.Point(687, 94);
+            this.labelpdfInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelpdfInfo.Name = "labelpdfInfo";
+            this.labelpdfInfo.Size = new System.Drawing.Size(366, 36);
+            this.labelpdfInfo.TabIndex = 16;
+            this.labelpdfInfo.Text = "Information du document";
             // 
-            // labelNewInvoice
+            // labelNewpdf
             // 
-            this.labelNewInvoice.AutoSize = true;
-            this.labelNewInvoice.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNewInvoice.Location = new System.Drawing.Point(367, 19);
-            this.labelNewInvoice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelNewInvoice.Name = "labelNewInvoice";
-            this.labelNewInvoice.Size = new System.Drawing.Size(416, 52);
-            this.labelNewInvoice.TabIndex = 17;
-            this.labelNewInvoice.Text = "Nouveau document";
+            this.labelNewpdf.AutoSize = true;
+            this.labelNewpdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNewpdf.Location = new System.Drawing.Point(367, 19);
+            this.labelNewpdf.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelNewpdf.Name = "labelNewpdf";
+            this.labelNewpdf.Size = new System.Drawing.Size(416, 52);
+            this.labelNewpdf.TabIndex = 17;
+            this.labelNewpdf.Text = "Nouveau document";
             // 
             // labelDate
             // 
@@ -220,21 +222,48 @@ namespace Logiciel_Devis_Facture
             // 
             // dateTimePicker
             // 
+            this.dateTimePicker.Enabled = false;
             this.dateTimePicker.Location = new System.Drawing.Point(710, 262);
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.Size = new System.Drawing.Size(220, 22);
             this.dateTimePicker.TabIndex = 19;
-            this.dateTimePicker.Enabled = false;
+            // 
+            // isFactureButton
+            // 
+            this.isFactureButton.AutoSize = true;
+            this.isFactureButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.isFactureButton.Location = new System.Drawing.Point(710, 149);
+            this.isFactureButton.Name = "isFactureButton";
+            this.isFactureButton.Size = new System.Drawing.Size(87, 24);
+            this.isFactureButton.TabIndex = 20;
+            this.isFactureButton.TabStop = true;
+            this.isFactureButton.Text = "Facture";
+            this.isFactureButton.UseVisualStyleBackColor = true;
+            // 
+            // isQuoteButton
+            // 
+            this.isQuoteButton.AutoSize = true;
+            this.isQuoteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.isQuoteButton.Location = new System.Drawing.Point(866, 149);
+            this.isQuoteButton.Name = "isQuoteButton";
+            this.isQuoteButton.Size = new System.Drawing.Size(73, 24);
+            this.isQuoteButton.TabIndex = 21;
+            this.isQuoteButton.TabStop = true;
+            this.isQuoteButton.Text = "Devis";
+            this.isQuoteButton.UseVisualStyleBackColor = true;
+            this.isQuoteButton.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // Create_PDF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1149, 493);
+            this.Controls.Add(this.isQuoteButton);
+            this.Controls.Add(this.isFactureButton);
             this.Controls.Add(this.dateTimePicker);
             this.Controls.Add(this.labelDate);
-            this.Controls.Add(this.labelNewInvoice);
-            this.Controls.Add(this.labelInvoiceInfo);
+            this.Controls.Add(this.labelNewpdf);
+            this.Controls.Add(this.labelpdfInfo);
             this.Controls.Add(this.textBoxNumero);
             this.Controls.Add(this.labelNumero);
             this.Controls.Add(this.labelClientInfo);
@@ -275,10 +304,12 @@ namespace Logiciel_Devis_Facture
         private System.Windows.Forms.Label labelClientInfo;
         private System.Windows.Forms.Label labelNumero;
         private System.Windows.Forms.TextBox textBoxNumero;
-        private System.Windows.Forms.Label labelInvoiceInfo;
-        private System.Windows.Forms.Label labelNewInvoice;
+        private System.Windows.Forms.Label labelpdfInfo;
+        private System.Windows.Forms.Label labelNewpdf;
         private System.Windows.Forms.Label labelDate;
         private System.Windows.Forms.DateTimePicker dateTimePicker;
         private PDF myPDF;
+        private RadioButton isFactureButton;
+        private RadioButton isQuoteButton;
     }
 }

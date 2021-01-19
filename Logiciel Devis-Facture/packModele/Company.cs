@@ -12,7 +12,7 @@ namespace Logiciel_Devis_Facture.packModele
         private string mail;
         private string phone;
         private Logo compLogo;
-        private List<PDF> listInvoice;
+        private List<PDF> listpdf;
         Company(){}
 
         Company(string siret)
@@ -20,7 +20,7 @@ namespace Logiciel_Devis_Facture.packModele
             this.siret = siret;
         }
 
-        Company(string siret,string street,string city,string mail,string phone, Logo compLogo, List<PDF> listInvoice)
+        Company(string siret,string street,string city,string mail,string phone, Logo compLogo, List<PDF> listpdf)
         {
             this.siret = siret;
             this.street = street;
@@ -28,7 +28,7 @@ namespace Logiciel_Devis_Facture.packModele
             this.mail = mail;
             this.phone = phone;
             this.compLogo = compLogo;
-            this.listInvoice = listInvoice;
+            this.listpdf = listpdf;
         }
 
         Logo getCompLogo()
@@ -57,18 +57,18 @@ namespace Logiciel_Devis_Facture.packModele
             return phone;
         }
 
-        object searchInvoice(int numero)
+        object searchpdf(int numero)
         {
-            for (int i = 0; i < listInvoice.Count; i++){
-                if (listInvoice[i].getNumero() == numero)
-                    return listInvoice[i];
+            for (int i = 0; i < listpdf.Count; i++){
+                if (listpdf[i].getNumero() == numero)
+                    return listpdf[i];
             }
             return false;
         }
 
-        bool addInvoice(PDF invoice)
+        bool addpdf(PDF pdf)
         {
-            listInvoice.Add(invoice);
+            listpdf.Add(pdf);
             return true;
         }
     }

@@ -35,12 +35,12 @@ namespace Logiciel_Devis_Facture
         {
             this.NavLayoutPanel = new FlowLayoutPanel();
             this.myCompanyButton = new myButton();
-            this.Quote_InvoiceButton = new myButton();
+            this.Quote_pdfButton = new myButton();
             this.CustomerButton = new myButton();
             this.MaterialButton = new myButton();
             this.customerPanel = new CustomerPanel();
             this.materialPanel = new MaterialPanel();
-            this.quote_InvoicePanel = new QuoteAndInvoicePanel();
+            this.quote_pdfPanel = new QuoteAndpdfPanel();
             this.companyPanel = new CompanyPanel();
             this.NavLayoutPanel.SuspendLayout();
             this.SuspendLayout();
@@ -49,7 +49,7 @@ namespace Logiciel_Devis_Facture
             // 
             this.NavLayoutPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.NavLayoutPanel.Controls.Add(this.myCompanyButton);
-            this.NavLayoutPanel.Controls.Add(this.Quote_InvoiceButton);
+            this.NavLayoutPanel.Controls.Add(this.Quote_pdfButton);
             this.NavLayoutPanel.Controls.Add(this.CustomerButton);
             this.NavLayoutPanel.Controls.Add(this.MaterialButton);
             this.NavLayoutPanel.Location = new System.Drawing.Point(1, 0);
@@ -70,18 +70,18 @@ namespace Logiciel_Devis_Facture
             this.myCompanyButton.Text = "Mon Entreprise";
             this.myCompanyButton.Click += new System.EventHandler(this.CompanyButton_Click);
             // 
-            // Quote_InvoiceButton
+            // Quote_pdfButton
             // 
-            this.Quote_InvoiceButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.Quote_InvoiceButton.FlatAppearance.BorderSize = 0;
-            this.Quote_InvoiceButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Quote_InvoiceButton.ForeColor = System.Drawing.Color.White;
-            this.Quote_InvoiceButton.Location = new System.Drawing.Point(211, 3);
-            this.Quote_InvoiceButton.Name = "Quote_InvoiceButton";
-            this.Quote_InvoiceButton.Size = new System.Drawing.Size(237, 49);
-            this.Quote_InvoiceButton.TabIndex = 1;
-            this.Quote_InvoiceButton.Text = "Devis & Facture";
-            this.Quote_InvoiceButton.Click += new System.EventHandler(this.Quote_InvoiceButton_Click);
+            this.Quote_pdfButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.Quote_pdfButton.FlatAppearance.BorderSize = 0;
+            this.Quote_pdfButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Quote_pdfButton.ForeColor = System.Drawing.Color.White;
+            this.Quote_pdfButton.Location = new System.Drawing.Point(211, 3);
+            this.Quote_pdfButton.Name = "Quote_pdfButton";
+            this.Quote_pdfButton.Size = new System.Drawing.Size(237, 49);
+            this.Quote_pdfButton.TabIndex = 1;
+            this.Quote_pdfButton.Text = "Devis & Facture";
+            this.Quote_pdfButton.Click += new System.EventHandler(this.Quote_pdfButton_Click);
             //
             // CustomerButton
             //
@@ -123,12 +123,12 @@ namespace Logiciel_Devis_Facture
             this.materialPanel.Size = new System.Drawing.Size(200, 100);
             this.materialPanel.TabIndex = 1;
             //
-            // quote_InvoicePanel
+            // quote_pdfPanel
             //
-            this.quote_InvoicePanel.Location = new System.Drawing.Point(0, 0);
-            this.quote_InvoicePanel.Name = "materialPanel";
-            this.quote_InvoicePanel.Size = new System.Drawing.Size(200, 100);
-            this.quote_InvoicePanel.TabIndex = 1;
+            this.quote_pdfPanel.Location = new System.Drawing.Point(0, 0);
+            this.quote_pdfPanel.Name = "materialPanel";
+            this.quote_pdfPanel.Size = new System.Drawing.Size(200, 100);
+            this.quote_pdfPanel.TabIndex = 1;
             //
             // companyPanel
             //
@@ -145,7 +145,7 @@ namespace Logiciel_Devis_Facture
             this.Controls.Add(this.NavLayoutPanel);
             this.Controls.Add(this.customerPanel);
             this.Controls.Add(this.materialPanel);
-            this.Controls.Add(this.quote_InvoicePanel);
+            this.Controls.Add(this.quote_pdfPanel);
             this.Controls.Add(this.companyPanel);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -159,12 +159,12 @@ namespace Logiciel_Devis_Facture
         #endregion
         private FlowLayoutPanel NavLayoutPanel;
         private myButton myCompanyButton;
-        private myButton Quote_InvoiceButton;
+        private myButton Quote_pdfButton;
         private myButton CustomerButton;
         private myButton MaterialButton;
         private CustomerPanel customerPanel;
         private MaterialPanel materialPanel;
-        private QuoteAndInvoicePanel quote_InvoicePanel;
+        private QuoteAndpdfPanel quote_pdfPanel;
         private CompanyPanel companyPanel;
     }
 }
