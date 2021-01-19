@@ -30,6 +30,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             this.ResumeLayout(false);
             this.PerformLayout();
             this.TabIndex = 1;
+            this.initEventHandler();
         }
         public override void SetSize(int width, int height)
         {
@@ -52,6 +53,16 @@ namespace Logiciel_Devis_Facture.packVue.Panel
         public override void SetMargin(int left, int top, int right, int bottom)
         {
             throw new NotImplementedException();
+        }
+        private void addDevis_Facture_Click(object sender, EventArgs e)
+        {
+            Create_PDF formulaire = new Create_PDF();
+            formulaire.Show();
+        }
+
+        public void initEventHandler()
+        {
+            this.addDevis_FactureButton.Click += new System.EventHandler(this.addDevis_Facture_Click);
         }
     }
 }

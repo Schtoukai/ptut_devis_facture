@@ -33,6 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\iTextSharp.5.5.13.2\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -52,6 +58,16 @@
     <Compile Include="Logiciel_Devis_Facture.Designer.cs">
       <DependentUpon>Logiciel_Devis_Facture.cs</DependentUpon>
     </Compile>
+    <Compile Include="packForm\Create_PDF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="packForm\Create_PDF.Designer.cs">
+      <DependentUpon>Create_PDF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="packModele\Client.cs" />
+    <Compile Include="packModele\Company.cs" />
+    <Compile Include="packModele\Logo.cs" />
+    <Compile Include="packModele\PDF.cs" />
     <Compile Include="packVue\PanelTool.cs" />
     <Compile Include="packVue\Panel\AbstractPanel.cs">
       <SubType>Component</SubType>
@@ -79,6 +95,9 @@
     <EmbeddedResource Include="Logiciel_Devis_Facture.resx">
       <DependentUpon>Logiciel_Devis_Facture.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="packForm\Create_PDF.resx">
+      <DependentUpon>Create_PDF.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -88,6 +107,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
