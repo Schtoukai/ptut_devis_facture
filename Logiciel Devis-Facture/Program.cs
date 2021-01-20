@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Logiciel_Devis_Facture.packModele;
+using System;
 using System.Windows.Forms;
 
 namespace Logiciel_Devis_Facture
@@ -14,6 +12,7 @@ namespace Logiciel_Devis_Facture
         [STAThread]
         static void Main()
         {
+            Company Entreprise;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Logiciel_Devis_Facture());
