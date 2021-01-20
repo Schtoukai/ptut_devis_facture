@@ -9,24 +9,20 @@ namespace Logiciel_Devis_Facture.packVue.Panel
 {
     class MaterialPanel : AbstractPanel
     {
-        private myButton addMateriauButton;
+        private myButton addMaterialButton;
         private SearchBar sbar;
         private System.Windows.Forms.ListBox list;
 
         public MaterialPanel()
         {
             list = new System.Windows.Forms.ListBox();
-            addMateriauButton = new myButton();
+            addMaterialButton = new myButton();
             sbar = new SearchBar();
-            this.Controls.Add(this.addMateriauButton);
+            this.Controls.Add(this.addMaterialButton);
             this.Controls.Add(this.sbar);
             this.Controls.Add(this.list);
-            addMateriauButton.Text = "Ajouter un Matériau";
-            addMateriauButton.BackColor = Color.Lime;
-            //this.BackColor = Color.Red;
-            this.ResumeLayout(false);
-            this.PerformLayout();
-            this.TabIndex = 1;
+            addMaterialButton.Text = "Ajouter un Matériau";
+            addMaterialButton.BackColor = Color.Lime;
         }
 
         public void addItem(String str)
@@ -39,17 +35,20 @@ namespace Logiciel_Devis_Facture.packVue.Panel
         public override void SetSize(int width, int height)
         {
             this.Size = new System.Drawing.Size(width, height);
-            addMateriauButton.SetSize(this.Width/6, this.Height/12);
-            sbar.SetFontSize(this.Height / 12);
-            sbar.SetSize(this.Width * 2 / 5, 0);
-            list.Size = new System.Drawing.Size(this.Width * 2 / 5, this.Height / 2);
+            int buttonWidth = this.Width / 6;
+            int buttonHeight = this.Height / 12;
+            int barWidth = this.Width * 2 / 5;
+            addMaterialButton.SetSize(buttonWidth, buttonHeight);
+            sbar.SetFontSize(buttonHeight / 5);
+            sbar.SetSize(barWidth, 0);
+            list.Size = new System.Drawing.Size(barWidth, buttonHeight * 6);
         }
         public override void SetLocation(int x, int y)
         {
             this.Location = new System.Drawing.Point(x, y);
-            addMateriauButton.Location = new System.Drawing.Point((this.Size.Width - addMateriauButton.Width) / 2, 0);
-            sbar.Location = new System.Drawing.Point((this.Size.Width - sbar.Width) / 2, addMateriauButton.Height * 3 / 2);
-            list.Location = new System.Drawing.Point((this.Size.Width - sbar.Width) / 2, addMateriauButton.Height * 5 / 2);
+            addMaterialButton.Location = new System.Drawing.Point((this.Size.Width - addMaterialButton.Width) / 2, 0);
+            sbar.Location = new System.Drawing.Point((this.Size.Width - sbar.Width) / 2, addMaterialButton.Height * 3 / 2);
+            list.Location = new System.Drawing.Point((this.Size.Width - sbar.Width) / 2, addMaterialButton.Height * 5 / 2);
         }
 
         public override void SetMargin(int left, int top, int right, int bottom)

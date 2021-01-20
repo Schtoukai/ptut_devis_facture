@@ -8,6 +8,7 @@ namespace Logiciel_Devis_Facture.packVue
 {
     class myButton : System.Windows.Forms.Button, PanelTool
     {
+        public const double PointToEm = 3*0.0625;
         public myButton()
         {
 
@@ -22,7 +23,7 @@ namespace Logiciel_Devis_Facture.packVue
         public void SetSize(int width, int height)
         {
             this.Size = new System.Drawing.Size(width, height);
-            this.SetFontSize(height);
+            this.SetFontSize((int)(height*PointToEm));
         }
 
         public void SetMargin(int left, int top, int right, int bottom)
