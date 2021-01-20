@@ -52,7 +52,7 @@ namespace Logiciel_Devis_Facture.packModele
             return this.date;
         }
 
-        public bool generatePDF(TextBox textBoxName, TextBox textBoxStreet, TextBox textBoxCity, TextBox textBoxPhone, TextBox textBoxMail)
+        public bool generatePDF(TextBox textBoxName, TextBox textBoxStreet, TextBox textBoxCity, TextBox textBoxPhone, TextBox textBoxMail, DataGridView itemGrid)
         {
             //Si tous les champs ne sont pas remplis
             if (textBoxName.Text == "" || textBoxStreet.Text == "" || textBoxCity.Text == "" || textBoxPhone.Text == "" || textBoxMail.Text == "")
@@ -137,6 +137,38 @@ namespace Logiciel_Devis_Facture.packModele
                 clientCadre.HorizontalAlignment = Element.ALIGN_RIGHT;
                 clientCadre.WidthPercentage = 40;
                 pdf.Add(clientCadre);
+
+                //Creating iTextSharp Table from the DataTable data
+                PdfPTable pdfTable = new PdfPTable(itemGrid.ColumnCount);
+                pdfTable.DefaultCell.Padding = 3;
+                pdfTable.WidthPercentage = 30;
+                pdfTable.HorizontalAlignment = Element.ALIGN_LEFT;
+                pdfTable.DefaultCell.BorderWidth = 1;
+
+                //Adding Header row
+                foreach (DataGridViewColumn column in itemGrid.Columns)
+                {
+                    PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText));
+                    pdfTable.AddCell(cell);
+                }
+
+                //Adding DataRow
+                foreach (DataGridViewRow row in itemGrid.Rows)
+                {
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        try
+                        {
+                            pdfTable.AddCell(cell.Value.ToString());
+                        }
+                        catch { }
+                    }
+                }
+
+                //Pour que le tableau prenne toute la largeur de la page 
+                pdfTable.WidthPercentage = 100;
+
+                pdf.Add(pdfTable);
 
                 //On valide le PDF
                 pdf.Close();
