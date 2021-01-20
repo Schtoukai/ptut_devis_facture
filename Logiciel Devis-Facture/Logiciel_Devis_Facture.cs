@@ -40,7 +40,7 @@ namespace Logiciel_Devis_Facture
             int buttonWidth = this.Width / NavLayoutPanel.Controls.Count;
 
             this.myCompanyButton.SetSize(buttonWidth, NavLayoutPanel.Height);
-            this.Quote_InvoiceButton.SetSize(buttonWidth, NavLayoutPanel.Height);
+            this.Quote_pdfButton.SetSize(buttonWidth, NavLayoutPanel.Height);
             this.CustomerButton.SetSize(buttonWidth, NavLayoutPanel.Height);
             this.MaterialButton.SetSize(buttonWidth, NavLayoutPanel.Height);
 
@@ -74,9 +74,9 @@ namespace Logiciel_Devis_Facture
             materialPanel.BringToFront();
         }
 
-        private void Quote_InvoiceButton_Click(object sender, EventArgs e)
+        private void Quote_pdfButton_Click(object sender, EventArgs e)
         {
-            quote_InvoicePanel.BringToFront();
+            quote_pdfPanel.BringToFront();
         }
 
         private void CompanyButton_Click(object sender, EventArgs e)
