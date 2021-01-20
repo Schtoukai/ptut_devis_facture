@@ -13,11 +13,10 @@ namespace Logiciel_Devis_Facture.packVue
 
         }
 
-        public void SetFontSize(int buttonWidth, int buttonHeight)
+        public void SetFontSize(int buttonHeight)
         {
-            int fontSize = buttonHeight / 6;
-            if (fontSize > 0)
-                this.Font = new System.Drawing.Font(this.Font.Name, fontSize);
+            if (buttonHeight > 0)
+                this.Font = new System.Drawing.Font(this.Font.Name, buttonHeight);
         }
 
         public void SetSize(int width, int height)

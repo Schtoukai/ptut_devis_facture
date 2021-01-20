@@ -10,16 +10,23 @@ namespace Logiciel_Devis_Facture.packVue.Panel
 {
     class CompanyPanel : AbstractPanel, PanelTool
     {
+        public const double PointToEm = 15*0.083333334163205;
         private SearchBar name;
         private SearchBar address;
         private SearchBar phone;
         private SearchBar mail;
         private SearchBar website;
+        private SearchBar logo;
+        private Label titleLabel;
         private Label nameLabel;
         private Label addressLabel;
         private Label phoneLabel;
         private Label mailLabel;
         private Label websiteLabel;
+        private Label logoLabel;
+        private myButton logoButton;
+        private myButton saveButton;
+        private myButton cancelButton;
 
         public CompanyPanel()
         {
@@ -28,87 +35,143 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             phone = new SearchBar();
             mail = new SearchBar();
             website = new SearchBar();
+            logo = new SearchBar();
+
+            titleLabel = new Label();
+            titleLabel.Text = "Modifier les informations de mon entreprise: ";
             nameLabel = new Label();
-            nameLabel.Font = new Font("Calibri", 18);
-            nameLabel.BorderStyle = BorderStyle.FixedSingle;
-            nameLabel.TextAlign = ContentAlignment.MiddleCenter;
-            nameLabel.Text = "Nom";
+            nameLabel.Text = "Nom :";
             addressLabel = new Label();
-            addressLabel.Font = new Font("Calibri", 18);
-            addressLabel.BorderStyle = BorderStyle.FixedSingle;
-            addressLabel.TextAlign = ContentAlignment.MiddleCenter;
-            addressLabel.Text = "Adresse";
+            addressLabel.Text = "Adresse postale :";
             phoneLabel = new Label();
-            phoneLabel.Font = new Font("Calibri", 18);
-            phoneLabel.BorderStyle = BorderStyle.FixedSingle;
-            phoneLabel.TextAlign = ContentAlignment.MiddleCenter;
-            phoneLabel.Text = "Téléphone";
+            phoneLabel.Text = "Téléphone :";
             mailLabel = new Label();
-            mailLabel.Font = new Font("Calibri", 18);
-            mailLabel.BorderStyle = BorderStyle.FixedSingle;
-            mailLabel.TextAlign = ContentAlignment.MiddleCenter;
-            mailLabel.Text = "Email";
+            mailLabel.Text = "Adresse Mail :";
             websiteLabel = new Label();
-            websiteLabel.Font = new Font("Calibri", 18);
-            websiteLabel.BorderStyle = BorderStyle.FixedSingle;
-            websiteLabel.TextAlign = ContentAlignment.MiddleCenter;
-            websiteLabel.Text = "Site web";
+            websiteLabel.Text = "Site web :";
+            logoLabel = new Label();
+            logoLabel.Text = "Logo :";
+            logo.Enabled = false;
+
+            logoButton = new myButton();
+            saveButton = new myButton();
+            cancelButton = new myButton();
+
             this.Controls.Add(name);
             this.Controls.Add(address);
             this.Controls.Add(phone);
             this.Controls.Add(mail);
             this.Controls.Add(website);
+            this.Controls.Add(logo);
+            this.Controls.Add(titleLabel);
             this.Controls.Add(nameLabel);
             this.Controls.Add(addressLabel);
             this.Controls.Add(phoneLabel);
             this.Controls.Add(mailLabel);
             this.Controls.Add(websiteLabel);
-            //this.BackColor = Color.Red;
-            /*name.BackColor = Color.Purple;
-            address.BackColor = Color.Purple;
-            phone.BackColor = Color.Purple;
-            mail.BackColor = Color.Purple;
-            website.BackColor = Color.Purple;*/
-            nameLabel.ForeColor = Color.Blue;
-            addressLabel.ForeColor = Color.Blue;
-            phoneLabel.ForeColor = Color.Blue;
-            mailLabel.ForeColor = Color.Blue;
-            websiteLabel.ForeColor = Color.Blue;
+            this.Controls.Add(logoLabel);
+            this.Controls.Add(logoButton);
+            this.Controls.Add(saveButton);
+            this.Controls.Add(cancelButton);
+
+            logoButton.Click += new System.EventHandler(LogoButton_Click);
+            saveButton.Click += new System.EventHandler(SaveButton_Click);
+            cancelButton.Click += new System.EventHandler(CancelButton_Click);
         }
 
         public override void SetSize(int width, int height)
         {
-            this.Size = new System.Drawing.Size(width * 3 / 4, height * 3 / 4);
-            name.SetSize(this.Width * 2 / 5, 0);
-            address.SetSize(this.Width * 2 / 5, 0);
-            phone.SetSize(this.Width * 2 / 5, 0);
-            mail.SetSize(this.Width * 2 / 5, 0);
-            website.SetSize(this.Width * 2 / 5, 0);
-            nameLabel.Size = new System.Drawing.Size(this.Width / 20, 0);
-            addressLabel.Size = new System.Drawing.Size(this.Width / 20, 0);
-            phoneLabel.Size = new System.Drawing.Size(this.Width / 20, 0);
-            mailLabel.Size = new System.Drawing.Size(this.Width / 20, 0);
-            websiteLabel.Size = new System.Drawing.Size(this.Width / 20, 0);
+            this.Size = new System.Drawing.Size(width, height);
+            int fontHeight = this.Height/45;
+            int elementWidth = this.Width/2;
+            name.SetFontSize(fontHeight);
+            name.SetSize(elementWidth,0);
+            address.SetFontSize(fontHeight);
+            address.SetSize(elementWidth, 0);
+            phone.SetFontSize(fontHeight);
+            phone.SetSize(elementWidth, 0);
+            mail.SetFontSize(fontHeight);
+            mail.SetSize(elementWidth, 0);
+            website.SetFontSize(fontHeight);
+            website.SetSize(elementWidth, 0);
+            logo.SetFontSize(fontHeight); 
+            logo.SetSize(elementWidth*3/4, 0);
+            titleLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Bold);
+            titleLabel.AutoSize = true;
+            nameLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
+            nameLabel.AutoSize = true;
+            addressLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
+            addressLabel.AutoSize = true;
+            phoneLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
+            phoneLabel.AutoSize = true;
+            mailLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
+            mailLabel.AutoSize = true;
+            websiteLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
+            websiteLabel.AutoSize = true;
+            logoLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
+            logoLabel.AutoSize = true;
+            logoButton.SetSize(elementWidth/ 4, logoLabel.Height);
         }
 
         public override void SetLocation(int x, int y)
         {
             this.Location = new System.Drawing.Point(x, y);
-            name.Location = new System.Drawing.Point((this.Size.Width - name.Width) / 2, y);
-            nameLabel.Location = new System.Drawing.Point(name.Location.X-nameLabel.Width, y);
-            address.Location = new System.Drawing.Point(name.Location.X,name.Location.Y+2*name.Size.Height);
-            addressLabel.Location = new System.Drawing.Point(name.Location.X - nameLabel.Width, y);
-            phone.Location = new System.Drawing.Point(name.Location.X, address.Location.Y + 2 * name.Size.Height);
-            phoneLabel.Location = new System.Drawing.Point(name.Location.X - nameLabel.Width, y);
-            mail.Location = new System.Drawing.Point(name.Location.X, phone.Location.Y + 2 * name.Size.Height);
-            mailLabel.Location = new System.Drawing.Point(name.Location.X - nameLabel.Width, y);
-            website.Location = new System.Drawing.Point(name.Location.X, mail.Location.Y + 2 * name.Size.Height);
-            websiteLabel.Location = new System.Drawing.Point(name.Location.X - nameLabel.Width, y);
+            int barHeight = name.Height;
+            int barWidth = name.Width;
+            titleLabel.Location = new System.Drawing.Point((this.Size.Width - titleLabel.Width) / 2,y/4);
+            name.Location = new System.Drawing.Point((this.Size.Width - barWidth) / 2, y);
+            nameLabel.Location = new System.Drawing.Point(name.Location.X - nameLabel.Width, y);
+            address.Location = new System.Drawing.Point((this.Size.Width - barWidth) / 2, y + 2* barHeight);
+            addressLabel.Location = new System.Drawing.Point(address.Location.X - addressLabel.Width, y + 2* barHeight);
+            phone.Location = new System.Drawing.Point((this.Size.Width - barWidth) / 2, y + 4* barHeight);
+            phoneLabel.Location = new System.Drawing.Point(phone.Location.X - phoneLabel.Width, y + 4* barHeight);
+            mail.Location = new System.Drawing.Point((this.Size.Width - barWidth) / 2, y + 6 * barHeight);
+            mailLabel.Location = new System.Drawing.Point(mail.Location.X - mailLabel.Width, y + 6 * barHeight);
+            website.Location = new System.Drawing.Point((this.Size.Width - barWidth) / 2, y + 8 * barHeight);
+            websiteLabel.Location = new System.Drawing.Point(website.Location.X - websiteLabel.Width, y + 8 * barHeight);
+            logo.Location = new System.Drawing.Point((this.Size.Width - barWidth) / 2, y + 10 * barHeight);
+            logoLabel.Location = new System.Drawing.Point(logo.Location.X - logoLabel.Width, y + 10 * barHeight);
+            logoButton.Location = new System.Drawing.Point(logo.Location.X + logo.Width, y + 10 * barHeight);
         }
 
         public override void SetMargin(int left, int top, int right, int bottom)
         {
             throw new NotImplementedException();
+        }
+
+        public override void SetFontSize(int size)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void LogoButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog file = new OpenFileDialog();
+            file.Filter = "Logo(*JPG,*PNG) | *JPG;*PNG";
+            file.Title = "Selectionner un logo";
+            DialogResult resultat = file.ShowDialog();
+            if (resultat == DialogResult.OK)
+            {
+                try
+                {
+                    string fileName = file.FileName;
+                    logo.Text = file.FileName;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -13,5 +13,7 @@ namespace Logiciel_Devis_Facture.packVue
         abstract public void SetMargin(int left, int top, int right, int bottom);
 
         abstract public void SetSize(int width, int height);
+
+        abstract public void SetFontSize(int size);
     }
 }

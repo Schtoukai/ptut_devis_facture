@@ -9,7 +9,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
 {
     class QuoteAndInvoicePanel : AbstractPanel
     {
-        private myButton addDevis_FactureButton;
+        private myButton addQuote_InvoiceButton;
         private SearchBar sbar;
         private System.Windows.Forms.ListBox listDevis;
         private System.Windows.Forms.ListBox listFacture;
@@ -18,36 +18,35 @@ namespace Logiciel_Devis_Facture.packVue.Panel
         {
             listDevis = new System.Windows.Forms.ListBox();
             listFacture = new System.Windows.Forms.ListBox();
-            addDevis_FactureButton = new myButton();
+            addQuote_InvoiceButton = new myButton();
             sbar = new SearchBar();
-            this.Controls.Add(this.addDevis_FactureButton);
+            this.Controls.Add(this.addQuote_InvoiceButton);
             this.Controls.Add(this.sbar);
             this.Controls.Add(this.listDevis);
             this.Controls.Add(this.listFacture);
-            addDevis_FactureButton.Text = "Ajouter un Devis ou une Facture";
-            addDevis_FactureButton.BackColor = Color.Lime;
-            //this.BackColor = Color.Red;
-            this.ResumeLayout(false);
-            this.PerformLayout();
-            this.TabIndex = 1;
+            addQuote_InvoiceButton.Text = "Ajouter un Devis ou une Facture";
+            addQuote_InvoiceButton.BackColor = Color.Lime;
             this.initEventHandler();
         }
         public override void SetSize(int width, int height)
         {
-            this.Size = new System.Drawing.Size(width * 3 / 4, height * 3 / 4);
-            addDevis_FactureButton.SetSize(this.Width / 6, this.Height / 12);
-            sbar.SetFontSize(0, this.Height / 12);
-            sbar.SetSize(this.Width * 2 / 5, 0);
-            listDevis.Size = new System.Drawing.Size(this.Width * 2 / 5, this.Height / 2);
+            this.Size = new System.Drawing.Size(width, height);
+            int buttonWidth = this.Width / 6;
+            int buttonHeight = this.Height / 12;
+            int barWidth = this.Width * 2 / 5;
+            addQuote_InvoiceButton.SetSize(buttonWidth, buttonHeight);
+            sbar.SetFontSize(buttonHeight/5);
+            sbar.SetSize(barWidth, 0);
+            listDevis.Size = new System.Drawing.Size(barWidth, buttonHeight*6);
             listFacture.Size = listDevis.Size;
         }
         public override void SetLocation(int x, int y)
         {
             this.Location = new System.Drawing.Point(x, y);
-            addDevis_FactureButton.Location = new System.Drawing.Point((this.Size.Width - addDevis_FactureButton.Width) / 2, 0);
-            sbar.Location = new System.Drawing.Point((this.Size.Width - sbar.Width) / 2, addDevis_FactureButton.Height * 3 / 2);
-            listDevis.Location = new System.Drawing.Point((this.Size.Width - (2 * sbar.Width)) / 2, addDevis_FactureButton.Height * 5 / 2);
-            listFacture.Location = new System.Drawing.Point(listDevis.Size.Width + 1 * sbar.Width / 5, listDevis.Location.Y);
+            addQuote_InvoiceButton.Location = new System.Drawing.Point((this.Size.Width - addQuote_InvoiceButton.Width) / 2, 0);
+            sbar.Location = new System.Drawing.Point((this.Size.Width - sbar.Width) / 2, addQuote_InvoiceButton.Height * 3 / 2);
+            listDevis.Location = new System.Drawing.Point(this.Size.Width/2 - sbar.Width, addQuote_InvoiceButton.Height * 5 / 2);
+            listFacture.Location = new System.Drawing.Point(listDevis.Size.Width + sbar.Width / 5, listDevis.Location.Y);
         }
 
         public override void SetMargin(int left, int top, int right, int bottom)
@@ -62,7 +61,12 @@ namespace Logiciel_Devis_Facture.packVue.Panel
 
         public void initEventHandler()
         {
-            this.addDevis_FactureButton.Click += new System.EventHandler(this.addDevis_Facture_Click);
+            this.addQuote_InvoiceButton.Click += new System.EventHandler(this.addDevis_Facture_Click);
+        }
+
+        public override void SetFontSize(int size)
+        {
+            throw new NotImplementedException();
         }
     }
 }
