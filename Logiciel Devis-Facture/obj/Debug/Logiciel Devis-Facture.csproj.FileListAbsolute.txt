@@ -33,3 +33,8 @@ C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\ite
 C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\itextsharp.xml
 C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\obj\Debug\Logiciel_Devis_Facture.Create_PDF.resources
 C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\obj\Debug\Logiciel Devis-Facture.csproj.CopyComplete
+C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\obj\Debug\Logiciel_Devis_Facture.Create_PDF.resources
+C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\itextsharp.dll
+C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\itextsharp.xml
+C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\obj\Debug\Logiciel Devis-Facture.csproj.CopyComplete
