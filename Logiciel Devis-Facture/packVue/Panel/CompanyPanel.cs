@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,9 @@ namespace Logiciel_Devis_Facture.packVue.Panel
         private SearchBar name;
         private SearchBar address;
         private SearchBar phone;
-        private SearchBar mail;
+        private SearchBar mailBegin;
+        private SearchBar at;
+        private SearchBar mailEnd;
         private SearchBar website;
         private SearchBar logo;
         private SearchBar siret;
@@ -35,7 +38,12 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             name = new SearchBar();
             address = new SearchBar();
             phone = new SearchBar();
-            mail = new SearchBar();
+            mailBegin = new SearchBar();
+            at = new SearchBar();
+            at.Text = "@";
+            at.TextAlign = HorizontalAlignment.Center;
+            at.Enabled = false;
+            mailEnd = new SearchBar();
             website = new SearchBar();
             logo = new SearchBar();
             siret = new SearchBar();
@@ -63,7 +71,6 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             saveButton.Text = "Sauvegarder ?";
             saveButton.Enabled = false;
             saveButton.BackColor = Color.Empty;
-            Console.WriteLine("Color " + saveButton.BackColor);
             cancelButton = new myButton();
             cancelButton.Text = "Effacer";
             cancelButton.Enabled = false;
@@ -72,7 +79,9 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             this.Controls.Add(name);
             this.Controls.Add(address);
             this.Controls.Add(phone);
-            this.Controls.Add(mail);
+            this.Controls.Add(mailBegin);
+            this.Controls.Add(at);
+            this.Controls.Add(mailEnd);
             this.Controls.Add(website);
             this.Controls.Add(siret);
             this.Controls.Add(logo);
@@ -107,9 +116,13 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             phone.SetFontSize(fontHeight);
             phone.SetSize(elementWidth, 0);
             phone.TextChanged += new System.EventHandler(TextField_TextChanged);
-            mail.SetFontSize(fontHeight);
-            mail.SetSize(elementWidth, 0);
-            mail.TextChanged += new System.EventHandler(TextField_TextChanged);
+            mailBegin.SetFontSize(fontHeight);
+            mailBegin.SetSize((elementWidth-at.Width)/2, 0);
+            mailBegin.TextChanged += new System.EventHandler(TextField_TextChanged);
+            at.SetFontSize(fontHeight);
+            mailEnd.SetFontSize(fontHeight);
+            mailEnd.SetSize((elementWidth - at.Width) / 2, 0);
+            mailEnd.TextChanged += new System.EventHandler(TextField_TextChanged);
             website.SetFontSize(fontHeight);
             website.SetSize(elementWidth, 0);
             website.TextChanged += new System.EventHandler(TextField_TextChanged);
@@ -152,8 +165,10 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             addressLabel.Location = new System.Drawing.Point(address.Location.X - addressLabel.Width, y/2 + 2* barHeight);
             phone.Location = new System.Drawing.Point((this.Size.Width - barWidth) / 2, y/2 + 4* barHeight);
             phoneLabel.Location = new System.Drawing.Point(phone.Location.X - phoneLabel.Width, y/2 + 4* barHeight);
-            mail.Location = new System.Drawing.Point((this.Size.Width - barWidth) / 2, y/2 + 6 * barHeight);
-            mailLabel.Location = new System.Drawing.Point(mail.Location.X - mailLabel.Width, y/2 + 6 * barHeight);
+            mailBegin.Location = new System.Drawing.Point((this.Size.Width - barWidth) / 2, y/2 + 6 * barHeight);
+            at.SetLocation(mailBegin.Location.X+mailBegin.Width,y / 2 + 6 * barHeight);
+            mailEnd.SetLocation(at.Location.X + at.Width, y / 2 + 6 * barHeight);
+            mailLabel.Location = new System.Drawing.Point(mailBegin.Location.X - mailLabel.Width, y/2 + 6 * barHeight);
             website.Location = new System.Drawing.Point((this.Size.Width - barWidth) / 2, y/2 + 8 * barHeight);
             websiteLabel.Location = new System.Drawing.Point(website.Location.X - websiteLabel.Width, y/2 + 8 * barHeight);
             siret.Location = new System.Drawing.Point((this.Size.Width - barWidth) / 2, y / 2 + 10 * barHeight);
@@ -178,16 +193,19 @@ namespace Logiciel_Devis_Facture.packVue.Panel
         private void LogoButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog file = new OpenFileDialog();
-            file.Filter = "Logo(*JPG,*PNG) | *JPG;*PNG";
+            file.Filter = "Logo(*PNG) | *PNG";
             file.Title = "Selectionner un logo";
             DialogResult resultat = file.ShowDialog();
             if (resultat == DialogResult.OK)
             {
                 try
                 {
-                    string filePath = file.FileName;
-                    //string fileName = filePath.Substring(filePath.LastIndexOf('\'));
-                    logo.Text = filePath;
+                    logo.Text = file.FileName;/*
+                    string fileName = filePath.Substring(filePath.LastIndexOf("\\")+1);
+                    string newPath = System.IO.Directory.GetCurrentDirectory() + logoLocalPath;
+                    string extension = filePath.Substring(filePath.LastIndexOf("."));
+                    string newFileName = "LogoEntreprise" + extension;
+                    File.Copy(filePath, Path.Combine(newPath,newFileName), true);*/
                 }
                 catch (Exception ex)
                 {
@@ -198,7 +216,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
 
         private void TextField_TextChanged(object sender, EventArgs e)
         {
-            int sumOfText = name.Text.Length + address.Text.Length + phone.Text.Length + mail.Text.Length + website.Text.Length + siret.Text.Length +logo.Text.Length;
+            int sumOfText = name.Text.Length + address.Text.Length + phone.Text.Length + mailBegin.Text.Length + mailEnd.Text.Length + website.Text.Length + siret.Text.Length +logo.Text.Length;
             
             if(sumOfText>0)
             {
@@ -211,7 +229,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
                 cancelButton.Enabled = false;
             }
 
-            if(!name.TextLength.Equals(0)&& !address.TextLength.Equals(0)&& !phone.TextLength.Equals(0)&& !mail.TextLength.Equals(0)&& !website.TextLength.Equals(0)&& !siret.TextLength.Equals(0)&& !logo.TextLength.Equals(0))
+            if(!name.TextLength.Equals(0)&& !address.TextLength.Equals(0)&& !phone.TextLength.Equals(0)&& !mailBegin.TextLength.Equals(0)&& !mailEnd.TextLength.Equals(0)&& !website.TextLength.Equals(0)&& !siret.TextLength.Equals(0)&& !logo.TextLength.Equals(0))
             {
                 saveButton.BackColor = Color.Lime;
                 saveButton.Enabled = true;
@@ -225,9 +243,16 @@ namespace Logiciel_Devis_Facture.packVue.Panel
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            const string logoLocalPath = "\\Logo\\";
             //
             //QueryDatabase
             //
+            string filePath = logo.Text;
+            string fileName = filePath.Substring(filePath.LastIndexOf("\\") + 1);
+            string newPath = System.IO.Directory.GetCurrentDirectory() + logoLocalPath;
+            string extension = filePath.Substring(filePath.LastIndexOf("."));
+            string newFileName = "LogoEntreprise" + extension;
+            File.Copy(filePath, Path.Combine(newPath, newFileName), true);
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -235,7 +260,8 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             name.ResetText();
             address.ResetText();
             phone.ResetText();
-            mail.ResetText();
+            mailBegin.ResetText();
+            mailEnd.ResetText();
             website.ResetText();
             siret.ResetText();
             logo.ResetText();
