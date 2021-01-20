@@ -4,6 +4,7 @@ using System.Data;
 using MySql.Data.MySqlClient;
 using MySqlConnector;
 
+
 namespace Logiciel_Devis_Facture.packModele
 {
     class Company
