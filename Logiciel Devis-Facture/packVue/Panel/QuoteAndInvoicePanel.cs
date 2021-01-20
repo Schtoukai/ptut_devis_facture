@@ -24,6 +24,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             quoteList = new DataGridView();
             quoteList.ColumnCount = 3;
             quoteList.Columns[0].Name = "Numéro";
+<<<<<<< HEAD
             quoteList.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             quoteList.Columns[1].Name = "Nom";
             quoteList.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -54,6 +55,11 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             {
                 header.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }
+=======
+            quoteList.Columns[1].Name = "Nom";
+            quoteList.Columns[2].Name = "Date";
+            invoiceList = new DataGridView();
+>>>>>>> 3c4e0bd161b65ac935806297e66e1b8585499930
             addQuote_InvoiceButton = new myButton();
             sbar = new SearchBar();
             this.Controls.Add(this.addQuote_InvoiceButton);
