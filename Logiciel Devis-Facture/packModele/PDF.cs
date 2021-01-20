@@ -64,11 +64,11 @@ namespace Logiciel_Devis_Facture.packModele
             {
                 //Création du PDF
                 Document invoice = new Document();
-                PdfWriter writer = PdfWriter.GetInstance(invoice, new FileStream("C:/Users/julie/Desktop/Facture.pdf", FileMode.Create));
+                PdfWriter writer = PdfWriter.GetInstance(invoice, new FileStream("C:/Users/33684/Desktop/Facture.pdf", FileMode.Create));
                 invoice.Open();
 
                 //Ajout du logo de l'entreprise
-                Image i1 = Image.GetInstance("C:/Users/julie/Desktop/IUT Info/2A/ptut/PDFCreator/PDFCreator/images/logo.png");
+                /*Image i1 = Image.GetInstance("C:/Users/julie/Desktop/IUT Info/2A/ptut/PDFCreator/PDFCreator/images/logo.png");
                 i1.ScaleAbsoluteWidth(141);
                 i1.ScaleAbsoluteHeight(100);
                 invoice.Add(i1);
@@ -79,7 +79,7 @@ namespace Logiciel_Devis_Facture.packModele
                     SpacingBefore = 5f,
                     SpacingAfter = 0f,
                 };
-                invoice.Add(spacer);
+                invoice.Add(spacer);*/
 
                 //Informations de l'entreprise
                 PdfPTable companyInfo = new PdfPTable(1);
