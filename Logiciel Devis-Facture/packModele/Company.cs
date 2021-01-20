@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Data;
+//using MySql.Data.MySqlClient;
+using MySqlConnector;
+
 
 namespace Logiciel_Devis_Facture.packModele
 {
@@ -13,7 +16,12 @@ namespace Logiciel_Devis_Facture.packModele
         private string phone;
         private Logo compLogo;
         private List<PDF> listInvoice;
-        Company(){}
+        private List<Client> listClient;
+        private string connstring = @"server=localhost;user id=root;password=root"; // tant que la bd n'est pas crée on ne la précise pas
+        public MySqlConnection connection;
+        Company(){
+            ;
+        }
 
         Company(string siret)
         {
@@ -31,44 +39,111 @@ namespace Logiciel_Devis_Facture.packModele
             this.listInvoice = listInvoice;
         }
 
-        Logo getCompLogo()
+        public Logo getCompLogo()
         {
             return compLogo;
         }
 
-        string getSiret() 
+        public string getSiret() 
         {
             return siret;
         }
 
-        string getStreet() {
+        public string getStreet() {
             return street;
         }
 
-        string getCity() {
+        public string getCity() {
             return city;
         }
 
-        string getMail() {
+        public string getMail() {
             return mail;
         }
 
-        string getPhone() {
+        public string getPhone() {
             return phone;
         }
 
-        object searchInvoice(int numero)
+        public void updateMySqlConnection()
         {
-            for (int i = 0; i < listInvoice.Count; i++){
-                if (listInvoice[i].getNumero() == numero)
-                    return listInvoice[i];
-            }
-            return false;
+            connection = new MySqlConnection(connstring);
         }
+        
+        
 
-        bool addInvoice(PDF invoice)
+
+        /*                                                      *
+         *             Fonction de rechercher de client         * 
+         *                                                      */
+        public bool querryClient()
         {
-            listInvoice.Add(invoice);
+            string Querry = "SELECT * FROM customer;";
+            try
+            {
+                connection = new MySqlConnection(connstring);
+                connection.Open();
+                MySqlDataAdapter da = new MySqlDataAdapter(Querry, connection);
+                DataSet ds = new DataSet();
+                da.Fill(ds, "customer");
+                DataTable dt = ds.Tables["customer"];
+                listClient.Clear();
+                foreach (DataRow row in dt.Rows)
+                {
+                    Client a = new Client(int.Parse(row[0].ToString()), row[1].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString(), row[5].ToString());
+                    listClient.Add(a);
+                }
+            }
+            catch (Exception c)
+            {
+                return false;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
+            return true;
+        }
+        public bool querryClient(string toQuerry)
+        {
+            string Querry = "SELECT * FROM customer";
+            if (toQuerry != "")
+            {
+                if (toQuerry[0] > 'A' && toQuerry[0] < 'Z')
+                    toQuerry += "%;";
+                if (toQuerry[0] > 'a' && toQuerry[0] < 'z')
+                    toQuerry = "%" + toQuerry + "%;";
+                else
+                    return false;
+                Querry += " Where nameCustomer LIKE" + toQuerry;
+            }
+            else
+                Querry += ";";
+            try
+            {
+                connection = new MySqlConnection(connstring);
+                connection.Open();
+                MySqlDataAdapter da = new MySqlDataAdapter(Querry, connection);
+                DataSet ds = new DataSet();
+                da.Fill(ds, "customer");
+                DataTable dt = ds.Tables["customer"];
+                listClient.Clear();
+                foreach (DataRow row in dt.Rows)
+                {
+                    Client a = new Client( int.Parse(row[0].ToString()), row[1].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString(), row[5].ToString());
+                    listClient.Add(a);
+                }
+            }
+            catch (Exception c)
+            {
+                return false;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
             return true;
         }
     }
