@@ -18,48 +18,16 @@ namespace Logiciel_Devis_Facture.packModele
         private List<Client> listClient;
         private string connstring = @"server=localhost;user id=root;password=root"; // tant que la bd n'est pas crée on ne la précise pas
         public MySqlConnection connection;
-
         Company(){
-            string Querry = "SELECT * FROM";
-            try
-            {
-                connection = new MySqlConnection(connstring);
-                connection.Open();
-                MySqlDataAdapter da = new MySqlDataAdapter(Querry + "company;", connection);
-                DataSet ds = new DataSet();
-                da.Fill(ds, "company");
-                DataTable dt = ds.Tables["company"];
-                DataRow row = dt.Rows[0];
-                siret = row[0].ToString();
-                street = row[1].ToString();
-                city = row[2].ToString();
-                mail = row[3].ToString();
-                phone = row[4].ToString();
-                Querry += row[5].ToString();
-
-                da = new MySqlDataAdapter(Querry + "logo;", connection);
-                ds = new DataSet();
-                da.Fill(ds, "logo");
-                dt = ds.Tables["logo"];
-                row = dt.Rows[0];
-                compLogo.setName(row[0].ToString());
-                compLogo.setFormat(row[1].ToString());
-                compLogo.setHeight( int.Parse(row[2].ToString()));
-                compLogo.setWidht(int.Parse(row[3].ToString()));
-                compLogo.setPathing(row[4].ToString());
-            }
-            catch (Exception c)
-            {
-                Console.WriteLine(c);
-            }
-            finally
-            {
-                if (connection != null)
-                    connection.Close();
-            }
+            ;
         }
 
-        Company(string siret,string street,string city,string mail,string phone, Logo compLogo, List<PDF> listpdf)
+        Company(string siret)
+        {
+            this.siret = siret;
+        }
+
+        Company(string siret,string street,string city,string mail,string phone, Logo compLogo, List<PDF> listInvoice)
         {
             this.siret = siret;
             this.street = street;
@@ -67,7 +35,7 @@ namespace Logiciel_Devis_Facture.packModele
             this.mail = mail;
             this.phone = phone;
             this.compLogo = compLogo;
-            this.listInvoice = listpdf;
+            this.listInvoice = listInvoice;
         }
 
         public Logo getCompLogo()

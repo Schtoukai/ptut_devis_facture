@@ -24,6 +24,23 @@ namespace Logiciel_Devis_Facture.packModele
             width = _width;
             pathing = _pathing;
         }
+
+        void setName(string a) {
+            name = a;
+        }
+        void setFormat(string a){
+            format = a;
+        }
+        void setPathing(string a) {
+            pathing = a;
+        }
+        void setWidth(int a) {
+            width = a;
+        }
+        void setHeight(int a){
+            height = a;
+        }
+
         string getName()
         {
             return name;
@@ -43,31 +60,6 @@ namespace Logiciel_Devis_Facture.packModele
         int getWidth()
         {
             return width;
-        }
-
-        internal void setName(string v)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal void setFormat(string v)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal void setHeight(int v)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal void setWidht(int v)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal void setPathing(string v)
-        {
-            throw new NotImplementedException();
         }
     }
 }
