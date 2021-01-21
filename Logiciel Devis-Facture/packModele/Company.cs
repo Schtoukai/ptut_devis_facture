@@ -16,7 +16,7 @@ namespace Logiciel_Devis_Facture.packModele
         private Logo compLogo;
         private List<PDF> listInvoice;
         private List<Client> listClient = new List<Client>();
-        private string connstring = @"server=localhost;user id=root;password=root;database=invoiceDatabase"; // tant que la bd n'est pas crée on ne la précise pas
+        private string connstring = @"server=localhost;user id=root;password=R@a[i?G++{iPynQ;database=invoiceDatabase"; // tant que la bd n'est pas crée on ne la précise pas
         public MySqlConnection connection;
 
         public Company() {
@@ -25,7 +25,7 @@ namespace Logiciel_Devis_Facture.packModele
             {
                 connection = new MySqlConnection(connstring);
                 connection.Open();
-                MySqlDataAdapter da = new MySqlDataAdapter(Querry + "company;", connection);
+                MySqlDataAdapter da = new MySqlDataAdapter(Querry + " company;", connection);
                 DataSet ds = new DataSet();
                 da.Fill(ds, "company");
                 DataTable dt = ds.Tables["company"];
