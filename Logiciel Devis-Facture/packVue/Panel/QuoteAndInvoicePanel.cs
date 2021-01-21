@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Logiciel_Devis_Facture.packModele;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -7,14 +8,15 @@ using System.Threading.Tasks;
 
 namespace Logiciel_Devis_Facture.packVue.Panel
 {
-    class QuoteAndInvoicePanel : AbstractPanel
+    class QuoteAndpdfPanel : AbstractPanel
     {
         private myButton addQuote_InvoiceButton;
         private SearchBar sbar;
         private System.Windows.Forms.ListBox listDevis;
         private System.Windows.Forms.ListBox listFacture;
+        private Company entreprise;
 
-        public QuoteAndInvoicePanel()
+        public QuoteAndpdfPanel(Company entreprise)
         {
             listDevis = new System.Windows.Forms.ListBox();
             listFacture = new System.Windows.Forms.ListBox();
@@ -27,6 +29,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             addQuote_InvoiceButton.Text = "Ajouter un Devis ou une Facture";
             addQuote_InvoiceButton.BackColor = Color.Lime;
             this.initEventHandler();
+            this.entreprise = entreprise;
         }
         public override void SetSize(int width, int height)
         {
@@ -56,7 +59,10 @@ namespace Logiciel_Devis_Facture.packVue.Panel
         private void addDevis_Facture_Click(object sender, EventArgs e)
         {
             Create_PDF formulaire = new Create_PDF();
-            formulaire.Show();
+            if(entreprise.querryClient())
+            {
+                formulaire.Show();
+            }
         }
 
         public void initEventHandler()

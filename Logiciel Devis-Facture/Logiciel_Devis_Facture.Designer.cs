@@ -1,4 +1,5 @@
-﻿using Logiciel_Devis_Facture.packVue;
+﻿using Logiciel_Devis_Facture.packModele;
+using Logiciel_Devis_Facture.packVue;
 using Logiciel_Devis_Facture.packVue.Panel;
 using System;
 using System.Windows.Forms;
@@ -38,10 +39,12 @@ namespace Logiciel_Devis_Facture
             this.Quote_InvoiceButton = new myButton();
             this.CustomerButton = new myButton();
             this.MaterialButton = new myButton();
+            this.entreprise = new Company();
             this.customerPanel = new CustomerPanel();
             this.materialPanel = new MaterialPanel();
-            this.quote_InvoicePanel = new QuoteAndInvoicePanel();
+            this.quote_InvoicePanel = new QuoteAndpdfPanel(entreprise);
             this.companyPanel = new CompanyPanel();
+            
             // 
             // NavLayoutPanel
             // 
@@ -60,7 +63,7 @@ namespace Logiciel_Devis_Facture
             this.myCompanyButton.Text = "Mon Entreprise";
             this.myCompanyButton.Click += new System.EventHandler(this.CompanyButton_Click);
             // 
-            // Quote_InvoiceButton
+            // Quote_pdfButton
             // 
             this.Quote_InvoiceButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.Quote_InvoiceButton.FlatAppearance.BorderSize = 0;
@@ -95,7 +98,7 @@ namespace Logiciel_Devis_Facture
             // 
             this.materialPanel.Name = "materialPanel";
             //
-            // quote_InvoicePanel
+            // quote_pdfPanel
             //
             this.quote_InvoicePanel.Name = "materialPanel";
             //
@@ -125,8 +128,9 @@ namespace Logiciel_Devis_Facture
         private myButton MaterialButton;
         private CustomerPanel customerPanel;
         private MaterialPanel materialPanel;
-        private QuoteAndInvoicePanel quote_InvoicePanel;
+        private QuoteAndpdfPanel quote_InvoicePanel;
         private CompanyPanel companyPanel;
+        private Company entreprise;
     }
 }
 
