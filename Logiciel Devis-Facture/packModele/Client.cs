@@ -5,23 +5,21 @@ using System.Text;
 
 namespace Logiciel_Devis_Facture.packModele
 {
-    class Client
+    public class Client
     {
         private int id;
         private String name;
-        private String street;
-        private String city;
+        private string[] address;
         private String mail;
         private String phone;
 
         public Client() {}
 
-        public Client(int id, String name, String street, String city, String mail, String phone)
+        public Client(int id, String name, string[] address, String mail, String phone)
         {
             this.id = id;
             this.name = name;
-            this.street = street;
-            this.city = city;
+            this.address = address;
             this.mail = mail;
             this.phone = phone;
         }
@@ -46,24 +44,14 @@ namespace Logiciel_Devis_Facture.packModele
             return this.name;
         }
 
-        public void setStreet(String street)
+        public void setAddress(String[] address)
         {
-            this.street = street;
+            this.address = address;
         }
 
-        public String getStreet()
+        public String[] getAddress()
         {
-            return this.street;
-        }
-
-        public void setCity(String city)
-        {
-            this.city = city;
-        }
-
-        public String getCity()
-        {
-            return this.city;
+            return this.address;
         }
 
         public void setMail(String mail)

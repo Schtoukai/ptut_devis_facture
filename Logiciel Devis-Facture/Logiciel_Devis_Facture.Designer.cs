@@ -1,4 +1,5 @@
-﻿using Logiciel_Devis_Facture.packVue;
+﻿using Logiciel_Devis_Facture.packModele;
+using Logiciel_Devis_Facture.packVue;
 using Logiciel_Devis_Facture.packVue.Panel;
 using System;
 using System.Windows.Forms;
@@ -33,6 +34,7 @@ namespace Logiciel_Devis_Facture
         /// </summary>
         private void InitializeComponent()
         {
+            this.company = new Company();
             this.NavLayoutPanel = new FlowLayoutPanel();
             this.myCompanyButton = new myButton();
             this.Quote_InvoiceButton = new myButton();
@@ -40,8 +42,9 @@ namespace Logiciel_Devis_Facture
             this.MaterialButton = new myButton();
             this.customerPanel = new CustomerPanel();
             this.materialPanel = new MaterialPanel();
-            this.quote_InvoicePanel = new QuoteAndInvoicePanel();
+            this.quote_InvoicePanel = new QuoteAndInvoicePanel(company);
             this.companyPanel = new CompanyPanel();
+            
             // 
             // NavLayoutPanel
             // 
@@ -127,6 +130,7 @@ namespace Logiciel_Devis_Facture
         private MaterialPanel materialPanel;
         private QuoteAndInvoicePanel quote_InvoicePanel;
         private CompanyPanel companyPanel;
+        private Company company;
     }
 }
 

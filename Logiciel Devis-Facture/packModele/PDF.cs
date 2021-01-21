@@ -12,7 +12,7 @@ namespace Logiciel_Devis_Facture.packModele
         private int numero;
         private String date;
 
-        public PDF() {}
+        public PDF() { }
 
         public PDF(String name, int numero, String date)
         {
@@ -51,10 +51,10 @@ namespace Logiciel_Devis_Facture.packModele
             return this.date;
         }
 
-        public bool generatePDF(TextBox textBoxName, TextBox textBoxStreet, TextBox textBoxCity, TextBox textBoxPhone, TextBox textBoxMail)
+        public bool generatePDF(TextBox textBoxName, TextBox textBoxStreet, TextBox textBoxAdditionnalAddress, TextBox textBoxZip, TextBox textBoxCity, TextBox textBoxPhone, TextBox textBoxMail, TextBox textBoxNumero, DateTimePicker dateTimePicker ,DataGridView itemGrid)
         {
             //Si tous les champs ne sont pas remplis
-            if (textBoxName.Text == "" || textBoxStreet.Text == "" || textBoxCity.Text == "" || textBoxPhone.Text == "" || textBoxMail.Text == "")
+            if (textBoxName.Text == "" || textBoxStreet.Text == "" || textBoxZip.Text == "" || textBoxCity.Text == "" || textBoxPhone.Text == "" || textBoxMail.Text == "")
             {
                 MessageBox.Show("Informations manquantes.");
                 return false;
@@ -63,23 +63,23 @@ namespace Logiciel_Devis_Facture.packModele
             else
             {
                 //Création du PDF
-                Document invoice = new Document();
-                PdfWriter writer = PdfWriter.GetInstance(invoice, new FileStream("C:/Users/julie/Desktop/Facture.pdf", FileMode.Create));
-                invoice.Open();
+                Document pdf = new Document();
+                PdfWriter writer = PdfWriter.GetInstance(pdf, new FileStream("C:/Users/julie/Desktop/Facture.pdf", FileMode.Create));
+                pdf.Open();
 
                 //Ajout du logo de l'entreprise
                 Image i1 = Image.GetInstance("C:/Users/julie/Desktop/IUT Info/2A/ptut/PDFCreator/PDFCreator/images/logo.png");
                 i1.ScaleAbsoluteWidth(141);
                 i1.ScaleAbsoluteHeight(100);
-                invoice.Add(i1);
+                pdf.Add(i1);
 
                 //On ajoute un espace entre le logo et l'info de l'entreprise
                 var spacer = new Paragraph("")
                 {
                     SpacingBefore = 5f,
-                    SpacingAfter = 0f,
+                    SpacingAfter = 5f,
                 };
-                invoice.Add(spacer);
+                pdf.Add(spacer);
 
                 //Informations de l'entreprise
                 PdfPTable companyInfo = new PdfPTable(1);
@@ -105,7 +105,7 @@ namespace Logiciel_Devis_Facture.packModele
                 companyInfo.WidthPercentage = 30;
                 companyInfo.HorizontalAlignment = Element.ALIGN_LEFT;
 
-                invoice.Add(companyInfo);
+                pdf.Add(companyInfo);
 
                 //Informations du client
                 PdfPTable clientInfo = new PdfPTable(1);
@@ -118,9 +118,16 @@ namespace Logiciel_Devis_Facture.packModele
                 clientStreet.Border = 0;
                 clientInfo.AddCell(clientStreet);
 
-                PdfPCell clientCity = new PdfPCell(new Paragraph(textBoxCity.Text));
-                clientCity.Border = 0;
-                clientInfo.AddCell(clientCity);
+                if(textBoxAdditionnalAddress.Text != "")
+                {
+                    PdfPCell additionnalAddress = new PdfPCell(new Paragraph(textBoxAdditionnalAddress.Text));
+                    additionnalAddress.Border = 0;
+                    clientInfo.AddCell(additionnalAddress);
+                }
+
+                PdfPCell zipAndCity = new PdfPCell(new Paragraph(textBoxZip.Text + ", " + textBoxCity.Text));
+                zipAndCity.Border = 0;
+                clientInfo.AddCell(zipAndCity);
 
                 PdfPCell clientPhone = new PdfPCell(new Paragraph(textBoxPhone.Text));
                 clientPhone.Border = 0;
@@ -134,10 +141,66 @@ namespace Logiciel_Devis_Facture.packModele
                 clientCadre.AddCell(clientInfo);
                 clientCadre.HorizontalAlignment = Element.ALIGN_RIGHT;
                 clientCadre.WidthPercentage = 40;
-                invoice.Add(clientCadre);
+                pdf.Add(clientCadre);
+
+                //Spacer
+                pdf.Add(spacer);
+
+                //Numéro et date du document
+                PdfPTable numAndDate = new PdfPTable(2);
+
+                PdfPCell numCell = new PdfPCell(new Paragraph("N° : " + textBoxNumero.Text));
+                numCell.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
+                numCell.Border = 0;
+                numAndDate.AddCell(numCell);
+
+                PdfPCell dateCell = new PdfPCell(new Paragraph("Date : " + dateTimePicker.Value.ToShortDateString()));
+                dateCell.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
+                dateCell.Border = 0;
+                numAndDate.AddCell(dateCell);
+
+                numAndDate.WidthPercentage = 100;
+                pdf.Add(numAndDate);
+
+                //Spacer
+                pdf.Add(spacer);
+
+                //Grille du PDF
+                PdfPTable pdfTable = new PdfPTable(itemGrid.ColumnCount);
+                pdfTable.DefaultCell.Padding = 3;
+                pdfTable.WidthPercentage = 30;
+                pdfTable.HorizontalAlignment = Element.ALIGN_LEFT;
+                pdfTable.DefaultCell.BorderWidth = 1;
+
+                //Ajout de la ligne entête
+                foreach (DataGridViewColumn column in itemGrid.Columns)
+                {
+                    PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText));
+                    BaseColor cellBg = new BaseColor(185, 185, 185); //Gris clair
+                    cell.BackgroundColor = cellBg;
+                    pdfTable.AddCell(cell);
+                }
+
+                //Ajout des lignes de données
+                foreach (DataGridViewRow row in itemGrid.Rows)
+                {
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        try
+                        {
+                            pdfTable.AddCell(cell.Value.ToString());
+                        }
+                        catch { }
+                    }
+                }
+
+                //Pour que le tableau prenne toute la largeur de la page 
+                pdfTable.WidthPercentage = 100;
+
+                pdf.Add(pdfTable);
 
                 //On valide le PDF
-                invoice.Close();
+                pdf.Close();
 
                 //Message de validation
                 MessageBox.Show("Facture créée");

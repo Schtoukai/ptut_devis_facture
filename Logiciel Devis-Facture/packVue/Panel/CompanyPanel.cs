@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Logiciel_Devis_Facture.packModele;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -35,6 +36,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
         private myButton logoButton;
         private myButton saveButton;
         private myButton cancelButton;
+        
 
         public CompanyPanel()
         {
