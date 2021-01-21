@@ -55,6 +55,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             zip.GotFocus += new System.EventHandler(TextField_GotFocus);
             zip.LostFocus += new System.EventHandler(TextField_LostFocus);
             zip.ForeColor = Color.Gray;
+            zip.MaxLength = 5;
             city = new SearchBar();
             city.Text = "Ville";
             city.GotFocus += new System.EventHandler(TextField_GotFocus);
@@ -258,12 +259,15 @@ namespace Logiciel_Devis_Facture.packVue.Panel
 
         private void TextField_TextChanged(object sender, EventArgs e)
         {
-            int sumOfText = name.Text.Length + address.Text.Length + phone.Text.Length + mailBegin.Text.Length + mailEnd.Text.Length + website.Text.Length + siret.Text.Length +logo.Text.Length;
+            int sumOfText = name.Text.Length + phone.Text.Length + mailBegin.Text.Length + website.Text.Length + siret.Text.Length +logo.Text.Length;
             
-            if(sumOfText>0)
+            if(sumOfText>0 || !address.ForeColor.Equals(Color.Gray) && !address.Text.Length.Equals(0)|| !additionalAddress.ForeColor.Equals(Color.Gray) && !additionalAddress.Text.Length.Equals(0) ||  !zip.ForeColor.Equals(Color.Gray) && !zip.Text.Length.Equals(0) || !city.ForeColor.Equals(Color.Gray) && !city.Text.Length.Equals(0))
             {
-                cancelButton.BackColor = Color.Red;
-                cancelButton.Enabled = true;
+                /*if (!address.ForeColor.Equals(Color.Gray) || !additionalAddress.ForeColor.Equals(Color.Gray) || !zip.ForeColor.Equals(Color.Gray) || !city.ForeColor.Equals(Color.Gray))
+                {*/
+                    cancelButton.BackColor = Color.Red;
+                    cancelButton.Enabled = true;
+                //}
             }
             else
             {
@@ -271,7 +275,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
                 cancelButton.Enabled = false;
             }
 
-            if(!name.TextLength.Equals(0)&& !address.TextLength.Equals(0)&& !phone.TextLength.Equals(0)&& !mailBegin.TextLength.Equals(0)&& !website.TextLength.Equals(0)&& !siret.TextLength.Equals(0)&& !logo.TextLength.Equals(0))
+            if(!name.TextLength.Equals(0)&& !address.TextLength.Equals(0)&& !phone.TextLength.Equals(0)&& !mailBegin.TextLength.Equals(0)&& !website.TextLength.Equals(0)&& !siret.TextLength.Equals(0)&& !logo.TextLength.Equals(0) && !address.ForeColor.Equals(Color.Gray) && !additionalAddress.ForeColor.Equals(Color.Gray) && !zip.ForeColor.Equals(Color.Gray) && !city.ForeColor.Equals(Color.Gray))
             {
                 saveButton.BackColor = Color.Lime;
                 saveButton.Enabled = true;
@@ -327,6 +331,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
                 {
                     address.ForeColor = Color.Gray;
                     address.Text = "Adresse";
+                    address.TextChanged += new System.EventHandler(TextField_TextChanged);
                 }
             }
             else if(additionalAddress.Equals((SearchBar)sender))
@@ -335,6 +340,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
                 {
                     additionalAddress.ForeColor = Color.Gray;
                     additionalAddress.Text = "Complément";
+                    additionalAddress.TextChanged += new System.EventHandler(TextField_TextChanged);
                 }
             }
             else if(zip.Equals((SearchBar)sender))
@@ -343,6 +349,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
                 {
                     zip.ForeColor = Color.Gray;
                     zip.Text = "Code";
+                    zip.TextChanged += new System.EventHandler(TextField_TextChanged);
                 }
             }
             else if(city.Equals((SearchBar)sender))
@@ -351,6 +358,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
                 {
                     city.ForeColor = Color.Gray;
                     city.Text = "Ville";
+                    city.TextChanged += new System.EventHandler(TextField_TextChanged);
                 }
             }
         }
@@ -372,13 +380,20 @@ namespace Logiciel_Devis_Facture.packVue.Panel
         private void CancelButton_Click(object sender, EventArgs e)
         {
             name.ResetText();
-            address.ResetText();
             phone.ResetText();
             mailBegin.ResetText();
             mailEnd.ResetText();
             website.ResetText();
             siret.ResetText();
             logo.ResetText();
+            address.ForeColor = Color.Gray;
+            address.Text = "Adresse";
+            additionalAddress.ForeColor = Color.Gray;
+            additionalAddress.Text = "Complément";
+            zip.ForeColor = Color.Gray;
+            zip.Text = "Code";
+            city.ForeColor = Color.Gray;
+            city.Text = "Ville";
             saveButton.BackColor = Color.Empty;
             saveButton.Enabled = false;
             cancelButton.BackColor = Color.Empty;
