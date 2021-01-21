@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Logiciel_Devis_Facture.packModele;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -12,15 +13,15 @@ namespace Logiciel_Devis_Facture.packVue.Panel
     {
         private myButton addQuote_InvoiceButton;
         private SearchBar sbar;
+        private Company entreprise;
         //private System.Windows.Forms.ListBox listDevis;
         //private System.Windows.Forms.ListBox listFacture;
         private DataGridView quoteList;
         private DataGridView invoiceList;
 
-        public QuoteAndInvoicePanel()
+        public QuoteAndInvoicePanel(Company entreprise)
         {
-            //listDevis = new System.Windows.Forms.ListBox();
-            //listFacture = new System.Windows.Forms.ListBox();
+            this.entreprise = entreprise;
             quoteList = new DataGridView();
             quoteList.ColumnCount = 3;
             quoteList.Columns[0].Name = "Numéro";
@@ -95,7 +96,10 @@ namespace Logiciel_Devis_Facture.packVue.Panel
         private void addQuote_Invoice_Click(object sender, EventArgs e)
         {
             Create_PDF formulaire = new Create_PDF();
-            formulaire.Show();
+            if(entreprise.querryClient())
+            {
+                formulaire.Show();
+            }
         }
 
         public void initEventHandler()
