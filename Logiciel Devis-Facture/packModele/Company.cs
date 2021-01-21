@@ -15,11 +15,11 @@ namespace Logiciel_Devis_Facture.packModele
         private string phone;
         private Logo compLogo;
         private List<PDF> listInvoice;
-        private List<Client> listClient;
-        private string connstring = @"server=localhost;user id=root;password=root"; // tant que la bd n'est pas crée on ne la précise pas
+        private List<Client> listClient = new List<Client>();
+        private string connstring = @"server=localhost;user id=root;password=root;database=invoiceDatabase"; // tant que la bd n'est pas crée on ne la précise pas
         public MySqlConnection connection;
 
-        Company(){
+        public Company(){
             string Querry = "SELECT * FROM";
             try
             {
@@ -59,7 +59,7 @@ namespace Logiciel_Devis_Facture.packModele
             }
         }
 
-        Company(string siret,string street,string city,string mail,string phone, Logo compLogo, List<PDF> listInvoice)
+        Company(string siret,string street,string city,string mail,string phone, Logo compLogo, List<PDF> listpdf)
         {
             this.siret = siret;
             this.street = street;
@@ -67,7 +67,7 @@ namespace Logiciel_Devis_Facture.packModele
             this.mail = mail;
             this.phone = phone;
             this.compLogo = compLogo;
-            this.listInvoice = listInvoice;
+            this.listInvoice = listpdf;
         }
 
         public Logo getCompLogo()
@@ -96,6 +96,11 @@ namespace Logiciel_Devis_Facture.packModele
             return phone;
         }
 
+        public List<Client> getListClient()
+        {
+            return listClient;
+        }
+
         public void updateMySqlConnection()
         {
             connection = new MySqlConnection(connstring);
@@ -109,7 +114,7 @@ namespace Logiciel_Devis_Facture.packModele
          *                                                      */
         public bool querryClient()
         {
-            string Querry = "SELECT * FROM customer;";
+            /*string Querry = "SELECT * FROM customer LIMIT 5;";
             try
             {
                 connection = new MySqlConnection(connstring);
@@ -121,36 +126,40 @@ namespace Logiciel_Devis_Facture.packModele
                 listClient.Clear();
                 foreach (DataRow row in dt.Rows)
                 {
-                    Client a = new Client(int.Parse(row[0].ToString()), row[1].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString(), row[5].ToString());
+                    Client a = new Client(int.Parse(row[0].ToString()), row[1].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString());
                     listClient.Add(a);
                 }
             }
             catch (Exception c)
             {
+                System.Console.WriteLine("ok : "+c);
                 return false;
             }
             finally
             {
                 if (connection != null)
                     connection.Close();
-            }
+            }*/
             return true;
         }
         public bool querryClient(string toQuerry)
         {
-            string Querry = "SELECT * FROM customer";
+            /*string Querry = "SELECT * FROM customer";
             if (toQuerry != "")
             {
-                if (toQuerry[0] > 'A' && toQuerry[0] < 'Z')
+                if (toQuerry[0] >= 'A' && toQuerry[0] <= 'Z')
                     toQuerry += "%;";
-                if (toQuerry[0] > 'a' && toQuerry[0] < 'z')
-                    toQuerry = "%" + toQuerry + "%;";
                 else
-                    return false;
+                {
+                    if (toQuerry[0] >= 'a' && toQuerry[0] <= 'z')
+                        toQuerry = "%" + toQuerry + "%;";
+                    else
+                        return false;
+                }
                 Querry += " Where nameCustomer LIKE" + toQuerry;
             }
             else
-                Querry += ";";
+                Querry += " LIMIT 5;";
             try
             {
                 connection = new MySqlConnection(connstring);
@@ -162,19 +171,20 @@ namespace Logiciel_Devis_Facture.packModele
                 listClient.Clear();
                 foreach (DataRow row in dt.Rows)
                 {
-                    Client a = new Client( int.Parse(row[0].ToString()), row[1].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString(), row[5].ToString());
+                    Client a = new Client( int.Parse(row[0].ToString()), row[1].ToString(), row[2].ToString(), row[3].ToString(),  row[4].ToString());
                     listClient.Add(a);
                 }
             }
             catch (Exception c)
             {
+                System.Console.WriteLine(c.Message);
                 return false;
             }
             finally
             {
                 if (connection != null)
                     connection.Close();
-            }
+            }*/
             return true;
         }
     }

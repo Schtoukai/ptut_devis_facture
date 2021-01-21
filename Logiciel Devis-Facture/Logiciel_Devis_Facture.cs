@@ -21,8 +21,7 @@ namespace Logiciel_Devis_Facture
 
         private void Logiciel_Load(object sender, EventArgs e)
         {
-            //companyPanel.BringToFront();
-            quote_InvoicePanel.BringToFront();
+            companyPanel.BringToFront();
             this.WindowState = FormWindowState.Maximized;
             Logiciel_Resize(sender,e);
             this.customerPanel.addItem("Bonjour");

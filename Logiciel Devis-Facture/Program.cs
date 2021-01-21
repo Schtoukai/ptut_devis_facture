@@ -12,7 +12,6 @@ namespace Logiciel_Devis_Facture
         [STAThread]
         static void Main()
         {
-            Company Entreprise;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Logiciel_Devis_Facture());
