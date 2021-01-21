@@ -38,3 +38,15 @@ C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\
 C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\itextsharp.dll
 C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\itextsharp.xml
 C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\obj\Debug\Logiciel Devis-Facture.csproj.CopyComplete
+C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\MySqlConnector.dll
+C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\System.Buffers.dll
+C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\System.Memory.dll
+C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\MySqlConnector.xml
+C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\System.Buffers.xml
+C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\System.Memory.xml
+C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\System.Threading.Tasks.Extensions.xml
