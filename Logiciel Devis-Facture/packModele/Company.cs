@@ -59,7 +59,7 @@ namespace Logiciel_Devis_Facture.packModele
             }
         }
 
-        Company(string siret,string street,string city,string mail,string phone, Logo compLogo, List<PDF> listInvoice)
+        Company(string siret,string street,string city,string mail,string phone, Logo compLogo, List<PDF> listpdf)
         {
             this.siret = siret;
             this.street = street;
@@ -67,7 +67,7 @@ namespace Logiciel_Devis_Facture.packModele
             this.mail = mail;
             this.phone = phone;
             this.compLogo = compLogo;
-            this.listInvoice = listInvoice;
+            this.listInvoice = listpdf;
         }
 
         public Logo getCompLogo()
