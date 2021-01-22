@@ -23,6 +23,7 @@ namespace Logiciel_Devis_Facture.packModele
         public Company()
         {
             string Querry = "SELECT * FROM";
+            setCompLogo();
             try
             {
                 connection = new MySqlConnection(connstring);
@@ -71,6 +72,11 @@ namespace Logiciel_Devis_Facture.packModele
         public Logo getCompLogo()
         {
             return compLogo;
+        }
+
+        public void setCompLogo()
+        {
+            compLogo = new Logo();
         }
 
         public string getCompanyName()

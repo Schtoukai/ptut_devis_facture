@@ -58,7 +58,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             name.MaxLength = 25;
             address = new SearchBar();
             c_address = company.getStreet();
-            if(c_address != "")
+            if(c_address!=null)
             {
                 address.Text = c_address;
                 address.ForeColor = Color.Black;
@@ -72,7 +72,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             address.LostFocus += new System.EventHandler(TextField_LostFocus);
             additionalAddress = new SearchBar();
             c_additional = company.getAdditionnal();
-            if (c_additional != "")
+            if (c_additional!=null)
             {
                 additionalAddress.Text = c_additional;
                 additionalAddress.ForeColor = Color.Black;
@@ -86,7 +86,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             additionalAddress.LostFocus += new System.EventHandler(TextField_LostFocus);
             zip = new SearchBar();
             c_zip = company.getZip();
-            if (c_zip != "")
+            if (c_zip!=null)
             {
                 zip.Text = c_zip;
                 zip.ForeColor = Color.Black;
@@ -101,7 +101,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             zip.MaxLength = 5;
             city = new SearchBar();
             c_city = company.getCity();
-            if (c_city != "")
+            if (c_city!=null)
             {
                 city.Text = company.getCity();
                 city.ForeColor = Color.Black;
@@ -122,7 +122,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             Console.WriteLine(c_mail);
             if(c_mail!=null)
             {
-                c_mail.Substring(0, company.getMail().LastIndexOf("@"));
+                c_mail = c_mail.Substring(0, company.getMail().LastIndexOf("@"));
             }
             mailBegin.Text = c_mail;
             at = new SearchBar();
@@ -148,8 +148,15 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             website.Text = c_website;
             website.MaxLength = 25;
             logo = new SearchBar();
-            //c_logo = company.getCompLogo().getPathing();
-            //logo.Text = c_logo;
+            if(company.getCompLogo() != null)
+            {
+                c_logo = company.getCompLogo().getPathing();
+                if(c_logo!=null)
+                {
+                    c_logo = c_logo.Replace("/", "\\");
+                    logo.Text = c_logo;
+                }
+            }
             siret = new SearchBar();
             c_siret = company.getSiret();
             if(c_siret!=null)
@@ -468,18 +475,22 @@ namespace Logiciel_Devis_Facture.packVue.Panel
                     c_website = website.Text;
                     string filePath = logo.Text;
                     string fileName = filePath.Substring(filePath.LastIndexOf("\\") + 1);
-                    string newPath = System.IO.Directory.GetCurrentDirectory() + logoLocalPath;
+                    string newPath = System.IO.Directory.GetCurrentDirectory();// + logoLocalPath.Substring(0,logoLocalPath.LastIndexOf("\\"));
+                    newPath = newPath.Replace("\\", "/") + logoLocalPath.Replace("\\", "/");
                     string extension = filePath.Substring(filePath.LastIndexOf("."));
                     string newFileName = "logo Entreprise"; //+ extension;
-                    File.Copy(filePath, Path.Combine(newPath, newFileName + ".PNG"), true);
                     c_logo = newFileName;
-                    if (company.updateCompanyTable(c_siret, c_name, c_address, c_additional, c_zip, c_city, c_mail, c_phone, c_website, c_logo))
+                    if (company.getCompLogo().updateCompanyTable(c_logo,newPath,extension))
                     {
-                        saveButton.BackColor = Color.Empty;
-                        saveButton.Text = "Sauvegardé";
-                        saveButton.Enabled = false;
-                        cancelButton.BackColor = Color.Empty;
-                        cancelButton.Enabled = false;
+                        File.Copy(filePath, Path.Combine(newPath, newFileName + ".PNG"), true);
+                        if (company.updateCompanyTable(c_siret, c_name, c_address, c_additional, c_zip, c_city, c_mail, c_phone, c_website, c_logo))
+                        {
+                            saveButton.BackColor = Color.Empty;
+                            saveButton.Text = "Sauvegardé";
+                            saveButton.Enabled = false;
+                            cancelButton.BackColor = Color.Empty;
+                            cancelButton.Enabled = false;
+                        }
                     }
                 }
                 else
@@ -495,18 +506,22 @@ namespace Logiciel_Devis_Facture.packVue.Panel
                     c_website = website.Text;
                     string filePath = logo.Text;
                     string fileName = filePath.Substring(filePath.LastIndexOf("\\") + 1);
-                    string newPath = System.IO.Directory.GetCurrentDirectory() + logoLocalPath;
+                    string newPath = System.IO.Directory.GetCurrentDirectory();//+ logoLocalPath.Substring(0, logoLocalPath.LastIndexOf("\\"));
+                    newPath = newPath.Replace("\\", "/") + logoLocalPath.Replace("\\","/");
                     string extension = filePath.Substring(filePath.LastIndexOf("."));
                     string newFileName = "logo Entreprise"; //+ extension;
-                    File.Copy(filePath, Path.Combine(newPath, newFileName + ".PNG"), true);
                     c_logo = newFileName;
-                    if (company.insertIntoCompanyTable(c_siret, c_name, c_address, c_additional, c_zip, c_city, c_mail, c_phone, c_website, c_logo))
+                    if (company.getCompLogo().insertIntoLogoTable(c_logo,newPath,extension))
                     {
-                        saveButton.BackColor = Color.Empty;
-                        saveButton.Text = "Sauvegardé";
-                        saveButton.Enabled = false;
-                        cancelButton.BackColor = Color.Empty;
-                        cancelButton.Enabled = false;
+                        File.Copy(filePath, Path.Combine(newPath, newFileName + extension), true);
+                        if (company.insertIntoCompanyTable(c_siret, c_name, c_address, c_additional, c_zip, c_city, c_mail, c_phone, c_website, c_logo))
+                        {
+                            saveButton.BackColor = Color.Empty;
+                            saveButton.Text = "Sauvegardé";
+                            saveButton.Enabled = false;
+                            cancelButton.BackColor = Color.Empty;
+                            cancelButton.Enabled = false;
+                        }
                     }
                 }
             }
