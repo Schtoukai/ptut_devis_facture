@@ -4,62 +4,46 @@ using System.Text;
 
 namespace Logiciel_Devis_Facture.packModele
 {
-    class Logo
+    public class Logo
     {
         private string name;
         private string format;
-        private int height;
-        private int width;
         private string pathing;
 
-        Logo()
+        public Logo()
         {
             ;
         }
-        Logo(string _name,string _format, int _height, int _width, string _pathing)
+        Logo(string _name, string _format, string _pathing)
         {
             name = _name;
             format = _format;
-            height = _height;
-            width = _width;
             pathing = _pathing;
         }
 
-        void setName(string a) {
+        public void setName(string a)
+        {
             name = a;
         }
-        void setFormat(string a){
+        public void setFormat(string a)
+        {
             format = a;
         }
-        void setPathing(string a) {
+        public void setPathing(string a)
+        {
             pathing = a;
         }
-        void setWidth(int a) {
-            width = a;
-        }
-        void setHeight(int a){
-            height = a;
-        }
-
-        string getName()
+        public string getName()
         {
             return name;
         }
-        string getFormat()
+        public string getFormat()
         {
             return format;
         }
-        string getPathing()
+        public string getPathing()
         {
             return pathing;
-        }
-        int getHeight()
-        {
-            return height;
-        }
-        int getWidth()
-        {
-            return width;
         }
     }
 }

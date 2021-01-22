@@ -37,39 +37,89 @@ namespace Logiciel_Devis_Facture.packVue.Panel
         private myButton saveButton;
         private myButton cancelButton;
         private Company company;
+        private string c_name;
+        private string c_address;
+        private string c_additional;
+        private string c_zip;
+        private string c_city;
+        private string c_phone;
+        private string c_mail;
+        private string c_website;
+        private string c_logo;
+        private string c_siret;
 
 
         public CompanyPanel(Company company)
         {
             this.company = company;
             name = new SearchBar();
+            c_name = company.getCompanyName();
+            name.Text = c_name;
             name.MaxLength = 25;
             address = new SearchBar();
-            address.Text = company.getStreet();
-            address.ForeColor = Color.Gray;
+            c_address = company.getStreet();
+            if(c_address != "")
+            {
+                address.Text = c_address;
+                address.ForeColor = Color.Black;
+            }
+            else
+            {
+                address.Text = "Adresse";
+                address.ForeColor = Color.Gray;
+            }
             address.GotFocus += new System.EventHandler(TextField_GotFocus);
             address.LostFocus += new System.EventHandler(TextField_LostFocus);
             additionalAddress = new SearchBar();
-            additionalAddress.Text = "Complément";
+            c_additional = company.getAdditionnal();
+            if (c_additional != "")
+            {
+                additionalAddress.Text = c_additional;
+                additionalAddress.ForeColor = Color.Black;
+            }
+            else
+            {
+                additionalAddress.Text = "Complément";
+                additionalAddress.ForeColor = Color.Gray;
+            }
             additionalAddress.GotFocus += new System.EventHandler(TextField_GotFocus);
             additionalAddress.LostFocus += new System.EventHandler(TextField_LostFocus);
-            additionalAddress.ForeColor = Color.Gray;
             zip = new SearchBar();
-            zip.Text = "Code";
+            c_zip = company.getZip();
+            if (c_zip != "")
+            {
+                zip.Text = c_zip;
+                zip.ForeColor = Color.Black;
+            }
+            else
+            {
+                zip.Text = "Code";
+                zip.ForeColor = Color.Gray;
+            }
             zip.GotFocus += new System.EventHandler(TextField_GotFocus);
             zip.LostFocus += new System.EventHandler(TextField_LostFocus);
-            zip.ForeColor = Color.Gray;
             zip.MaxLength = 5;
             city = new SearchBar();
-            city.Text = company.getCity();
+            c_city = company.getCity();
+            if (c_city != "")
+            {
+                city.Text = company.getCity();
+                city.ForeColor = Color.Black;
+            }
+            else
+            {
+                city.Text = "Ville";
+                city.ForeColor = Color.Gray;
+            }
             city.GotFocus += new System.EventHandler(TextField_GotFocus);
             city.LostFocus += new System.EventHandler(TextField_LostFocus);
-            city.ForeColor = Color.Gray;
             phone = new SearchBar();
-            phone.Text = company.getPhone();
+            c_phone = company.getPhone();
+            phone.Text = c_phone;
             phone.MaxLength = 10;
             mailBegin = new SearchBar();
-            mailBegin.Text = company.getMail();
+            c_mail = company.getMail().Substring(0,company.getMail().LastIndexOf("@"));
+            mailBegin.Text = c_mail;
             at = new SearchBar();
             at.Text = "@";
             at.TextAlign = HorizontalAlignment.Center;
@@ -82,10 +132,15 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             mailEnd.DropDownStyle = ComboBoxStyle.DropDownList;
             mailEnd.SelectedIndex = 0;
             website = new SearchBar();
+            c_website = company.getWebsite();
+            website.Text = c_website;
             website.MaxLength = 25;
             logo = new SearchBar();
+            //c_logo = company.getCompLogo().getPathing();
+            //logo.Text = c_logo;
             siret = new SearchBar();
-            siret.Text = company.getSiret();
+            c_siret = company.getSiret();
+            siret.Text = c_siret;
             siret.MaxLength = 14;
 
             titleLabel = new Label();
@@ -281,7 +336,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             int sumOfText = name.Text.Length + phone.Text.Length + mailBegin.Text.Length + website.Text.Length + siret.Text.Length +logo.Text.Length;
             
             if(sumOfText>0 || !address.ForeColor.Equals(Color.Gray) && !address.Text.Length.Equals(0)|| !additionalAddress.ForeColor.Equals(Color.Gray) && !additionalAddress.Text.Length.Equals(0) ||  !zip.ForeColor.Equals(Color.Gray) && !zip.Text.Length.Equals(0) || !city.ForeColor.Equals(Color.Gray) && !city.Text.Length.Equals(0))
-            {
+            { 
                 cancelButton.BackColor = Color.Red;
                 cancelButton.Enabled = true;
             }
@@ -383,17 +438,26 @@ namespace Logiciel_Devis_Facture.packVue.Panel
         private void SaveButton_Click(object sender, EventArgs e)
         {
             const string logoLocalPath = "\\Logo\\";
-            //
-            //QueryDatabase
-            //
             if (isASequenceOfNumbers(phone.Text) && isASequenceOfNumbers(zip.Text))
             {
+                c_name = name.Text;
+                c_address = address.Text;
+                c_additional = additionalAddress.Text;
+                c_zip = zip.Text;
+                c_city = city.Text;
+                c_phone = phone.Text;
+                c_mail = mailBegin.Text + '@' + mailEnd.Text;
+                c_website = website.Text;
                 string filePath = logo.Text;
                 string fileName = filePath.Substring(filePath.LastIndexOf("\\") + 1);
                 string newPath = System.IO.Directory.GetCurrentDirectory() + logoLocalPath;
                 string extension = filePath.Substring(filePath.LastIndexOf("."));
                 string newFileName = "LogoEntreprise" + extension;
                 File.Copy(filePath, Path.Combine(newPath, newFileName), true);
+                c_logo = Path.Combine(newPath, newFileName);
+                //
+                //QueryDatabase
+                //
                 saveButton.BackColor = Color.Empty;
                 saveButton.Text = "Sauvegardé";
                 saveButton.Enabled = false;

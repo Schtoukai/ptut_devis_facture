@@ -9,17 +9,19 @@ namespace Logiciel_Devis_Facture.packModele
     class Company
     {
         private string siret;
-        private string street;
-        private string city;
+        private string[] address = new string[4];
         private string mail;
         private string phone;
+        private string nameCompany;
+        private string website;
         private Logo compLogo;
         private List<PDF> listInvoice;
         private List<Client> listClient = new List<Client>();
         private string connstring = @"server=localhost;user id=root;password=R@a[i?G++{iPynQ;database=invoiceDatabase"; // tant que la bd n'est pas crée on ne la précise pas
         public MySqlConnection connection;
 
-        public Company() {
+        public Company()
+        {
             string Querry = "SELECT * FROM";
             try
             {
@@ -31,11 +33,14 @@ namespace Logiciel_Devis_Facture.packModele
                 DataTable dt = ds.Tables["company"];
                 DataRow row = dt.Rows[0];
                 siret = row[0].ToString();
-                street = row[1].ToString();
-                city = row[2].ToString();
-                mail = row[3].ToString();
-                phone = row[4].ToString();
-                Querry += row[5].ToString();
+                nameCompany = row[1].ToString();
+                address[0] = row[2].ToString();
+                address[1] = row[3].ToString();
+                address[2] = row[4].ToString();
+                address[3] = row[5].ToString();
+                mail = row[6].ToString();
+                phone = row[7].ToString();
+                website = row[8].ToString();
             }
             catch (Exception c)
             {
@@ -48,6 +53,7 @@ namespace Logiciel_Devis_Facture.packModele
             }
         }
 
+
         Company(string siret)
         {
             this.siret = siret;
@@ -56,8 +62,6 @@ namespace Logiciel_Devis_Facture.packModele
         Company(string siret,string street,string city,string mail,string phone, Logo compLogo, List<PDF> listInvoice)
         {
             this.siret = siret;
-            this.street = street;
-            this.city = city;
             this.mail = mail;
             this.phone = phone;
             this.compLogo = compLogo;
@@ -69,17 +73,32 @@ namespace Logiciel_Devis_Facture.packModele
             return compLogo;
         }
 
+        public string getCompanyName()
+        {
+            return nameCompany;
+        }
+
         public string getSiret() 
         {
             return siret;
         }
 
         public string getStreet() {
-            return street;
+            return address[0];
+        }
+
+        public string getAdditionnal()
+        {
+            return address[1];
+        }
+
+        public string getZip()
+        {
+            return address[2];
         }
 
         public string getCity() {
-            return city;
+            return address[3];
         }
 
         public string getMail() {
@@ -88,6 +107,11 @@ namespace Logiciel_Devis_Facture.packModele
 
         public string getPhone() {
             return phone;
+        }
+
+        public string getWebsite()
+        {
+            return website;
         }
 
         public List<Client> getListClient()
