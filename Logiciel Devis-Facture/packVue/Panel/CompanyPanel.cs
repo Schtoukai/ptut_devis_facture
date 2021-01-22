@@ -480,7 +480,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
                     string extension = filePath.Substring(filePath.LastIndexOf("."));
                     string newFileName = "logo Entreprise"; //+ extension;
                     c_logo = newFileName;
-                    if (company.getCompLogo().updateCompanyTable(c_logo,newPath,extension))
+                    if (company.getCompLogo().updateLogoTable(c_logo,newPath,extension))
                     {
                         File.Copy(filePath, Path.Combine(newPath, newFileName + ".PNG"), true);
                         if (company.updateCompanyTable(c_siret, c_name, c_address, c_additional, c_zip, c_city, c_mail, c_phone, c_website, c_logo))
@@ -534,25 +534,42 @@ namespace Logiciel_Devis_Facture.packVue.Panel
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            name.ResetText();
-            phone.ResetText();
-            mailBegin.ResetText();
-            mailEnd.ResetText();
-            website.ResetText();
-            siret.ResetText();
-            logo.ResetText();
-            address.ForeColor = Color.Gray;
-            address.Text = "Adresse";
-            additionalAddress.ForeColor = Color.Gray;
-            additionalAddress.Text = "Complément";
-            zip.ForeColor = Color.Gray;
-            zip.Text = "Code";
-            city.ForeColor = Color.Gray;
-            city.Text = "Ville";
-            saveButton.BackColor = Color.Empty;
-            saveButton.Enabled = false;
-            cancelButton.BackColor = Color.Empty;
-            cancelButton.Enabled = false;
+            if (company.deleteCompanyTable(c_siret))
+            {
+                Logo logoToDelete = new Logo();
+                if(logoToDelete.deleteLogoTable("logo Entreprise"))
+                {
+                    name.ResetText();
+                    phone.ResetText();
+                    mailBegin.ResetText();
+                    mailEnd.ResetText();
+                    website.ResetText();
+                    siret.ResetText();
+                    logo.ResetText();
+                    c_additional = "";
+                    c_address = "";
+                    c_city = "";
+                    c_logo = "";
+                    c_mail = "";
+                    c_name = "";
+                    c_phone = "";
+                    c_siret = "";
+                    c_website = "";
+                    c_zip = ""; ;
+                    address.ForeColor = Color.Gray;
+                    address.Text = "Adresse";
+                    additionalAddress.ForeColor = Color.Gray;
+                    additionalAddress.Text = "Complément";
+                    zip.ForeColor = Color.Gray;
+                    zip.Text = "Code";
+                    city.ForeColor = Color.Gray;
+                    city.Text = "Ville";
+                    saveButton.BackColor = Color.Empty;
+                    saveButton.Enabled = false;
+                    cancelButton.BackColor = Color.Empty;
+                    cancelButton.Enabled = false;
+                }
+            }
         }
     }
 }

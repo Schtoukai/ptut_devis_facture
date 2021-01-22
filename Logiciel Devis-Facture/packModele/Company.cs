@@ -184,6 +184,30 @@ namespace Logiciel_Devis_Facture.packModele
             }
         }
 
+        public bool deleteCompanyTable(string siret)
+        {
+            string Querry = "DELETE FROM Company WHERE siret = " + '"' + siret + '"' + ";";
+            Console.WriteLine(Querry);
+            try
+            {
+                connection = new MySqlConnection(connstring);
+                connection.Open();
+                MySqlScript script = new MySqlScript(connection, Querry);
+                script.Execute();
+                return true;
+            }
+            catch (Exception c)
+            {
+                Console.WriteLine(c);
+                return false;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
+        }
+
 
 
         /*                                                      *

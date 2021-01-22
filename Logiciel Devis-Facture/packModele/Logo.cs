@@ -72,9 +72,33 @@ namespace Logiciel_Devis_Facture.packModele
             }
         }
 
-        public bool updateCompanyTable(string name, string path, string format)
+        public bool updateLogoTable(string name, string path, string format)
         {
             string Querry = "UPDATE Logo SET logoPath = " + '"' + path + '"' + ", formatLogo = " +  + '"' + format + '"' + " WHERE nameLogo = " + "'" + name + "';";
+            Console.WriteLine(Querry);
+            try
+            {
+                connection = new MySqlConnection(connstring);
+                connection.Open();
+                MySqlScript script = new MySqlScript(connection, Querry);
+                script.Execute();
+                return true;
+            }
+            catch (Exception c)
+            {
+                Console.WriteLine(c);
+                return false;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
+        }
+
+        public bool deleteLogoTable(string name)
+        {
+            string Querry = "DELETE FROM Logo WHERE nameLogo = " + '"' + name + '"' + ";";
             Console.WriteLine(Querry);
             try
             {
