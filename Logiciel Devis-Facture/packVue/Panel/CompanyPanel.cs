@@ -118,7 +118,12 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             phone.Text = c_phone;
             phone.MaxLength = 10;
             mailBegin = new SearchBar();
-            c_mail = company.getMail().Substring(0,company.getMail().LastIndexOf("@"));
+            c_mail = company.getMail();
+            Console.WriteLine(c_mail);
+            if(c_mail!=null)
+            {
+                c_mail.Substring(0, company.getMail().LastIndexOf("@"));
+            }
             mailBegin.Text = c_mail;
             at = new SearchBar();
             at.Text = "@";
@@ -130,7 +135,14 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             mailEnd.Items.Add("free.fr");
             mailEnd.Items.Add("yahoo.com");
             mailEnd.DropDownStyle = ComboBoxStyle.DropDownList;
-            mailEnd.SelectedIndex = 0;
+            if(c_mail != null)
+            {
+                mailEnd.SelectedIndex = mailEnd.FindString(company.getMail().Substring(company.getMail().LastIndexOf("@") + 1));
+            }
+            else
+            {
+                mailEnd.SelectedIndex = 0;
+            }
             website = new SearchBar();
             c_website = company.getWebsite();
             website.Text = c_website;
@@ -140,7 +152,11 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             //logo.Text = c_logo;
             siret = new SearchBar();
             c_siret = company.getSiret();
-            siret.Text = c_siret;
+            if(c_siret!=null)
+            {
+                siret.Text = c_siret;
+                siret.Enabled = false;
+            }
             siret.MaxLength = 14;
 
             titleLabel = new Label();
@@ -440,29 +456,59 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             const string logoLocalPath = "\\Logo\\";
             if (isASequenceOfNumbers(phone.Text) && isASequenceOfNumbers(zip.Text))
             {
-                c_name = name.Text;
-                c_address = address.Text;
-                c_additional = additionalAddress.Text;
-                c_zip = zip.Text;
-                c_city = city.Text;
-                c_phone = phone.Text;
-                c_mail = mailBegin.Text + '@' + mailEnd.Text;
-                c_website = website.Text;
-                string filePath = logo.Text;
-                string fileName = filePath.Substring(filePath.LastIndexOf("\\") + 1);
-                string newPath = System.IO.Directory.GetCurrentDirectory() + logoLocalPath;
-                string extension = filePath.Substring(filePath.LastIndexOf("."));
-                string newFileName = "LogoEntreprise" + extension;
-                File.Copy(filePath, Path.Combine(newPath, newFileName), true);
-                c_logo = Path.Combine(newPath, newFileName);
-                //
-                //QueryDatabase
-                //
-                saveButton.BackColor = Color.Empty;
-                saveButton.Text = "Sauvegardé";
-                saveButton.Enabled = false;
-                cancelButton.BackColor = Color.Empty;
-                cancelButton.Enabled = false;
+                if (c_name!=null)
+                {
+                    c_name = name.Text;
+                    c_address = address.Text;
+                    c_additional = additionalAddress.Text;
+                    c_zip = zip.Text;
+                    c_city = city.Text;
+                    c_phone = phone.Text;
+                    c_mail = mailBegin.Text + '@' + mailEnd.Text;
+                    c_website = website.Text;
+                    string filePath = logo.Text;
+                    string fileName = filePath.Substring(filePath.LastIndexOf("\\") + 1);
+                    string newPath = System.IO.Directory.GetCurrentDirectory() + logoLocalPath;
+                    string extension = filePath.Substring(filePath.LastIndexOf("."));
+                    string newFileName = "logo Entreprise"; //+ extension;
+                    File.Copy(filePath, Path.Combine(newPath, newFileName + ".PNG"), true);
+                    c_logo = newFileName;
+                    if (company.updateCompanyTable(c_siret, c_name, c_address, c_additional, c_zip, c_city, c_mail, c_phone, c_website, c_logo))
+                    {
+                        saveButton.BackColor = Color.Empty;
+                        saveButton.Text = "Sauvegardé";
+                        saveButton.Enabled = false;
+                        cancelButton.BackColor = Color.Empty;
+                        cancelButton.Enabled = false;
+                    }
+                }
+                else
+                {
+                    c_siret = siret.Text;
+                    c_name = name.Text;
+                    c_address = address.Text;
+                    c_additional = additionalAddress.Text;
+                    c_zip = zip.Text;
+                    c_city = city.Text;
+                    c_phone = phone.Text;
+                    c_mail = mailBegin.Text + '@' + mailEnd.Text;
+                    c_website = website.Text;
+                    string filePath = logo.Text;
+                    string fileName = filePath.Substring(filePath.LastIndexOf("\\") + 1);
+                    string newPath = System.IO.Directory.GetCurrentDirectory() + logoLocalPath;
+                    string extension = filePath.Substring(filePath.LastIndexOf("."));
+                    string newFileName = "logo Entreprise"; //+ extension;
+                    File.Copy(filePath, Path.Combine(newPath, newFileName + ".PNG"), true);
+                    c_logo = newFileName;
+                    if (company.insertIntoCompanyTable(c_siret, c_name, c_address, c_additional, c_zip, c_city, c_mail, c_phone, c_website, c_logo))
+                    {
+                        saveButton.BackColor = Color.Empty;
+                        saveButton.Text = "Sauvegardé";
+                        saveButton.Enabled = false;
+                        cancelButton.BackColor = Color.Empty;
+                        cancelButton.Enabled = false;
+                    }
+                }
             }
             else
             {

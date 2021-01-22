@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using MySqlConnector;
+using MySql.Data.MySqlClient;
 
 
 namespace Logiciel_Devis_Facture.packModele
@@ -18,7 +18,7 @@ namespace Logiciel_Devis_Facture.packModele
         private List<PDF> listInvoice;
         private List<Client> listClient = new List<Client>();
         private string connstring = @"server=localhost;user id=root;password=R@a[i?G++{iPynQ;database=invoiceDatabase"; // tant que la bd n'est pas crée on ne la précise pas
-        public MySqlConnection connection;
+        private MySqlConnection connection;
 
         public Company()
         {
@@ -123,8 +123,61 @@ namespace Logiciel_Devis_Facture.packModele
         {
             connection = new MySqlConnection(connstring);
         }
-        
-        
+
+        /*                                                      *
+        *             Fonction d'insert Entreprise         * 
+        *                                                      */
+
+        public bool insertIntoCompanyTable(string siret, string name, string address, string additional, string zip, string city, string mail, string phone, string website, string logo)
+        {
+            string Querry = "INSERT INTO company VALUES(" + '"' +  siret + '"' + "," + '"' + name + '"' + "," + '"' + address + '"' + "," + '"' + additional + '"' + "," + '"' + zip + '"' + "," + '"' + city + '"' + "," + '"' + mail + '"' + "," + '"' + phone + '"' + "," + '"' + website + '"' + "," + '"' + logo + '"' + ");";
+            try
+            {
+                connection = new MySqlConnection(connstring);
+                connection.Open();
+                MySqlScript script = new MySqlScript(connection, Querry);
+                script.Execute();
+                return true;
+            }
+            catch (Exception c)
+            {
+                Console.WriteLine(c);
+                return false;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
+        }
+
+        /*                                                      *
+        *             Fonction d'update Entreprise         * 
+        *                                                      */
+        public bool updateCompanyTable(string siret, string name, string address, string additional, string zip, string city, string mail, string phone, string website, string logo)
+        {
+            string Querry = "UPDATE company SET nameCompany = " + '"' + name + '"' + ", address = " + '"' + address + '"' + ", complement = " + '"' + additional + '"' + ", zipcode = " + '"' + zip + '"' + ", city = " + '"' + city + '"' + ", mail = " + '"' + mail + '"' + ", phone = " + '"' + phone + '"' + ", website = " + '"' + website + '"' + ", compLogo = " + '"' + logo + '"' + " WHERE siret = " + "'" + siret + "';";
+            Console.WriteLine(Querry);
+            try
+            {
+                connection = new MySqlConnection(connstring);
+                connection.Open();
+                MySqlScript script = new MySqlScript(connection, Querry);
+                script.Execute();
+                return true;
+            }
+            catch (Exception c)
+            {
+                Console.WriteLine(c);
+                return false;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
+        }
+
 
 
         /*                                                      *
