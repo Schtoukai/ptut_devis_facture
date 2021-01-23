@@ -153,7 +153,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
                 c_logo = company.getCompLogo().getPathing();
                 if(c_logo!=null)
                 {
-                    c_logo = c_logo.Replace("/", "\\");
+                    c_logo = c_logo.Replace("/", "\\") + company.getCompLogo().getName() + company.getCompLogo().getFormat();
                     logo.Text = c_logo;
                 }
             }

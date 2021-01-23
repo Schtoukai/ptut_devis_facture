@@ -74,7 +74,8 @@ namespace Logiciel_Devis_Facture.packModele
 
         public bool updateLogoTable(string name, string path, string format)
         {
-            string Querry = "UPDATE Logo SET logoPath = " + '"' + path + '"' + ", formatLogo = " +  + '"' + format + '"' + " WHERE nameLogo = " + "'" + name + "';";
+            string Querry = "UPDATE Logo SET logoPath = " + '"' + path + '"' + ", formatLogo = "  + '"' + format + '"' + " WHERE nameLogo = " + '"' + name + '"' + ";";
+            Console.WriteLine("Format: " + ", formatLogo = " + +'"' + format + '"');
             Console.WriteLine(Querry);
             try
             {
