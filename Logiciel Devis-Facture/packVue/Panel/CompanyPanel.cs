@@ -155,6 +155,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
                 {
                     c_logo = c_logo.Replace("/", "\\") + company.getCompLogo().getName() + company.getCompLogo().getFormat();
                     logo.Text = c_logo;
+                    Console.WriteLine(c_logo);
                 }
             }
             siret = new SearchBar();
@@ -473,17 +474,20 @@ namespace Logiciel_Devis_Facture.packVue.Panel
                     c_phone = phone.Text;
                     c_mail = mailBegin.Text + '@' + mailEnd.Text;
                     c_website = website.Text;
-                    string filePath = logo.Text;
-                    string fileName = filePath.Substring(filePath.LastIndexOf("\\") + 1);
-                    string newPath = System.IO.Directory.GetCurrentDirectory();// + logoLocalPath.Substring(0,logoLocalPath.LastIndexOf("\\"));
+                    c_logo = logo.Text;
+                    string fileName = c_logo.Substring(c_logo.LastIndexOf("\\") + 1);
+                    string newPath = System.IO.Directory.GetCurrentDirectory();
                     newPath = newPath.Replace("\\", "/") + logoLocalPath.Replace("\\", "/");
-                    string extension = filePath.Substring(filePath.LastIndexOf("."));
-                    string newFileName = "logo Entreprise"; //+ extension;
-                    c_logo = newFileName;
+                    string extension = c_logo.Substring(c_logo.LastIndexOf("."));
                     if (company.getCompLogo().updateLogoTable(c_logo,newPath,extension))
                     {
-                        File.Copy(filePath, Path.Combine(newPath, newFileName + ".PNG"), true);
-                        if (company.updateCompanyTable(c_siret, c_name, c_address, c_additional, c_zip, c_city, c_mail, c_phone, c_website, c_logo))
+                        string path = Path.Combine(newPath, c_name + extension);
+                        if (!path.Equals(c_logo))
+                        {
+                            File.Delete(Path.Combine(newPath, c_name + extension));
+                            File.Copy(c_logo, Path.Combine(newPath, c_name + extension), true);
+                        }
+                        if (company.updateCompanyTable(c_siret, c_name, c_address, c_additional, c_zip, c_city, c_mail, c_phone, c_website, c_name))
                         {
                             saveButton.BackColor = Color.Empty;
                             saveButton.Text = "Sauvegardé";
@@ -504,18 +508,17 @@ namespace Logiciel_Devis_Facture.packVue.Panel
                     c_phone = phone.Text;
                     c_mail = mailBegin.Text + '@' + mailEnd.Text;
                     c_website = website.Text;
-                    string filePath = logo.Text;
-                    string fileName = filePath.Substring(filePath.LastIndexOf("\\") + 1);
-                    string newPath = System.IO.Directory.GetCurrentDirectory();//+ logoLocalPath.Substring(0, logoLocalPath.LastIndexOf("\\"));
+                    c_logo = logo.Text;
+                    string fileName = c_logo.Substring(c_logo.LastIndexOf("\\") + 1);
+                    string newPath = System.IO.Directory.GetCurrentDirectory();
                     newPath = newPath.Replace("\\", "/") + logoLocalPath.Replace("\\","/");
-                    string extension = filePath.Substring(filePath.LastIndexOf("."));
-                    string newFileName = "logo Entreprise"; //+ extension;
-                    c_logo = newFileName;
-                    if (company.getCompLogo().insertIntoLogoTable(c_logo,newPath,extension))
+                    string extension = c_logo.Substring(c_logo.LastIndexOf("."));
+                    if (company.getCompLogo().insertIntoLogoTable(c_name,newPath,extension))
                     {
-                        File.Copy(filePath, Path.Combine(newPath, newFileName + extension), true);
-                        if (company.insertIntoCompanyTable(c_siret, c_name, c_address, c_additional, c_zip, c_city, c_mail, c_phone, c_website, c_logo))
+                        File.Copy(c_logo, Path.Combine(newPath, c_name + extension), true);
+                        if (company.insertIntoCompanyTable(c_siret, c_name, c_address, c_additional, c_zip, c_city, c_mail, c_phone, c_website, c_name))
                         {
+                            siret.Enabled = false;
                             saveButton.BackColor = Color.Empty;
                             saveButton.Text = "Sauvegardé";
                             saveButton.Enabled = false;
@@ -537,14 +540,16 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             if (company.deleteCompanyTable(c_siret))
             {
                 Logo logoToDelete = new Logo();
-                if(logoToDelete.deleteLogoTable("logo Entreprise"))
+                if(logoToDelete.deleteLogoTable(c_name))
                 {
+                    //File.Delete(Path.Combine(newPath, c_name + extension));
                     name.ResetText();
                     phone.ResetText();
                     mailBegin.ResetText();
                     mailEnd.ResetText();
                     website.ResetText();
                     siret.ResetText();
+                    siret.Enabled = true;
                     logo.ResetText();
                     c_additional = "";
                     c_address = "";
@@ -555,7 +560,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
                     c_phone = "";
                     c_siret = "";
                     c_website = "";
-                    c_zip = ""; ;
+                    c_zip = ""; 
                     address.ForeColor = Color.Gray;
                     address.Text = "Adresse";
                     additionalAddress.ForeColor = Color.Gray;
