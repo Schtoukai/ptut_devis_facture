@@ -54,7 +54,10 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             this.company = company;
             name = new SearchBar();
             c_name = company.getCompanyName();
-            name.Text = c_name;
+            if (c_name != null)
+                name.Text = c_name;
+            else
+                c_name = "";
             name.MaxLength = 25;
             address = new SearchBar();
             c_address = company.getStreet();
@@ -65,6 +68,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             }
             else
             {
+                c_address = "";
                 address.Text = "Adresse";
                 address.ForeColor = Color.Gray;
             }
@@ -79,6 +83,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             }
             else
             {
+                c_additional = "";
                 additionalAddress.Text = "Complément";
                 additionalAddress.ForeColor = Color.Gray;
             }
@@ -93,6 +98,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             }
             else
             {
+                c_zip = "";
                 zip.Text = "Code";
                 zip.ForeColor = Color.Gray;
             }
@@ -108,6 +114,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             }
             else
             {
+                c_city = "";
                 city.Text = "Ville";
                 city.ForeColor = Color.Gray;
             }
@@ -116,15 +123,19 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             phone = new SearchBar();
             c_phone = company.getPhone();
             phone.Text = c_phone;
-            phone.MaxLength = 10;
+            if (c_phone != null)
+                phone.MaxLength = 10;
+            else
+                c_phone = "";
             mailBegin = new SearchBar();
             c_mail = company.getMail();
             Console.WriteLine(c_mail);
             if(c_mail!=null)
             {
-                c_mail = c_mail.Substring(0, company.getMail().LastIndexOf("@"));
+                mailBegin.Text = c_mail.Substring(0, company.getMail().LastIndexOf("@"));
             }
-            mailBegin.Text = c_mail;
+            else
+                mailBegin.Text = c_mail;
             at = new SearchBar();
             at.Text = "@";
             at.TextAlign = HorizontalAlignment.Center;
@@ -141,8 +152,10 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             }
             else
             {
+                c_mail = "";
                 mailEnd.SelectedIndex = 0;
             }
+            mailEnd.SelectedIndexChanged += new System.EventHandler(TextField_TextChanged);
             website = new SearchBar();
             c_website = company.getWebsite();
             website.Text = c_website;
@@ -151,19 +164,24 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             if(company.getCompLogo() != null)
             {
                 c_logo = company.getCompLogo().getPathing();
-                if(c_logo!=null)
+                if (c_logo != null)
                 {
                     c_logo = c_logo.Replace("/", "\\") + company.getCompLogo().getName() + company.getCompLogo().getFormat();
                     logo.Text = c_logo;
+                    Console.WriteLine(c_logo);
                 }
+                else
+                    c_logo = "";
             }
             siret = new SearchBar();
             c_siret = company.getSiret();
-            if(c_siret!=null)
+            if (c_siret != null)
             {
                 siret.Text = c_siret;
                 siret.Enabled = false;
             }
+            else
+                c_siret = "";
             siret.MaxLength = 14;
 
             titleLabel = new Label();
@@ -250,9 +268,10 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             mailBegin.SetSize((elementWidth - at.Width) / 2, 0);
             mailBegin.TextChanged += new System.EventHandler(TextField_TextChanged);
             at.SetFontSize(fontHeight);
-            mailEnd.Font = new System.Drawing.Font(Font.Name, fontHeight);
+            if(fontHeight>0)
+                mailEnd.Font = new System.Drawing.Font(Font.Name, fontHeight);
             mailEnd.Size = new System.Drawing.Size((elementWidth - at.Width) / 2, 0);
-            mailEnd.TextChanged += new System.EventHandler(TextField_TextChanged);
+            mailEnd.SelectedIndexChanged += new System.EventHandler(TextField_TextChanged);
             website.SetFontSize(fontHeight);
             website.SetSize(elementWidth, 0);
             website.TextChanged += new System.EventHandler(TextField_TextChanged);
@@ -262,21 +281,29 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             logo.SetFontSize(fontHeight);
             logo.SetSize(elementWidth * 3 / 4, 0);
             logo.TextChanged += new System.EventHandler(TextField_TextChanged);
-            titleLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Bold);
+            if (fontHeight > 0)
+                titleLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Bold);
             titleLabel.AutoSize = true;
-            nameLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
+            if (fontHeight > 0)
+                nameLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
             nameLabel.AutoSize = true;
-            addressLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
+            if (fontHeight > 0)
+                addressLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
             addressLabel.AutoSize = true;
-            phoneLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
+            if (fontHeight > 0)
+                phoneLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
             phoneLabel.AutoSize = true;
-            mailLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
+            if (fontHeight > 0)
+                mailLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
             mailLabel.AutoSize = true;
-            websiteLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
+            if (fontHeight > 0)
+                websiteLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
             websiteLabel.AutoSize = true;
-            siretLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
+            if (fontHeight > 0)
+                siretLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
             siretLabel.AutoSize = true;
-            logoLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
+            if (fontHeight > 0)
+                logoLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
             logoLabel.AutoSize = true;
             logoButton.SetSize(elementWidth / 4, logoLabel.Height);
             saveButton.SetSize(elementWidth / 4, 2 * logoLabel.Height);
@@ -356,9 +383,10 @@ namespace Logiciel_Devis_Facture.packVue.Panel
 
         private void TextField_TextChanged(object sender, EventArgs e)
         {
-            int sumOfText = name.Text.Length + phone.Text.Length + mailBegin.Text.Length + website.Text.Length + siret.Text.Length +logo.Text.Length;
-            
-            if(sumOfText>0 || !address.ForeColor.Equals(Color.Gray) && !address.Text.Length.Equals(0)|| !additionalAddress.ForeColor.Equals(Color.Gray) && !additionalAddress.Text.Length.Equals(0) ||  !zip.ForeColor.Equals(Color.Gray) && !zip.Text.Length.Equals(0) || !city.ForeColor.Equals(Color.Gray) && !city.Text.Length.Equals(0))
+            string textMailEnd = mailEnd.Text;
+            if (c_mail!=null)
+                c_mail.Substring(c_mail.LastIndexOf("@") + 1);
+            if (!c_name.Equals(name.Text) || !c_address.Equals(address.Text) && !address.ForeColor.Equals(Color.Gray) || !c_additional.Equals(additionalAddress.Text) && !additionalAddress.ForeColor.Equals(Color.Gray) || !c_zip.Equals(zip.Text) && !zip.ForeColor.Equals(Color.Gray) || !c_city.Equals(city.Text) && !city.ForeColor.Equals(Color.Gray) || !c_phone.Equals(phone.Text) || !c_mail.Equals(mailBegin.Text + at.Text + mailEnd.Text) || !mailEnd.Text.Equals(textMailEnd) || !c_website.Equals(website.Text) || !c_siret.Equals(siret.Text) || !c_logo.Equals(logo.Text))
             { 
                 cancelButton.BackColor = Color.Red;
                 cancelButton.Enabled = true;
@@ -463,7 +491,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             const string logoLocalPath = "\\Logo\\";
             if (isASequenceOfNumbers(phone.Text) && isASequenceOfNumbers(zip.Text))
             {
-                if (c_name!=null)
+                if (c_name!="")
                 {
                     c_name = name.Text;
                     c_address = address.Text;
@@ -473,17 +501,21 @@ namespace Logiciel_Devis_Facture.packVue.Panel
                     c_phone = phone.Text;
                     c_mail = mailBegin.Text + '@' + mailEnd.Text;
                     c_website = website.Text;
-                    string filePath = logo.Text;
-                    string fileName = filePath.Substring(filePath.LastIndexOf("\\") + 1);
-                    string newPath = System.IO.Directory.GetCurrentDirectory();// + logoLocalPath.Substring(0,logoLocalPath.LastIndexOf("\\"));
+                    c_logo = logo.Text;
+                    string fileName = c_logo.Substring(c_logo.LastIndexOf("\\") + 1);
+                    string newPath = System.IO.Directory.GetCurrentDirectory();
                     newPath = newPath.Replace("\\", "/") + logoLocalPath.Replace("\\", "/");
-                    string extension = filePath.Substring(filePath.LastIndexOf("."));
-                    string newFileName = "logo Entreprise"; //+ extension;
-                    c_logo = newFileName;
+                    string extension = c_logo.Substring(c_logo.LastIndexOf("."));
                     if (company.getCompLogo().updateLogoTable(c_logo,newPath,extension))
                     {
-                        File.Copy(filePath, Path.Combine(newPath, newFileName + ".PNG"), true);
-                        if (company.updateCompanyTable(c_siret, c_name, c_address, c_additional, c_zip, c_city, c_mail, c_phone, c_website, c_logo))
+                        string path = Path.Combine(newPath, c_name + extension);
+                        path = path.Replace("/", "\\");
+                        if (!path.Equals(c_logo))
+                        {
+                            File.Delete(Path.Combine(newPath, c_name + extension));
+                            File.Copy(c_logo, Path.Combine(newPath, c_name + extension), true);
+                        }
+                        if (company.updateCompanyTable(c_siret, c_name, c_address, c_additional, c_zip, c_city, c_mail, c_phone, c_website, c_name))
                         {
                             saveButton.BackColor = Color.Empty;
                             saveButton.Text = "Sauvegardé";
@@ -504,18 +536,17 @@ namespace Logiciel_Devis_Facture.packVue.Panel
                     c_phone = phone.Text;
                     c_mail = mailBegin.Text + '@' + mailEnd.Text;
                     c_website = website.Text;
-                    string filePath = logo.Text;
-                    string fileName = filePath.Substring(filePath.LastIndexOf("\\") + 1);
-                    string newPath = System.IO.Directory.GetCurrentDirectory();//+ logoLocalPath.Substring(0, logoLocalPath.LastIndexOf("\\"));
+                    c_logo = logo.Text;
+                    string fileName = c_logo.Substring(c_logo.LastIndexOf("\\") + 1);
+                    string newPath = System.IO.Directory.GetCurrentDirectory();
                     newPath = newPath.Replace("\\", "/") + logoLocalPath.Replace("\\","/");
-                    string extension = filePath.Substring(filePath.LastIndexOf("."));
-                    string newFileName = "logo Entreprise"; //+ extension;
-                    c_logo = newFileName;
-                    if (company.getCompLogo().insertIntoLogoTable(c_logo,newPath,extension))
+                    string extension = c_logo.Substring(c_logo.LastIndexOf("."));
+                    if (company.getCompLogo().insertIntoLogoTable(c_name,newPath,extension))
                     {
-                        File.Copy(filePath, Path.Combine(newPath, newFileName + extension), true);
-                        if (company.insertIntoCompanyTable(c_siret, c_name, c_address, c_additional, c_zip, c_city, c_mail, c_phone, c_website, c_logo))
+                        File.Copy(c_logo, Path.Combine(newPath, c_name + extension), true);
+                        if (company.insertIntoCompanyTable(c_siret, c_name, c_address, c_additional, c_zip, c_city, c_mail, c_phone, c_website, c_name))
                         {
+                            siret.Enabled = false;
                             saveButton.BackColor = Color.Empty;
                             saveButton.Text = "Sauvegardé";
                             saveButton.Enabled = false;
@@ -537,14 +568,16 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             if (company.deleteCompanyTable(c_siret))
             {
                 Logo logoToDelete = new Logo();
-                if(logoToDelete.deleteLogoTable("logo Entreprise"))
+                if(logoToDelete.deleteLogoTable(c_name))
                 {
+                    mailEnd.SelectedIndex = 0;
                     name.ResetText();
                     phone.ResetText();
                     mailBegin.ResetText();
                     mailEnd.ResetText();
                     website.ResetText();
                     siret.ResetText();
+                    siret.Enabled = true;
                     logo.ResetText();
                     c_additional = "";
                     c_address = "";
@@ -555,7 +588,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
                     c_phone = "";
                     c_siret = "";
                     c_website = "";
-                    c_zip = ""; ;
+                    c_zip = ""; 
                     address.ForeColor = Color.Gray;
                     address.Text = "Adresse";
                     additionalAddress.ForeColor = Color.Gray;
