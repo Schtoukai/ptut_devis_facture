@@ -667,31 +667,96 @@ namespace Logiciel_Devis_Facture
         private System.Windows.Forms.Label labelCity;
         private System.Windows.Forms.Label labelPhone;
         private System.Windows.Forms.TextBox textBoxName;
+        public TextBox getTextBoxName()
+        {
+            return this.textBoxName;
+        }
+
         private System.Windows.Forms.TextBox textBoxStreet;
+        public TextBox getTextBoxStreet()
+        {
+            return this.textBoxStreet;
+        }
+
         private System.Windows.Forms.TextBox textBoxCity;
+        public TextBox getTextBoxCity()
+        {
+            return this.textBoxCity;
+        }
+
         private System.Windows.Forms.TextBox textBoxPhone;
+        public TextBox getTextBoxPhone()
+        {
+            return this.textBoxPhone;
+        }
+
         private System.Windows.Forms.Label labelMail;
         private System.Windows.Forms.TextBox textBoxMail;
+        public TextBox getTextBoxMail()
+        {
+            return this.textBoxMail;
+        }
+
         private System.Windows.Forms.Label labelClientInfo;
         private System.Windows.Forms.Label labelNumero;
         private System.Windows.Forms.TextBox textBoxNumero;
+        public TextBox getTextBoxNumero()
+        {
+            return this.textBoxNumero;
+        }
+
         private System.Windows.Forms.Label labelpdfInfo;
         private System.Windows.Forms.Label labelNewInvoice;
         private System.Windows.Forms.Label labelDate;
         private System.Windows.Forms.DateTimePicker dateTimePicker;
+        public DateTimePicker getTextBoxDateTimePicker()
+        {
+            return this.dateTimePicker;
+        }
+
         private PDF myPDF = new PDF();
         private RadioButton isInvoiceButton;
+        public RadioButton getIsInvoiceButton()
+        {
+            return this.isInvoiceButton;
+        }
+
         private RadioButton isQuoteButton;
+        public RadioButton getIsQuoteButton()
+        {
+            return this.isQuoteButton;
+        }
+
         private Label labelSelectedItem;
         private Label labelUnitPrice;
         private TextBox textBoxUnitPrice;
+        public TextBox getTextBoxUnitPrice()
+        {
+            return this.textBoxUnitPrice;
+        }
+
         private Label labelQuantity;
         private Label labelTVA;
         private Label labelTCCPrice;
         private TextBox textBoxTVA;
+        public TextBox getTextBoxTVA()
+        {
+            return this.textBoxTVA;
+        }
+
         private TextBox textBoxTTCPrice;
+        public TextBox getTextBoxTTCPrice()
+        {
+            return this.textBoxTTCPrice;
+        }
+
         private Button buttonAddItem;
         private DataGridView itemGrid;
+        public DataGridView getItemGrid()
+        {
+            return this.itemGrid;
+        }
+
         private Button buttonDeleteItem;
         private Button buttonDeleteAllItem;
         private TextBox textBoxTTCTotal;

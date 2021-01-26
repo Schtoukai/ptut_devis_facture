@@ -51,11 +51,16 @@ namespace Logiciel_Devis_Facture.packModele
             return this.date;
         }
 
-        public bool generatePDF(TextBox textBoxName, TextBox textBoxStreet, TextBox textBoxAdditionnalAddress, TextBox textBoxZip, TextBox textBoxCity, TextBox textBoxPhone, TextBox textBoxMail, TextBox textBoxNumero, DateTimePicker dateTimePicker, RadioButton isInvoiceButton, RadioButton isQuoteButton, DataGridView itemGrid)
+        public bool generatePDF(Company entreprise, Create_PDF form,TextBox textBoxName, TextBox textBoxStreet, TextBox textBoxAdditionnalAddress, TextBox textBoxZip, TextBox textBoxCity, TextBox textBoxPhone, TextBox textBoxMail, TextBox textBoxNumero, DateTimePicker dateTimePicker, RadioButton isInvoiceButton, RadioButton isQuoteButton, DataGridView itemGrid)
         {
             string pdfName = "myPDF.pdf";
             //Si tous les champs ne sont pas remplis
-            if (textBoxName.Text == "" || textBoxStreet.Text == "" || textBoxZip.Text == "" || textBoxCity.Text == "" || textBoxPhone.Text == "" || textBoxMail.Text == "")
+            if (textBoxName.Text == "" || textBoxStreet.Text == "" || textBoxZip.Text == "" || textBoxCity.Text == "" || textBoxPhone.Text == "" || textBoxMail.Text == "" || itemGrid.Rows.Count == 0)
+            {
+                MessageBox.Show("Informations manquantes.");
+                return false;
+            }
+            if (isInvoiceButton.Checked == false && isQuoteButton.Checked == false)
             {
                 MessageBox.Show("Informations manquantes.");
                 return false;
@@ -69,37 +74,46 @@ namespace Logiciel_Devis_Facture.packModele
                 pdf.Open();
 
                 //Ajout du logo de l'entreprise
-                Image i1 = Image.GetInstance("C:/Users/julie/Desktop/IUT Info/2A/ptut/PDFCreator/PDFCreator/images/logo.png");
-                i1.ScaleAbsoluteWidth(141);
-                i1.ScaleAbsoluteHeight(100);
-                pdf.Add(i1);
+                if(entreprise.getCompLogo().getPathing() != null)
+                {
+                    Image i1 = Image.GetInstance(entreprise.getCompLogo().getPathing());
+                    i1.ScaleAbsoluteWidth(141);
+                    i1.ScaleAbsoluteHeight(100);
+                    pdf.Add(i1);
+                }
 
                 //On ajoute un espace entre le logo et l'info de l'entreprise
                 var spacer = new Paragraph("")
                 {
-                    SpacingBefore = 10f,
-                    SpacingAfter = 5f,
+                    SpacingBefore = 5f,
+                    SpacingAfter = 10f,
                 };
                 pdf.Add(spacer);
 
                 //Informations de l'entreprise
                 PdfPTable companyInfo = new PdfPTable(1);
-                PdfPCell companyName = new PdfPCell(new Paragraph("COMENCO"));
+                PdfPCell companyName = new PdfPCell(new Paragraph(entreprise.getCompanyName()));
                 companyName.Border = 0;
                 companyInfo.AddCell(companyName);
-                PdfPCell companyStreet = new PdfPCell(new Paragraph("78 rue Victor Hugo"));
+                PdfPCell companyStreet = new PdfPCell(new Paragraph(entreprise.getStreet()));
                 companyStreet.Border = 0;
                 companyInfo.AddCell(companyStreet);
-                PdfPCell companyCity = new PdfPCell(new Paragraph("69002 Lyon"));
+                if(entreprise.getAdditionnal() != null)
+                {
+                    PdfPCell companyAdditionnal = new PdfPCell(new Paragraph(entreprise.getAdditionnal()));
+                    companyAdditionnal.Border = 0;
+                    companyInfo.AddCell(companyAdditionnal);
+                }
+                PdfPCell companyCity = new PdfPCell(new Paragraph(entreprise.getZip() + ", " + entreprise.getCity()));
                 companyCity.Border = 0;
                 companyInfo.AddCell(companyCity);
-                PdfPCell companyPhone = new PdfPCell(new Paragraph("04 12 84 33 76"));
+                PdfPCell companyPhone = new PdfPCell(new Paragraph(entreprise.getPhone()));
                 companyPhone.Border = 0;
                 companyInfo.AddCell(companyPhone);
-                PdfPCell companyMail = new PdfPCell(new Paragraph("contact@comenco.com"));
+                PdfPCell companyMail = new PdfPCell(new Paragraph(entreprise.getMail()));
                 companyMail.Border = 0;
                 companyInfo.AddCell(companyMail);
-                PdfPCell companyWebsite = new PdfPCell(new Paragraph("www.comenco.fr"));
+                PdfPCell companyWebsite = new PdfPCell(new Paragraph(entreprise.getWebsite()));
                 companyWebsite.Border = 0;
                 companyInfo.AddCell(companyWebsite);
 
@@ -231,6 +245,7 @@ namespace Logiciel_Devis_Facture.packModele
                 //On ouvre le PDF
                 System.Diagnostics.Process.Start(pdfName);
             }
+            System.Console.WriteLine(form.getLabelName());
             return true;
         }
     }

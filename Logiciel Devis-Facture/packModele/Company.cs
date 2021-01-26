@@ -60,7 +60,7 @@ namespace Logiciel_Devis_Facture.packModele
             this.siret = siret;
         }
 
-        Company(string siret,string street,string city,string mail,string phone, Logo compLogo, List<PDF> listInvoice)
+        Company(string siret, string street, string city, string mail, string phone, Logo compLogo, List<PDF> listInvoice)
         {
             this.siret = siret;
             this.mail = mail;
