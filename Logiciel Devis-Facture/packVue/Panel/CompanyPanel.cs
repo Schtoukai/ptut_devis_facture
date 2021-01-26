@@ -251,7 +251,8 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             mailBegin.SetSize((elementWidth - at.Width) / 2, 0);
             mailBegin.TextChanged += new System.EventHandler(TextField_TextChanged);
             at.SetFontSize(fontHeight);
-            mailEnd.Font = new System.Drawing.Font(Font.Name, fontHeight);
+            if (fontHeight > 0)
+                mailEnd.Font = new System.Drawing.Font(Font.Name, fontHeight);
             mailEnd.Size = new System.Drawing.Size((elementWidth - at.Width) / 2, 0);
             mailEnd.TextChanged += new System.EventHandler(TextField_TextChanged);
             website.SetFontSize(fontHeight);
@@ -263,7 +264,8 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             logo.SetFontSize(fontHeight);
             logo.SetSize(elementWidth * 3 / 4, 0);
             logo.TextChanged += new System.EventHandler(TextField_TextChanged);
-            titleLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Bold);
+            if (fontHeight > 0)
+                titleLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Bold);
             titleLabel.AutoSize = true;
             nameLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
             nameLabel.AutoSize = true;
@@ -482,6 +484,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
                     if (company.getCompLogo().updateLogoTable(c_logo,newPath,extension))
                     {
                         string path = Path.Combine(newPath, c_name + extension);
+                        path = path.Replace("/", "\\");
                         if (!path.Equals(c_logo))
                         {
                             File.Delete(Path.Combine(newPath, c_name + extension));

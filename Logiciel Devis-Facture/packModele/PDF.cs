@@ -51,8 +51,9 @@ namespace Logiciel_Devis_Facture.packModele
             return this.date;
         }
 
-        public bool generatePDF(TextBox textBoxName, TextBox textBoxStreet, TextBox textBoxAdditionnalAddress, TextBox textBoxZip, TextBox textBoxCity, TextBox textBoxPhone, TextBox textBoxMail, TextBox textBoxNumero, DateTimePicker dateTimePicker ,DataGridView itemGrid)
+        public bool generatePDF(TextBox textBoxName, TextBox textBoxStreet, TextBox textBoxAdditionnalAddress, TextBox textBoxZip, TextBox textBoxCity, TextBox textBoxPhone, TextBox textBoxMail, TextBox textBoxNumero, DateTimePicker dateTimePicker, RadioButton isInvoiceButton, RadioButton isQuoteButton, DataGridView itemGrid)
         {
+            string pdfName = "myPDF.pdf";
             //Si tous les champs ne sont pas remplis
             if (textBoxName.Text == "" || textBoxStreet.Text == "" || textBoxZip.Text == "" || textBoxCity.Text == "" || textBoxPhone.Text == "" || textBoxMail.Text == "")
             {
@@ -64,7 +65,7 @@ namespace Logiciel_Devis_Facture.packModele
             {
                 //Création du PDF
                 Document pdf = new Document();
-                PdfWriter writer = PdfWriter.GetInstance(pdf, new FileStream("C:/Users/julie/Desktop/Facture.pdf", FileMode.Create));
+                PdfWriter writer = PdfWriter.GetInstance(pdf, new FileStream(pdfName, FileMode.Create));
                 pdf.Open();
 
                 //Ajout du logo de l'entreprise
@@ -76,7 +77,7 @@ namespace Logiciel_Devis_Facture.packModele
                 //On ajoute un espace entre le logo et l'info de l'entreprise
                 var spacer = new Paragraph("")
                 {
-                    SpacingBefore = 5f,
+                    SpacingBefore = 10f,
                     SpacingAfter = 5f,
                 };
                 pdf.Add(spacer);
@@ -165,8 +166,33 @@ namespace Logiciel_Devis_Facture.packModele
                 //Spacer
                 pdf.Add(spacer);
 
+                //Ajout de "FACTURE" ou de "DEVIS" au dessus du tableau
+                PdfPTable docNature = new PdfPTable(1);
+                docNature.WidthPercentage = 100;
+                Chunk c;
+                BaseFont bf = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
+                Font font = new Font(bf, 15, Font.NORMAL);
+
+                if (isInvoiceButton.Checked == true)
+                {
+                    c = new Chunk("FACTURE", font);
+                }
+                else
+                {
+                    c = new Chunk("DEVIS", font);
+                }
+                Paragraph p = new Paragraph(c);
+                PdfPCell cellule = new PdfPCell(p);
+                cellule.HorizontalAlignment = Element.ALIGN_CENTER;
+                cellule.VerticalAlignment = Element.ALIGN_TOP;
+                cellule.BackgroundColor = new BaseColor(181, 214, 255);
+                cellule.Border = 0;
+                docNature.AddCell(cellule);
+                pdf.Add(docNature);
+
                 //Grille du PDF
                 PdfPTable pdfTable = new PdfPTable(itemGrid.ColumnCount);
+                pdfTable.SetWidths(new float[] { 50, 15, 10, 10, 15 });
                 pdfTable.DefaultCell.Padding = 3;
                 pdfTable.WidthPercentage = 30;
                 pdfTable.HorizontalAlignment = Element.ALIGN_LEFT;
@@ -202,8 +228,8 @@ namespace Logiciel_Devis_Facture.packModele
                 //On valide le PDF
                 pdf.Close();
 
-                //Message de validation
-                MessageBox.Show("Facture créée");
+                //On ouvre le PDF
+                System.Diagnostics.Process.Start(pdfName);
             }
             return true;
         }

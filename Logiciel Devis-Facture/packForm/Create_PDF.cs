@@ -21,7 +21,7 @@ namespace Logiciel_Devis_Facture
 
         private void buttonValidate_Click(object sender, EventArgs e)
         {
-            if(myPDF.generatePDF(textBoxName, textBoxStreet, textBoxAdditionnalAddress, textBoxZip, textBoxCity, textBoxPhone, textBoxMail, textBoxNumero, dateTimePicker, itemGrid) == true)
+            if(myPDF.generatePDF(textBoxName, textBoxStreet, textBoxAdditionnalAddress, textBoxZip, textBoxCity, textBoxPhone, textBoxMail, textBoxNumero, dateTimePicker, isInvoiceButton, isQuoteButton, itemGrid) == true)
             {
                 this.Visible = false;
             }
@@ -115,7 +115,7 @@ namespace Logiciel_Devis_Facture
 
         private void setTTCPrice()
         {
-            if (textBoxUnitPrice.Text != "")
+            if (textBoxUnitPrice.Text != "" && textBoxTVA.Text != "")
             {
                 float TCCPrice = float.Parse(textBoxUnitPrice.Text) * (float)(quantitySelector.Value) * ((float)1 + (float.Parse(textBoxTVA.Text)) / 100);
                 textBoxTTCPrice.Text = TCCPrice.ToString();

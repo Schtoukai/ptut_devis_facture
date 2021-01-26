@@ -17,7 +17,7 @@ namespace Logiciel_Devis_Facture.packModele
         private Logo compLogo;
         private List<PDF> listInvoice;
         private List<Client> listClient = new List<Client>();
-        private string connstring = @"server=localhost;user id=root;password=R@a[i?G++{iPynQ;database=invoiceDatabase"; // tant que la bd n'est pas crée on ne la précise pas
+        private string connstring = @"server=localhost;user id=root;password=root;database=invoiceDatabase"; // tant que la bd n'est pas crée on ne la précise pas
         private MySqlConnection connection;
 
         public Company()
@@ -158,7 +158,7 @@ namespace Logiciel_Devis_Facture.packModele
         }
 
         /*                                                      *
-        *             Fonction d'update Entreprise         * 
+        *             Fonction d'update Entreprise              * 
         *                                                      */
         public bool updateCompanyTable(string siret, string name, string address, string additional, string zip, string city, string mail, string phone, string website, string logo)
         {
@@ -215,7 +215,7 @@ namespace Logiciel_Devis_Facture.packModele
          *                                                      */
         public bool querryClient()
         {
-            /*string Querry = "SELECT * FROM customer LIMIT 5;";
+            string Querry = "SELECT * FROM customer LIMIT 5;";
             try
             {
                 connection = new MySqlConnection(connstring);
@@ -227,7 +227,12 @@ namespace Logiciel_Devis_Facture.packModele
                 listClient.Clear();
                 foreach (DataRow row in dt.Rows)
                 {
-                    Client a = new Client(int.Parse(row[0].ToString()), row[1].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString());
+                    string[] b = new string[4];
+                    b[0] = row[2].ToString();
+                    b[1] = row[3].ToString();
+                    b[2] = row[4].ToString();
+                    b[3] = row[5].ToString();
+                    Client a = new Client(int.Parse(row[0].ToString()), row[1].ToString(), b, row[6].ToString(), row[7].ToString());
                     listClient.Add(a);
                 }
             }
@@ -240,12 +245,12 @@ namespace Logiciel_Devis_Facture.packModele
             {
                 if (connection != null)
                     connection.Close();
-            }*/
+            }
             return true;
         }
         public bool querryClient(string toQuerry)
         {
-            /*string Querry = "SELECT * FROM customer";
+            string Querry = "SELECT * FROM customer";
             if (toQuerry != "")
             {
                 if (toQuerry[0] >= 'A' && toQuerry[0] <= 'Z')
@@ -272,7 +277,12 @@ namespace Logiciel_Devis_Facture.packModele
                 listClient.Clear();
                 foreach (DataRow row in dt.Rows)
                 {
-                    Client a = new Client( int.Parse(row[0].ToString()), row[1].ToString(), row[2].ToString(), row[3].ToString(),  row[4].ToString());
+                    string[] b = new string[4];
+                    b[0] = row[2].ToString();
+                    b[1] = row[3].ToString();
+                    b[2] = row[4].ToString();
+                    b[3] = row[5].ToString();
+                    Client a = new Client(int.Parse(row[0].ToString()), row[1].ToString(), b, row[6].ToString(), row[7].ToString());
                     listClient.Add(a);
                 }
             }
@@ -285,7 +295,7 @@ namespace Logiciel_Devis_Facture.packModele
             {
                 if (connection != null)
                     connection.Close();
-            }*/
+            }
             return true;
         }
     }
