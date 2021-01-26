@@ -43,7 +43,7 @@ namespace Logiciel_Devis_Facture
             this.customerPanel = new CustomerPanel();
             this.materialPanel = new MaterialPanel();
             this.quote_InvoicePanel = new QuoteAndInvoicePanel(company);
-            this.companyPanel = new CompanyPanel();
+            this.companyPanel = new CompanyPanel(company);
             
             // 
             // NavLayoutPanel
