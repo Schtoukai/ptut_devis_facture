@@ -5,31 +5,68 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Logiciel_Devis_Facture.packVue.Panel
 {
-    class QuoteAndpdfPanel : AbstractPanel
+    class QuoteAndInvoicePanel : AbstractPanel
     {
         private myButton addQuote_InvoiceButton;
         private SearchBar sbar;
-        private System.Windows.Forms.ListBox listDevis;
-        private System.Windows.Forms.ListBox listFacture;
         private Company entreprise;
+        //private System.Windows.Forms.ListBox listDevis;
+        //private System.Windows.Forms.ListBox listFacture;
+        private DataGridView quoteList;
+        private DataGridView invoiceList;
 
-        public QuoteAndpdfPanel(Company entreprise)
+        public QuoteAndInvoicePanel(Company entreprise)
         {
-            listDevis = new System.Windows.Forms.ListBox();
-            listFacture = new System.Windows.Forms.ListBox();
+            this.entreprise = entreprise;
+            quoteList = new DataGridView();
+            quoteList.ColumnCount = 3;
+            quoteList.Columns[0].Name = "Numéro";
+            quoteList.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            quoteList.Columns[1].Name = "Nom";
+            quoteList.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            quoteList.Columns[2].Name = "Date";
+            quoteList.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            quoteList.RowHeadersVisible = false;
+            quoteList.AllowUserToAddRows = false;
+            quoteList.AllowUserToDeleteRows = false;
+            quoteList.Enabled = false;
+            foreach (DataGridViewColumn header in quoteList.Columns)
+            {
+                header.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+            quoteList.ClearSelection();
+            invoiceList = new DataGridView();
+            invoiceList.ColumnCount = 3;
+            invoiceList.Columns[0].Name = "Numéro";
+            invoiceList.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            invoiceList.Columns[1].Name = "Nom";
+            invoiceList.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            invoiceList.Columns[2].Name = "Date";
+            invoiceList.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            invoiceList.RowHeadersVisible = false;
+            invoiceList.AllowUserToAddRows = false;
+            invoiceList.AllowUserToDeleteRows = false;
+            invoiceList.Enabled = false;
+            foreach (DataGridViewColumn header in invoiceList.Columns)
+            {
+                header.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+            quoteList.Columns[1].Name = "Nom";
+            quoteList.Columns[2].Name = "Date";
+            invoiceList = new DataGridView();
             addQuote_InvoiceButton = new myButton();
             sbar = new SearchBar();
             this.Controls.Add(this.addQuote_InvoiceButton);
             this.Controls.Add(this.sbar);
-            this.Controls.Add(this.listDevis);
-            this.Controls.Add(this.listFacture);
+            this.Controls.Add(this.quoteList);
+            this.Controls.Add(this.invoiceList);
             addQuote_InvoiceButton.Text = "Ajouter un Devis ou une Facture";
             addQuote_InvoiceButton.BackColor = Color.Lime;
             this.initEventHandler();
-            this.entreprise = entreprise;
         }
         public override void SetSize(int width, int height)
         {
@@ -40,23 +77,23 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             addQuote_InvoiceButton.SetSize(buttonWidth, buttonHeight);
             sbar.SetFontSize(buttonHeight/5);
             sbar.SetSize(barWidth, 0);
-            listDevis.Size = new System.Drawing.Size(barWidth, buttonHeight*6);
-            listFacture.Size = listDevis.Size;
+            quoteList.Size = new System.Drawing.Size(barWidth, buttonHeight*6);
+            invoiceList.Size = quoteList.Size;
         }
         public override void SetLocation(int x, int y)
         {
             this.Location = new System.Drawing.Point(x, y);
             addQuote_InvoiceButton.Location = new System.Drawing.Point((this.Size.Width - addQuote_InvoiceButton.Width) / 2, 0);
             sbar.Location = new System.Drawing.Point((this.Size.Width - sbar.Width) / 2, addQuote_InvoiceButton.Height * 3 / 2);
-            listDevis.Location = new System.Drawing.Point(this.Size.Width/2 - sbar.Width, addQuote_InvoiceButton.Height * 5 / 2);
-            listFacture.Location = new System.Drawing.Point(listDevis.Size.Width + sbar.Width / 5, listDevis.Location.Y);
+            quoteList.Location = new System.Drawing.Point(this.Size.Width/2 - sbar.Width, addQuote_InvoiceButton.Height * 5 / 2);
+            invoiceList.Location = new System.Drawing.Point(quoteList.Size.Width + sbar.Width / 5, quoteList.Location.Y);
         }
 
         public override void SetMargin(int left, int top, int right, int bottom)
         {
             throw new NotImplementedException();
         }
-        private void addDevis_Facture_Click(object sender, EventArgs e)
+        private void addQuote_Invoice_Click(object sender, EventArgs e)
         {
             Create_PDF formulaire = new Create_PDF();
             if(entreprise.querryClient())
@@ -67,7 +104,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
 
         public void initEventHandler()
         {
-            this.addQuote_InvoiceButton.Click += new System.EventHandler(this.addDevis_Facture_Click);
+            this.addQuote_InvoiceButton.Click += new System.EventHandler(this.addQuote_Invoice_Click);
         }
 
         public override void SetFontSize(int size)

@@ -1,7 +1,6 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 
@@ -65,15 +64,14 @@ namespace Logiciel_Devis_Facture.packModele
             {
                 //Création du PDF
                 Document pdf = new Document();
-                String pdfName = "myPDF.pdf";
-                PdfWriter writer = PdfWriter.GetInstance(pdf, new FileStream(pdfName, FileMode.Create));
+                PdfWriter writer = PdfWriter.GetInstance(pdf, new FileStream("C:/Users/julie/Desktop/Facture.pdf", FileMode.Create));
                 pdf.Open();
 
                 //Ajout du logo de l'entreprise
-                /*Image i1 = Image.GetInstance("C:/Users/julie/Desktop/IUT Info/2A/ptut/PDFCreator/PDFCreator/images/logo.png");
+                Image i1 = Image.GetInstance("C:/Users/julie/Desktop/IUT Info/2A/ptut/PDFCreator/PDFCreator/images/logo.png");
                 i1.ScaleAbsoluteWidth(141);
                 i1.ScaleAbsoluteHeight(100);
-                pdf.Add(i1);*/
+                pdf.Add(i1);
 
                 //On ajoute un espace entre le logo et l'info de l'entreprise
                 var spacer = new Paragraph("")
@@ -204,8 +202,8 @@ namespace Logiciel_Devis_Facture.packModele
                 //On valide le PDF
                 pdf.Close();
 
-                //On ouvre le PDF
-                Process.Start(pdfName);
+                //Message de validation
+                MessageBox.Show("Facture créée");
             }
             return true;
         }
