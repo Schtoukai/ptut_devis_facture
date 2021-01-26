@@ -21,7 +21,7 @@ namespace Logiciel_Devis_Facture
 
         private void buttonValidate_Click(object sender, EventArgs e)
         {
-            if(myPDF.generatePDF(entreprise, this, textBoxName, textBoxStreet, textBoxAdditionnalAddress, textBoxZip, textBoxCity, textBoxPhone, textBoxMail, textBoxNumero, dateTimePicker, isInvoiceButton, isQuoteButton, itemGrid) == true)
+            if(myPDF.generatePDF(entreprise, this))
             {
                 this.Visible = false;
             }

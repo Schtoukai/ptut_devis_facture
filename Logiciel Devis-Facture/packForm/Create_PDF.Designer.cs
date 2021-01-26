@@ -760,17 +760,42 @@ namespace Logiciel_Devis_Facture
         private Button buttonDeleteItem;
         private Button buttonDeleteAllItem;
         private TextBox textBoxTTCTotal;
+        public TextBox getTextBoxTTCTotal()
+        {
+            return this.textBoxTTCTotal;
+        }
+
         private Label labelTTCTotal;
         private TextBox textBoxHTTotal;
+        public TextBox getTextBoxHTTotal()
+        {
+            return this.textBoxHTTotal;
+        }
+
         private Label labelHTTotal;
         private TextBox textBoxPromo;
+        public TextBox getTextBoxPromo()
+        {
+            return this.textBoxPromo;
+        }
+
         private Label labelPromo;
         private NumericUpDown quantitySelector;
         private ComboBox listItem;
         private Company entreprise = new Company();
         private TextBox textBoxAdditionnalAddress;
+        public TextBox getTextBoxAdditionnalAddress()
+        {
+            return this.textBoxAdditionnalAddress;
+        }
+
         private Label labelAdditionnalAddress;
         private TextBox textBoxZip;
+        public TextBox getTextBoxZip()
+        {
+            return this.textBoxZip;
+        }
+
         private Label labelZip;
         private DataGridViewTextBoxColumn Details;
         private DataGridViewTextBoxColumn htPrice;

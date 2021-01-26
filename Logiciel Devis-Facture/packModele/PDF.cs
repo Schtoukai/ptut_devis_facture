@@ -51,16 +51,15 @@ namespace Logiciel_Devis_Facture.packModele
             return this.date;
         }
 
-        public bool generatePDF(Company entreprise, Create_PDF form,TextBox textBoxName, TextBox textBoxStreet, TextBox textBoxAdditionnalAddress, TextBox textBoxZip, TextBox textBoxCity, TextBox textBoxPhone, TextBox textBoxMail, TextBox textBoxNumero, DateTimePicker dateTimePicker, RadioButton isInvoiceButton, RadioButton isQuoteButton, DataGridView itemGrid)
-        {
+        public bool generatePDF(Company entreprise, Create_PDF form) {
             string pdfName = "myPDF.pdf";
             //Si tous les champs ne sont pas remplis
-            if (textBoxName.Text == "" || textBoxStreet.Text == "" || textBoxZip.Text == "" || textBoxCity.Text == "" || textBoxPhone.Text == "" || textBoxMail.Text == "" || itemGrid.Rows.Count == 0)
+            if (form.getTextBoxName().Text == "" || form.getTextBoxStreet().Text == "" || form.getTextBoxZip().Text == "" || form.getTextBoxCity().Text == "" || form.getTextBoxPhone().Text == "" || form.getTextBoxMail().Text == "" || form.getItemGrid().Rows.Count == 0)
             {
                 MessageBox.Show("Informations manquantes.");
                 return false;
             }
-            if (isInvoiceButton.Checked == false && isQuoteButton.Checked == false)
+            if (form.getIsInvoiceButton().Checked == false && form.getIsQuoteButton().Checked == false)
             {
                 MessageBox.Show("Informations manquantes.");
                 return false;
@@ -125,30 +124,30 @@ namespace Logiciel_Devis_Facture.packModele
                 //Informations du client
                 PdfPTable clientInfo = new PdfPTable(1);
 
-                PdfPCell clientName = new PdfPCell(new Paragraph(textBoxName.Text));
+                PdfPCell clientName = new PdfPCell(new Paragraph(form.getTextBoxName().Text));
                 clientName.Border = 0;
                 clientInfo.AddCell(clientName);
 
-                PdfPCell clientStreet = new PdfPCell(new Paragraph(textBoxStreet.Text));
+                PdfPCell clientStreet = new PdfPCell(new Paragraph(form.getTextBoxStreet().Text));
                 clientStreet.Border = 0;
                 clientInfo.AddCell(clientStreet);
 
-                if(textBoxAdditionnalAddress.Text != "")
+                if(form.getTextBoxAdditionnalAddress().Text != "")
                 {
-                    PdfPCell additionnalAddress = new PdfPCell(new Paragraph(textBoxAdditionnalAddress.Text));
+                    PdfPCell additionnalAddress = new PdfPCell(new Paragraph(form.getTextBoxAdditionnalAddress().Text));
                     additionnalAddress.Border = 0;
                     clientInfo.AddCell(additionnalAddress);
                 }
 
-                PdfPCell zipAndCity = new PdfPCell(new Paragraph(textBoxZip.Text + ", " + textBoxCity.Text));
+                PdfPCell zipAndCity = new PdfPCell(new Paragraph(form.getTextBoxZip().Text + ", " + form.getTextBoxCity().Text));
                 zipAndCity.Border = 0;
                 clientInfo.AddCell(zipAndCity);
 
-                PdfPCell clientPhone = new PdfPCell(new Paragraph(textBoxPhone.Text));
+                PdfPCell clientPhone = new PdfPCell(new Paragraph(form.getTextBoxPhone().Text));
                 clientPhone.Border = 0;
                 clientInfo.AddCell(clientPhone);
 
-                PdfPCell clientMail = new PdfPCell(new Paragraph(textBoxMail.Text));
+                PdfPCell clientMail = new PdfPCell(new Paragraph(form.getTextBoxMail().Text));
                 clientMail.Border = 0;
                 clientInfo.AddCell(clientMail);
 
@@ -164,12 +163,12 @@ namespace Logiciel_Devis_Facture.packModele
                 //Numéro et date du document
                 PdfPTable numAndDate = new PdfPTable(2);
 
-                PdfPCell numCell = new PdfPCell(new Paragraph("N° : " + textBoxNumero.Text));
+                PdfPCell numCell = new PdfPCell(new Paragraph("N° : " + form.getTextBoxNumero().Text));
                 numCell.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
                 numCell.Border = 0;
                 numAndDate.AddCell(numCell);
 
-                PdfPCell dateCell = new PdfPCell(new Paragraph("Date : " + dateTimePicker.Value.ToShortDateString()));
+                PdfPCell dateCell = new PdfPCell(new Paragraph("Date : " + form.getTextBoxDateTimePicker().Value.ToShortDateString()));
                 dateCell.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
                 dateCell.Border = 0;
                 numAndDate.AddCell(dateCell);
@@ -187,7 +186,7 @@ namespace Logiciel_Devis_Facture.packModele
                 BaseFont bf = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
                 Font font = new Font(bf, 15, Font.NORMAL);
 
-                if (isInvoiceButton.Checked == true)
+                if (form.getIsInvoiceButton().Checked == true)
                 {
                     c = new Chunk("FACTURE", font);
                 }
@@ -205,7 +204,7 @@ namespace Logiciel_Devis_Facture.packModele
                 pdf.Add(docNature);
 
                 //Grille du PDF
-                PdfPTable pdfTable = new PdfPTable(itemGrid.ColumnCount);
+                PdfPTable pdfTable = new PdfPTable(form.getItemGrid().ColumnCount);
                 pdfTable.SetWidths(new float[] { 50, 15, 10, 10, 15 });
                 pdfTable.DefaultCell.Padding = 3;
                 pdfTable.WidthPercentage = 30;
@@ -213,7 +212,7 @@ namespace Logiciel_Devis_Facture.packModele
                 pdfTable.DefaultCell.BorderWidth = 1;
 
                 //Ajout de la ligne entête
-                foreach (DataGridViewColumn column in itemGrid.Columns)
+                foreach (DataGridViewColumn column in form.getItemGrid().Columns)
                 {
                     PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText));
                     BaseColor cellBg = new BaseColor(185, 185, 185); //Gris clair
@@ -222,7 +221,7 @@ namespace Logiciel_Devis_Facture.packModele
                 }
 
                 //Ajout des lignes de données
-                foreach (DataGridViewRow row in itemGrid.Rows)
+                foreach (DataGridViewRow row in form.getItemGrid().Rows)
                 {
                     foreach (DataGridViewCell cell in row.Cells)
                     {
@@ -245,7 +244,6 @@ namespace Logiciel_Devis_Facture.packModele
                 //On ouvre le PDF
                 System.Diagnostics.Process.Start(pdfName);
             }
-            System.Console.WriteLine(form.getLabelName());
             return true;
         }
     }
