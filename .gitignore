@@ -2,8 +2,12 @@
 # Ce fichier .gitignore a été automatiquement créé par Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/VSWorkspaceState.json
-<<<<<<< HEAD
-/Logiciel Devis-Facture
-=======
->>>>>>> c0847b86ce0cd2ab58ca867a6b75af5f9055b5db
+/.vs/git/v16
+*.pdf
+*.xsc
+*.xsd
+Logiciel Devis-Facture/.vs/Logiciel Devis-Facture/v16/.suo
+Logiciel Devis-Facture/.vs/Logiciel Devis-Facture/v16/.suo
+*.cache
+*.cache
+*.cache

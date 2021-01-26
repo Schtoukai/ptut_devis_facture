@@ -34,16 +34,16 @@ namespace Logiciel_Devis_Facture
         /// </summary>
         private void InitializeComponent()
         {
+            this.company = new Company();
             this.NavLayoutPanel = new FlowLayoutPanel();
             this.myCompanyButton = new myButton();
             this.Quote_InvoiceButton = new myButton();
             this.CustomerButton = new myButton();
             this.MaterialButton = new myButton();
-            this.entreprise = new Company();
             this.customerPanel = new CustomerPanel();
             this.materialPanel = new MaterialPanel();
-            this.quote_InvoicePanel = new QuoteAndpdfPanel(entreprise);
-            this.companyPanel = new CompanyPanel();
+            this.quote_InvoicePanel = new QuoteAndInvoicePanel(company);
+            this.companyPanel = new CompanyPanel(company);
             
             // 
             // NavLayoutPanel
@@ -63,7 +63,7 @@ namespace Logiciel_Devis_Facture
             this.myCompanyButton.Text = "Mon Entreprise";
             this.myCompanyButton.Click += new System.EventHandler(this.CompanyButton_Click);
             // 
-            // Quote_pdfButton
+            // Quote_InvoiceButton
             // 
             this.Quote_InvoiceButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.Quote_InvoiceButton.FlatAppearance.BorderSize = 0;
@@ -98,7 +98,7 @@ namespace Logiciel_Devis_Facture
             // 
             this.materialPanel.Name = "materialPanel";
             //
-            // quote_pdfPanel
+            // quote_InvoicePanel
             //
             this.quote_InvoicePanel.Name = "materialPanel";
             //
@@ -128,9 +128,9 @@ namespace Logiciel_Devis_Facture
         private myButton MaterialButton;
         private CustomerPanel customerPanel;
         private MaterialPanel materialPanel;
-        private QuoteAndpdfPanel quote_InvoicePanel;
+        private QuoteAndInvoicePanel quote_InvoicePanel;
         private CompanyPanel companyPanel;
-        private Company entreprise;
+        private Company company;
     }
 }
 
