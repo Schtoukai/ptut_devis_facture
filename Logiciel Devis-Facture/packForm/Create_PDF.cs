@@ -88,6 +88,8 @@ namespace Logiciel_Devis_Facture
             quantitySelector.Value = 1;
             textBoxTVA.Clear();
             textBoxTTCPrice.Clear(); ;
+
+            this.setHTTotal();
         }
 
         private void buttonDeleteItem_Click(object sender, EventArgs e)
@@ -97,6 +99,7 @@ namespace Logiciel_Devis_Facture
                 int rowIndex = itemGrid.CurrentCell.RowIndex;
                 itemGrid.Rows.RemoveAt(rowIndex);
             }
+            this.setHTTotal();
         }
 
         private void buttonDeleteAllItem_Click(object sender, EventArgs e)
@@ -128,7 +131,18 @@ namespace Logiciel_Devis_Facture
 
         private void setHTTotal()
         {
-
+            float HTTotal = 0;
+            float unitPrice = 0;
+            float quantity = 0;
+            for (int i = 0; i < itemGrid.Rows.Count; i++)
+            {
+                Console.WriteLine(itemGrid.Rows[i].Cells[1].Value);
+                if(float.TryParse(itemGrid.Rows[i].Cells[1].Value.ToString(), out unitPrice) && float.TryParse(itemGrid.Rows[i].Cells[2].Value.ToString(), out quantity))
+                {
+                    HTTotal += unitPrice * quantity;
+                }
+            }
+            textBoxHTTotal.Text = HTTotal.ToString();
         }
 
         private void setTTCTotal()
@@ -150,6 +164,12 @@ namespace Logiciel_Devis_Facture
         {
             //entreprise.querryMaterials();
             //loadMaterials(entreprise.getListMaterials());
+            if(listItem.SelectedItem != null)
+            {
+                textBoxUnitPrice.Text = entreprise.getListMaterials()[listItem.SelectedIndex].getPrice().ToString();
+                textBoxTVA.Text = entreprise.getListMaterials()[listItem.SelectedIndex].getTVA().ToString();
+            }
+            this.setTTCPrice();
         }
     }
 }

@@ -75,48 +75,59 @@ namespace Logiciel_Devis_Facture.packModele
                 //Ajout du logo de l'entreprise
                 if(entreprise.getCompLogo().getPathing() != null)
                 {
-                    Image i1 = Image.GetInstance(entreprise.getCompLogo().getPathing());
-                    i1.ScaleAbsoluteWidth(141);
-                    i1.ScaleAbsoluteHeight(100);
-                    pdf.Add(i1);
+                    Image logo = Image.GetInstance(Directory.GetCurrentDirectory() + "\\Logo\\" + entreprise.getCompLogo().getName() + entreprise.getCompLogo().getFormat());
+                    float scalePercent = (((pdf.PageSize.Width / logo.Width) * 100) - 45);
+                    logo.ScalePercent(scalePercent);
+                    pdf.Add(logo);
                 }
 
-                //On ajoute un espace entre le logo et l'info de l'entreprise
+                //On initialise un spacer
                 var spacer = new Paragraph("")
                 {
                     SpacingBefore = 5f,
                     SpacingAfter = 10f,
                 };
-                pdf.Add(spacer);
 
                 //Informations de l'entreprise
                 PdfPTable companyInfo = new PdfPTable(1);
+
                 PdfPCell companyName = new PdfPCell(new Paragraph(entreprise.getCompanyName()));
                 companyName.Border = 0;
                 companyInfo.AddCell(companyName);
+
                 PdfPCell companyStreet = new PdfPCell(new Paragraph(entreprise.getStreet()));
                 companyStreet.Border = 0;
                 companyInfo.AddCell(companyStreet);
+
                 if(entreprise.getAdditionnal() != null)
                 {
                     PdfPCell companyAdditionnal = new PdfPCell(new Paragraph(entreprise.getAdditionnal()));
                     companyAdditionnal.Border = 0;
                     companyInfo.AddCell(companyAdditionnal);
                 }
+
                 PdfPCell companyCity = new PdfPCell(new Paragraph(entreprise.getZip() + ", " + entreprise.getCity()));
                 companyCity.Border = 0;
                 companyInfo.AddCell(companyCity);
-                PdfPCell companyPhone = new PdfPCell(new Paragraph(entreprise.getPhone()));
+
+                string tel = entreprise.getPhone();
+                if(tel.Length == 10)
+                {
+                    tel = entreprise.getPhone().Insert(2, " ").Insert(5, " ").Insert(8, " ").Insert(11, " ");
+                }
+                PdfPCell companyPhone = new PdfPCell(new Paragraph(tel));
                 companyPhone.Border = 0;
                 companyInfo.AddCell(companyPhone);
+
                 PdfPCell companyMail = new PdfPCell(new Paragraph(entreprise.getMail()));
                 companyMail.Border = 0;
                 companyInfo.AddCell(companyMail);
+
                 PdfPCell companyWebsite = new PdfPCell(new Paragraph(entreprise.getWebsite()));
                 companyWebsite.Border = 0;
                 companyInfo.AddCell(companyWebsite);
 
-                companyInfo.WidthPercentage = 30;
+                companyInfo.WidthPercentage = 50;
                 companyInfo.HorizontalAlignment = Element.ALIGN_LEFT;
 
                 pdf.Add(companyInfo);
@@ -154,7 +165,7 @@ namespace Logiciel_Devis_Facture.packModele
                 PdfPTable clientCadre = new PdfPTable(1);
                 clientCadre.AddCell(clientInfo);
                 clientCadre.HorizontalAlignment = Element.ALIGN_RIGHT;
-                clientCadre.WidthPercentage = 40;
+                clientCadre.WidthPercentage = 45;
                 pdf.Add(clientCadre);
 
                 //Spacer

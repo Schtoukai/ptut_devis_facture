@@ -146,7 +146,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             website = new SearchBar();
             c_website = company.getWebsite();
             website.Text = c_website;
-            website.MaxLength = 25;
+            website.MaxLength = 45;
             logo = new SearchBar();
             if(company.getCompLogo() != null)
             {
@@ -267,19 +267,26 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             if (fontHeight > 0)
                 titleLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Bold);
             titleLabel.AutoSize = true;
-            nameLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
+            if (fontHeight > 0)
+                nameLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
             nameLabel.AutoSize = true;
-            addressLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
+            if (fontHeight > 0)
+                addressLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
             addressLabel.AutoSize = true;
-            phoneLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
+            if (fontHeight > 0)
+                phoneLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
             phoneLabel.AutoSize = true;
-            mailLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
+            if (fontHeight > 0)
+                mailLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
             mailLabel.AutoSize = true;
-            websiteLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
+            if (fontHeight > 0)
+                websiteLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
             websiteLabel.AutoSize = true;
-            siretLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
+            if (fontHeight > 0)
+                siretLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
             siretLabel.AutoSize = true;
-            logoLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
+            if (fontHeight > 0)
+                logoLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
             logoLabel.AutoSize = true;
             logoButton.SetSize(elementWidth / 4, logoLabel.Height);
             saveButton.SetSize(elementWidth / 4, 2 * logoLabel.Height);
