@@ -90,6 +90,7 @@ namespace Logiciel_Devis_Facture
             textBoxTTCPrice.Clear(); ;
 
             this.setHTTotal();
+            this.setTTCTotal();
         }
 
         private void buttonDeleteItem_Click(object sender, EventArgs e)
@@ -100,11 +101,14 @@ namespace Logiciel_Devis_Facture
                 itemGrid.Rows.RemoveAt(rowIndex);
             }
             this.setHTTotal();
+            this.setTTCTotal();
         }
 
         private void buttonDeleteAllItem_Click(object sender, EventArgs e)
         {
             itemGrid.Rows.Clear();
+            this.setHTTotal();
+            this.setTTCTotal();
         }
 
         private void textBoxName_TextChanged(object sender, EventArgs e)
@@ -136,18 +140,26 @@ namespace Logiciel_Devis_Facture
             float quantity = 0;
             for (int i = 0; i < itemGrid.Rows.Count; i++)
             {
-                Console.WriteLine(itemGrid.Rows[i].Cells[1].Value);
                 if(float.TryParse(itemGrid.Rows[i].Cells[1].Value.ToString(), out unitPrice) && float.TryParse(itemGrid.Rows[i].Cells[2].Value.ToString(), out quantity))
                 {
                     HTTotal += unitPrice * quantity;
                 }
             }
-            textBoxHTTotal.Text = HTTotal.ToString();
+            textBoxHTTotal.Text = HTTotal.ToString() + "€";
         }
 
         private void setTTCTotal()
         {
-
+            float TTCTotal = 0;
+            float TTCPrice = 0;
+            for (int i = 0; i < itemGrid.Rows.Count; i++)
+            {
+                if (float.TryParse(itemGrid.Rows[i].Cells[4].Value.ToString(), out TTCPrice))
+                {
+                    TTCTotal += TTCPrice;
+                }
+            }
+            textBoxTTCTotal.Text = TTCTotal.ToString() + "€";
         }
 
         private void textBoxUnitPrice_TextChanged(object sender, EventArgs e)
