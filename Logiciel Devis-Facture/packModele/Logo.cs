@@ -11,7 +11,7 @@ namespace Logiciel_Devis_Facture.packModele
         private string name;
         private string format;
         private string pathing;
-        private string connstring = @"server=localhost;user id=root;password=R@a[i?G++{iPynQ;database=invoiceDatabase"; // tant que la bd n'est pas crée on ne la précise pas
+        private string connstring = @"server=localhost;user id=root;password=root;database=invoiceDatabase"; // tant que la bd n'est pas crée on ne la précise pas
         private MySqlConnection connection;
 
         public Logo()

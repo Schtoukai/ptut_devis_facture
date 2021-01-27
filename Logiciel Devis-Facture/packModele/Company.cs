@@ -19,6 +19,7 @@ namespace Logiciel_Devis_Facture.packModele
         private List<Client> listClient = new List<Client>();
         private string connstring = @"server=localhost;user id=root;password=root;database=invoiceDatabase"; // tant que la bd n'est pas crée on ne la précise pas
         private MySqlConnection connection;
+        private List<Materials> listMaterials = new List<Materials>();
 
         public Company()
         {
@@ -118,6 +119,11 @@ namespace Logiciel_Devis_Facture.packModele
         public string getWebsite()
         {
             return website;
+        }
+
+        public List<Materials> getListMaterials()
+        {
+            return listMaterials;
         }
 
         public List<Client> getListClient()
@@ -284,6 +290,82 @@ namespace Logiciel_Devis_Facture.packModele
                     b[3] = row[5].ToString();
                     Client a = new Client(int.Parse(row[0].ToString()), row[1].ToString(), b, row[6].ToString(), row[7].ToString());
                     listClient.Add(a);
+                }
+            }
+            catch (Exception c)
+            {
+                System.Console.WriteLine(c.Message);
+                return false;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
+            return true;
+        }
+
+        /*                                                      *
+        *             Fonction de rechercher de Materiaux       * 
+        *                                                       */
+        public bool querryMaterials()
+        {
+            string Querry = "SELECT idMaterials, nameMaterials, price, taux FROM materials join legislation on idLegislation=typeLegislation LIMIT 5;";
+            try
+            {
+                connection = new MySqlConnection(connstring);
+                connection.Open();
+                MySqlDataAdapter da = new MySqlDataAdapter(Querry, connection);
+                DataSet ds = new DataSet();
+                da.Fill(ds, "materials");
+                DataTable dt = ds.Tables["materials"];
+                listMaterials.Clear();
+                foreach (DataRow row in dt.Rows)
+                {
+                    Materials a = new Materials(int.Parse(row[0].ToString()), row[1].ToString(), float.Parse(row[2].ToString()), float.Parse(row[3].ToString()));
+                    listMaterials.Add(a);
+                }
+            }
+            catch (Exception c)
+            {
+                System.Console.WriteLine(c.Message);
+                return false;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
+            return true;
+        }
+        public bool querryMaterials(string toQuerry)
+        {
+            string Querry = "SELECT idMaterials, nameMaterials, price, taux FROM materials join legislation on idLegislation=typeLegislation";
+            if (toQuerry != "")
+            {
+                if (toQuerry[0] > 'A' && toQuerry[0] < 'Z')
+                    toQuerry += "%;";
+                if (toQuerry[0] > 'a' && toQuerry[0] < 'z')
+                    toQuerry = "%" + toQuerry + "%;";
+                else
+                    return false;
+                Querry += " Where nameMaterials LIKE" + toQuerry;
+            }
+            else
+                Querry += " LIMIT 5;";
+            try
+            {
+                connection = new MySqlConnection(connstring);
+                connection.Open();
+                MySqlDataAdapter da = new MySqlDataAdapter(Querry, connection);
+                DataSet ds = new DataSet();
+                da.Fill(ds, "materials");
+                DataTable dt = ds.Tables["materials"];
+                listMaterials.Clear();
+                foreach (DataRow row in dt.Rows)
+                {
+                    Materials a = new Materials(int.Parse(row[0].ToString()), row[1].ToString(), float.Parse(row[2].ToString()), float.Parse(row[3].ToString()));
+                    listMaterials.Add(a);
                 }
             }
             catch (Exception c)

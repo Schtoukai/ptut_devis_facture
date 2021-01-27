@@ -11,12 +11,8 @@ namespace Logiciel_Devis_Facture
         {
             InitializeComponent();
 
-            //Temporaire (en attente du link avec la BDD)
-            listItem.Items.Add("Item 1");
-            listItem.Items.Add("Item 2");
-            listItem.Items.Add("Item 3");
-            listItem.Items.Add("Item 4");
-            listItem.Items.Add("Item 5");
+            entreprise.querryMaterials();
+            loadMaterials(entreprise.getListMaterials());
         }
 
         private void buttonValidate_Click(object sender, EventArgs e)
@@ -66,6 +62,14 @@ namespace Logiciel_Devis_Facture
                         textBoxMail.Text = "";
                     }
                 }
+            }
+        }
+
+        public void loadMaterials(List<Materials> listMaterials)
+        {
+            foreach (Materials i in listMaterials)
+            {
+                listItem.Items.Add(i.getNameMaterials());
             }
         }
 
@@ -140,6 +144,12 @@ namespace Logiciel_Devis_Facture
         private void quantitySelector_ValueChanged(object sender, EventArgs e)
         {
             setTTCPrice();
+        }
+
+        private void listItem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //entreprise.querryMaterials();
+            //loadMaterials(entreprise.getListMaterials());
         }
     }
 }
