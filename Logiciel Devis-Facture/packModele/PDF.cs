@@ -76,7 +76,7 @@ namespace Logiciel_Devis_Facture.packModele
                 if(entreprise.getCompLogo().getPathing() != null)
                 {
                     Image logo = Image.GetInstance(Directory.GetCurrentDirectory() + "\\Logo\\" + entreprise.getCompLogo().getName() + entreprise.getCompLogo().getFormat());
-                    float scalePercent = (((pdf.PageSize.Width / logo.Width) * 100) - 45);
+                    float scalePercent = (((pdf.PageSize.Width / logo.Width) * 100) - 37);
                     logo.ScalePercent(scalePercent);
                     pdf.Add(logo);
                 }
@@ -248,6 +248,41 @@ namespace Logiciel_Devis_Facture.packModele
                 pdfTable.WidthPercentage = 100;
 
                 pdf.Add(pdfTable);
+
+                pdf.Add(spacer);
+                pdf.Add(spacer);
+
+                //Tabeau récapitulatif
+                PdfPTable tabRecap = new PdfPTable(2);
+                tabRecap.WidthPercentage = 40;
+                tabRecap.HorizontalAlignment = Element.ALIGN_RIGHT;
+
+                PdfPCell sousTotalLabel = new PdfPCell(new Paragraph("Sous-Total"));
+                tabRecap.AddCell(sousTotalLabel);
+                PdfPCell sousTotalValue = new PdfPCell(new Paragraph(form.getSousTotal()));
+                tabRecap.AddCell(sousTotalValue);
+
+                PdfPCell remiseLabel = new PdfPCell(new Paragraph("Remise"));
+                tabRecap.AddCell(remiseLabel);
+                PdfPCell remiseValue = new PdfPCell(new Paragraph(form.getTextBoxPromo().Text + "€"));
+                tabRecap.AddCell(remiseValue);
+
+                PdfPCell totalHTLabel = new PdfPCell(new Paragraph("Total Facture HT"));
+                tabRecap.AddCell(totalHTLabel);
+                PdfPCell totalHTValue = new PdfPCell(new Paragraph(form.getTextBoxHTTotal().Text + "€"));
+                tabRecap.AddCell(totalHTValue);
+
+                PdfPCell totalTVALabel = new PdfPCell(new Paragraph("Total TVA"));
+                tabRecap.AddCell(totalTVALabel);
+                PdfPCell totalTVAValue = new PdfPCell(new Paragraph(form.getTotalTVA()));
+                tabRecap.AddCell(totalTVAValue);
+
+                PdfPCell totalTTCLabel = new PdfPCell(new Paragraph("Total TTC"));
+                tabRecap.AddCell(totalTTCLabel);
+                PdfPCell totalTTCValue = new PdfPCell(new Paragraph(form.getTextBoxTTCTotal().Text + "€"));
+                tabRecap.AddCell(totalTTCValue);
+
+                pdf.Add(tabRecap);
 
                 //On valide le PDF
                 pdf.Close();

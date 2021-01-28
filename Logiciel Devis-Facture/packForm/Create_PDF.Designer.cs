@@ -32,7 +32,7 @@ namespace Logiciel_Devis_Facture
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelName = new System.Windows.Forms.Label();
             this.labelAddress = new System.Windows.Forms.Label();
             this.buttonValidate = new System.Windows.Forms.Button();
@@ -63,6 +63,11 @@ namespace Logiciel_Devis_Facture
             this.textBoxTTCPrice = new System.Windows.Forms.TextBox();
             this.buttonAddItem = new System.Windows.Forms.Button();
             this.itemGrid = new System.Windows.Forms.DataGridView();
+            this.Details = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.htPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TVA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TTCTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonDeleteItem = new System.Windows.Forms.Button();
             this.buttonDeleteAllItem = new System.Windows.Forms.Button();
             this.textBoxTTCTotal = new System.Windows.Forms.TextBox();
@@ -77,11 +82,6 @@ namespace Logiciel_Devis_Facture
             this.labelAdditionnalAddress = new System.Windows.Forms.Label();
             this.textBoxZip = new System.Windows.Forms.TextBox();
             this.labelZip = new System.Windows.Forms.Label();
-            this.Details = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.htPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TVA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TTCTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.itemGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantitySelector)).BeginInit();
             this.SuspendLayout();
@@ -391,14 +391,14 @@ namespace Logiciel_Devis_Facture
             this.Quantity,
             this.TVA,
             this.TTCTotal});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.itemGrid.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.itemGrid.DefaultCellStyle = dataGridViewCellStyle4;
             this.itemGrid.Location = new System.Drawing.Point(45, 436);
             this.itemGrid.Name = "itemGrid";
             this.itemGrid.ReadOnly = true;
@@ -407,6 +407,51 @@ namespace Logiciel_Devis_Facture
             this.itemGrid.RowTemplate.Height = 24;
             this.itemGrid.Size = new System.Drawing.Size(1227, 317);
             this.itemGrid.TabIndex = 34;
+            // 
+            // Details
+            // 
+            this.Details.HeaderText = "Détails";
+            this.Details.MinimumWidth = 6;
+            this.Details.Name = "Details";
+            this.Details.ReadOnly = true;
+            this.Details.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Details.Width = 406;
+            // 
+            // htPrice
+            // 
+            this.htPrice.HeaderText = "Prix H.T";
+            this.htPrice.MinimumWidth = 6;
+            this.htPrice.Name = "htPrice";
+            this.htPrice.ReadOnly = true;
+            this.htPrice.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.htPrice.Width = 133;
+            // 
+            // Quantity
+            // 
+            this.Quantity.HeaderText = "Qté";
+            this.Quantity.MinimumWidth = 6;
+            this.Quantity.Name = "Quantity";
+            this.Quantity.ReadOnly = true;
+            this.Quantity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Quantity.Width = 122;
+            // 
+            // TVA
+            // 
+            this.TVA.HeaderText = "TVA (%)";
+            this.TVA.MinimumWidth = 6;
+            this.TVA.Name = "TVA";
+            this.TVA.ReadOnly = true;
+            this.TVA.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.TVA.Width = 123;
+            // 
+            // TTCTotal
+            // 
+            this.TTCTotal.HeaderText = "Total TTC";
+            this.TTCTotal.MinimumWidth = 6;
+            this.TTCTotal.Name = "TTCTotal";
+            this.TTCTotal.ReadOnly = true;
+            this.TTCTotal.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.TTCTotal.Width = 133;
             // 
             // buttonDeleteItem
             // 
@@ -445,17 +490,17 @@ namespace Logiciel_Devis_Facture
             // 
             this.labelTTCTotal.AutoSize = true;
             this.labelTTCTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTTCTotal.Location = new System.Drawing.Point(722, 774);
+            this.labelTTCTotal.Location = new System.Drawing.Point(696, 774);
             this.labelTTCTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTTCTotal.Name = "labelTTCTotal";
-            this.labelTTCTotal.Size = new System.Drawing.Size(102, 25);
+            this.labelTTCTotal.Size = new System.Drawing.Size(132, 25);
             this.labelTTCTotal.TabIndex = 37;
-            this.labelTTCTotal.Text = "Total TTC";
+            this.labelTTCTotal.Text = "Total TTC (€)";
             // 
             // textBoxHTTotal
             // 
             this.textBoxHTTotal.Enabled = false;
-            this.textBoxHTTotal.Location = new System.Drawing.Point(499, 776);
+            this.textBoxHTTotal.Location = new System.Drawing.Point(504, 778);
             this.textBoxHTTotal.Name = "textBoxHTTotal";
             this.textBoxHTTotal.Size = new System.Drawing.Size(133, 22);
             this.textBoxHTTotal.TabIndex = 40;
@@ -465,12 +510,12 @@ namespace Logiciel_Devis_Facture
             // 
             this.labelHTTotal.AutoSize = true;
             this.labelHTTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelHTTotal.Location = new System.Drawing.Point(405, 774);
+            this.labelHTTotal.Location = new System.Drawing.Point(379, 774);
             this.labelHTTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelHTTotal.Name = "labelHTTotal";
-            this.labelHTTotal.Size = new System.Drawing.Size(88, 25);
+            this.labelHTTotal.Size = new System.Drawing.Size(118, 25);
             this.labelHTTotal.TabIndex = 39;
-            this.labelHTTotal.Text = "Total HT";
+            this.labelHTTotal.Text = "Total HT (€)";
             // 
             // textBoxPromo
             // 
@@ -484,7 +529,7 @@ namespace Logiciel_Devis_Facture
             // 
             this.labelPromo.AutoSize = true;
             this.labelPromo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPromo.Location = new System.Drawing.Point(91, 773);
+            this.labelPromo.Location = new System.Drawing.Point(91, 774);
             this.labelPromo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPromo.Name = "labelPromo";
             this.labelPromo.Size = new System.Drawing.Size(77, 25);
@@ -555,51 +600,6 @@ namespace Logiciel_Devis_Facture
             this.labelZip.Size = new System.Drawing.Size(117, 25);
             this.labelZip.TabIndex = 47;
             this.labelZip.Text = "Code postal";
-            // 
-            // Details
-            // 
-            this.Details.HeaderText = "Détails";
-            this.Details.MinimumWidth = 6;
-            this.Details.Name = "Details";
-            this.Details.ReadOnly = true;
-            this.Details.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Details.Width = 406;
-            // 
-            // htPrice
-            // 
-            this.htPrice.HeaderText = "Prix H.T";
-            this.htPrice.MinimumWidth = 6;
-            this.htPrice.Name = "htPrice";
-            this.htPrice.ReadOnly = true;
-            this.htPrice.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.htPrice.Width = 133;
-            // 
-            // Quantity
-            // 
-            this.Quantity.HeaderText = "Qté";
-            this.Quantity.MinimumWidth = 6;
-            this.Quantity.Name = "Quantity";
-            this.Quantity.ReadOnly = true;
-            this.Quantity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Quantity.Width = 122;
-            // 
-            // TVA
-            // 
-            this.TVA.HeaderText = "TVA (%)";
-            this.TVA.MinimumWidth = 6;
-            this.TVA.Name = "TVA";
-            this.TVA.ReadOnly = true;
-            this.TVA.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.TVA.Width = 123;
-            // 
-            // TTCTotal
-            // 
-            this.TTCTotal.HeaderText = "Total TTC";
-            this.TTCTotal.MinimumWidth = 6;
-            this.TTCTotal.Name = "TTCTotal";
-            this.TTCTotal.ReadOnly = true;
-            this.TTCTotal.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.TTCTotal.Width = 133;
             // 
             // Create_PDF
             // 

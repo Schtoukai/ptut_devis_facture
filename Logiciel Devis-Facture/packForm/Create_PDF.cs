@@ -77,7 +77,7 @@ namespace Logiciel_Devis_Facture
 
         private void buttonAddItem_Click(object sender, EventArgs e)
         {
-            if(listItem.SelectedItem != null)
+            if(listItem.SelectedItem != null && isOnlyDigits(textBoxUnitPrice.Text))
             {
                 this.itemGrid.Rows.Add(new object[] { listItem.Text, textBoxUnitPrice.Text, quantitySelector.Value, textBoxTVA.Text, textBoxTTCPrice.Text }); ;
             }
@@ -126,7 +126,7 @@ namespace Logiciel_Devis_Facture
 
         private void setTTCPrice()
         {
-            if (textBoxUnitPrice.Text != "" && textBoxTVA.Text != "")
+            if (textBoxUnitPrice.Text != "" && isOnlyDigits(textBoxUnitPrice.Text) && textBoxTVA.Text != "")
             {
                 float TCCPrice = float.Parse(textBoxUnitPrice.Text) * (float)(quantitySelector.Value) * ((float)1 + (float.Parse(textBoxTVA.Text)) / 100);
                 textBoxTTCPrice.Text = TCCPrice.ToString();
@@ -145,7 +145,7 @@ namespace Logiciel_Devis_Facture
                     HTTotal += unitPrice * quantity;
                 }
             }
-            textBoxHTTotal.Text = HTTotal.ToString() + "€";
+            textBoxHTTotal.Text = HTTotal.ToString();
         }
 
         private void setTTCTotal()
@@ -159,7 +159,29 @@ namespace Logiciel_Devis_Facture
                     TTCTotal += TTCPrice;
                 }
             }
-            textBoxTTCTotal.Text = TTCTotal.ToString() + "€";
+            textBoxTTCTotal.Text = TTCTotal.ToString();
+        }
+
+        public string getSousTotal()
+        {
+            float HTTotal = 0;
+            float unitPrice = 0;
+            float quantity = 0;
+            for (int i = 0; i < itemGrid.Rows.Count; i++)
+            {
+                if (float.TryParse(itemGrid.Rows[i].Cells[1].Value.ToString(), out unitPrice) && float.TryParse(itemGrid.Rows[i].Cells[2].Value.ToString(), out quantity))
+                {
+                    HTTotal += unitPrice * quantity;
+                }
+            }
+            return HTTotal.ToString() + "€";
+        }
+
+        public string getTotalTVA()
+        {
+            float TCC = float.Parse(textBoxTTCTotal.Text);
+            float HT = float.Parse(textBoxHTTotal.Text);
+            return (TCC - HT).ToString() + "€";
         }
 
         private void textBoxUnitPrice_TextChanged(object sender, EventArgs e)
@@ -182,6 +204,16 @@ namespace Logiciel_Devis_Facture
                 textBoxTVA.Text = entreprise.getListMaterials()[listItem.SelectedIndex].getTVA().ToString();
             }
             this.setTTCPrice();
+        }
+
+        bool isOnlyDigits(string s)
+        {
+            foreach (char c in s)
+            {
+                if (c < '0' || c > '9')
+                    return false;
+            }
+            return true;
         }
     }
 }
