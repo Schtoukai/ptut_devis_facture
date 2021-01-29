@@ -517,6 +517,11 @@ namespace Logiciel_Devis_Facture.packVue.Panel
                         }
                         if (company.updateCompanyTable(c_siret, c_name, c_address, c_additional, c_zip, c_city, c_mail, c_phone, c_website, c_name))
                         {
+                            File.Delete(Path.Combine(newPath, c_name + extension));
+                            File.Copy(c_logo, Path.Combine(newPath, c_name + extension), true);
+                        }
+                        if (company.updateCompanyTable(c_siret, c_name, c_address, c_additional, c_zip, c_city, c_mail, c_phone, c_website, c_name))
+                        {
                             saveButton.BackColor = Color.Empty;
                             saveButton.Text = "Sauvegardé";
                             saveButton.Enabled = false;
