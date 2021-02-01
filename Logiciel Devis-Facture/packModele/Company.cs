@@ -15,7 +15,7 @@ namespace Logiciel_Devis_Facture.packModele
         private string nameCompany;
         private string website;
         private Logo compLogo;
-        private List<PDF> listInvoice;
+        private List<PDF> listPDF = new List<PDF>();
         private List<Client> listClient = new List<Client>();
         private string connstring = @"server=localhost;user id=root;password=root;database=invoiceDatabase"; // tant que la bd n'est pas crée on ne la précise pas
         private MySqlConnection connection;
@@ -61,13 +61,13 @@ namespace Logiciel_Devis_Facture.packModele
             this.siret = siret;
         }
 
-        Company(string siret, string street, string city, string mail, string phone, Logo compLogo, List<PDF> listInvoice)
+        Company(string siret, string street, string city, string mail, string phone, Logo compLogo, List<PDF> listPDF)
         {
             this.siret = siret;
             this.mail = mail;
             this.phone = phone;
             this.compLogo = compLogo;
-            this.listInvoice = listInvoice;
+            this.listPDF = listPDF;
         }
 
         public Logo getCompLogo()
@@ -204,7 +204,7 @@ namespace Logiciel_Devis_Facture.packModele
             }
             catch (Exception c)
             {
-                Console.WriteLine(c);
+                Console.WriteLine(c.Message);
                 return false;
             }
             finally
@@ -217,7 +217,7 @@ namespace Logiciel_Devis_Facture.packModele
 
 
         /*                                                      *
-         *             Fonction de rechercher de client         * 
+         *             Fonction de recherche de client         * 
          *                                                      */
         public bool querryClient()
         {
@@ -244,7 +244,7 @@ namespace Logiciel_Devis_Facture.packModele
             }
             catch (Exception c)
             {
-                System.Console.WriteLine("ok : "+c);
+                Console.WriteLine(c.Message);
                 return false;
             }
             finally
@@ -294,7 +294,7 @@ namespace Logiciel_Devis_Facture.packModele
             }
             catch (Exception c)
             {
-                System.Console.WriteLine(c.Message);
+                Console.WriteLine(c.Message);
                 return false;
             }
             finally
@@ -306,7 +306,7 @@ namespace Logiciel_Devis_Facture.packModele
         }
 
         /*                                                      *
-        *             Fonction de rechercher de Materiaux       * 
+        *             Fonction de recherche de Materiaux       * 
         *                                                       */
         public bool querryMaterials()
         {
@@ -328,7 +328,7 @@ namespace Logiciel_Devis_Facture.packModele
             }
             catch (Exception c)
             {
-                System.Console.WriteLine(c.Message);
+                Console.WriteLine(c.Message);
                 return false;
             }
             finally
@@ -370,7 +370,7 @@ namespace Logiciel_Devis_Facture.packModele
             }
             catch (Exception c)
             {
-                System.Console.WriteLine(c.Message);
+                Console.WriteLine(c.Message);
                 return false;
             }
             finally
@@ -380,5 +380,39 @@ namespace Logiciel_Devis_Facture.packModele
             }
             return true;
         }
+
+        /*                                                      *
+        *           Fonction pour le numéro du PDF              * 
+        *                                                       */
+        /*public int querryNumero()
+        {
+            string Querry = "SELECT max(idInvoice) FROM invoice;";
+            try
+            {
+                connection = new MySqlConnection(connstring);
+                connection.Open();
+                MySqlDataAdapter da = new MySqlDataAdapter(Querry, connection);
+                DataSet ds = new DataSet();
+                da.Fill(ds, "materials");
+                DataTable dt = ds.Tables["materials"];
+                listMaterials.Clear();
+                foreach (DataRow row in dt.Rows)
+                {
+                    Materials a = new Materials(int.Parse(row[0].ToString()), row[1].ToString(), float.Parse(row[2].ToString()), float.Parse(row[3].ToString()));
+                    listMaterials.Add(a);
+                }
+            }
+            catch (Exception c)
+            {
+                Console.WriteLine(c.Message);
+                return 0;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
+            return 1;
+        }*/
     }
 }

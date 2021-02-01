@@ -484,7 +484,7 @@ namespace Logiciel_Devis_Facture
             this.textBoxTTCTotal.Name = "textBoxTTCTotal";
             this.textBoxTTCTotal.Size = new System.Drawing.Size(133, 22);
             this.textBoxTTCTotal.TabIndex = 38;
-            this.textBoxTTCTotal.Text = "0€";
+            this.textBoxTTCTotal.Text = "0";
             // 
             // labelTTCTotal
             // 
@@ -504,7 +504,7 @@ namespace Logiciel_Devis_Facture
             this.textBoxHTTotal.Name = "textBoxHTTotal";
             this.textBoxHTTotal.Size = new System.Drawing.Size(133, 22);
             this.textBoxHTTotal.TabIndex = 40;
-            this.textBoxHTTotal.Text = "0€";
+            this.textBoxHTTotal.Text = "0";
             // 
             // labelHTTotal
             // 
@@ -519,22 +519,23 @@ namespace Logiciel_Devis_Facture
             // 
             // textBoxPromo
             // 
-            this.textBoxPromo.Location = new System.Drawing.Point(175, 777);
+            this.textBoxPromo.Location = new System.Drawing.Point(175, 779);
             this.textBoxPromo.Name = "textBoxPromo";
             this.textBoxPromo.Size = new System.Drawing.Size(133, 22);
             this.textBoxPromo.TabIndex = 42;
             this.textBoxPromo.Text = "0";
+            this.textBoxPromo.TextChanged += new System.EventHandler(this.textBoxPromo_TextChanged);
             // 
             // labelPromo
             // 
             this.labelPromo.AutoSize = true;
             this.labelPromo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPromo.Location = new System.Drawing.Point(91, 774);
+            this.labelPromo.Location = new System.Drawing.Point(61, 775);
             this.labelPromo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPromo.Name = "labelPromo";
-            this.labelPromo.Size = new System.Drawing.Size(77, 25);
+            this.labelPromo.Size = new System.Drawing.Size(107, 25);
             this.labelPromo.TabIndex = 41;
-            this.labelPromo.Text = "Remise";
+            this.labelPromo.Text = "Remise (€)";
             // 
             // quantitySelector
             // 

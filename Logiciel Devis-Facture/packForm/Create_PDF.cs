@@ -129,7 +129,7 @@ namespace Logiciel_Devis_Facture
             if (textBoxUnitPrice.Text != "" && isOnlyDigits(textBoxUnitPrice.Text) && textBoxTVA.Text != "")
             {
                 float TCCPrice = float.Parse(textBoxUnitPrice.Text) * (float)(quantitySelector.Value) * ((float)1 + (float.Parse(textBoxTVA.Text)) / 100);
-                textBoxTTCPrice.Text = TCCPrice.ToString();
+                textBoxTTCPrice.Text = Math.Round(TCCPrice, 2).ToString();
             }
         }
 
@@ -145,7 +145,7 @@ namespace Logiciel_Devis_Facture
                     HTTotal += unitPrice * quantity;
                 }
             }
-            textBoxHTTotal.Text = HTTotal.ToString();
+            textBoxHTTotal.Text = (Math.Round(HTTotal, 2) - float.Parse(textBoxPromo.Text)).ToString();
         }
 
         private void setTTCTotal()
@@ -159,7 +159,7 @@ namespace Logiciel_Devis_Facture
                     TTCTotal += TTCPrice;
                 }
             }
-            textBoxTTCTotal.Text = TTCTotal.ToString();
+            textBoxTTCTotal.Text = (Math.Round(TTCTotal, 2) - float.Parse(textBoxPromo.Text)).ToString();
         }
 
         public string getSousTotal()
@@ -174,14 +174,14 @@ namespace Logiciel_Devis_Facture
                     HTTotal += unitPrice * quantity;
                 }
             }
-            return HTTotal.ToString() + "€";
+            return Math.Round(HTTotal, 2).ToString() + "€";
         }
 
         public string getTotalTVA()
         {
             float TCC = float.Parse(textBoxTTCTotal.Text);
             float HT = float.Parse(textBoxHTTotal.Text);
-            return (TCC - HT).ToString() + "€";
+            return Math.Round((TCC - HT), 2).ToString() + "€";
         }
 
         private void textBoxUnitPrice_TextChanged(object sender, EventArgs e)
@@ -214,6 +214,18 @@ namespace Logiciel_Devis_Facture
                     return false;
             }
             return true;
+        }
+
+        private void textBoxPromo_TextChanged(object sender, EventArgs e)
+        {
+            if(isOnlyDigits(textBoxPromo.Text) && textBoxPromo.Text.Length != 0)
+            {
+                if(float.Parse(textBoxHTTotal.Text) >= float.Parse(textBoxPromo.Text))
+                {
+                    this.setHTTotal();
+                    this.setTTCTotal();
+                }
+            }
         }
     }
 }
