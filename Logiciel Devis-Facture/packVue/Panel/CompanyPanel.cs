@@ -397,7 +397,9 @@ namespace Logiciel_Devis_Facture.packVue.Panel
                 cancelButton.Enabled = false;
             }
 
-            if(!name.TextLength.Equals(0)&& !address.TextLength.Equals(0)&& !phone.TextLength.Equals(0)&& !mailBegin.TextLength.Equals(0)&& !website.TextLength.Equals(0)&& !siret.TextLength.Equals(0)&& !logo.TextLength.Equals(0) && !address.ForeColor.Equals(Color.Gray) && !additionalAddress.ForeColor.Equals(Color.Gray) && !zip.ForeColor.Equals(Color.Gray) && !city.ForeColor.Equals(Color.Gray))
+            Console.WriteLine("Condition: " + (!name.Text.Length.Equals(0) && !address.Text.Length.Equals(0) && !additionalAddress.Text.Length.Equals(0) && !zip.Text.Length.Equals(0) && !city.Text.Length.Equals(0)));
+
+            if((!name.Text.Length.Equals(0) && (!address.Text.Length.Equals(0) && !address.ForeColor.Equals(Color.Gray)) && (!additionalAddress.Text.Length.Equals(0) && !additionalAddress.ForeColor.Equals(Color.Gray)) && (!zip.Text.Length.Equals(0) && !zip.ForeColor.Equals(Color.Gray)) && (!city.Text.Length.Equals(0) && !city.ForeColor.Equals(Color.Gray))) && (!c_name.Equals(name.Text) || !c_address.Equals(address.Text) && !address.ForeColor.Equals(Color.Gray) || !c_additional.Equals(additionalAddress.Text) && !additionalAddress.ForeColor.Equals(Color.Gray) || !c_zip.Equals(zip.Text) && !zip.ForeColor.Equals(Color.Gray) || !c_city.Equals(city.Text) && !city.ForeColor.Equals(Color.Gray) || !c_phone.Equals(phone.Text) || !c_mail.Equals(mailBegin.Text + at.Text + mailEnd.Text) || !mailEnd.Text.Equals(textMailEnd) || !c_website.Equals(website.Text) || !c_siret.Equals(siret.Text) || !c_logo.Equals(logo.Text)))
             {
                 saveButton.BackColor = Color.Lime;
                 saveButton.Text = "Sauvegarder ?";

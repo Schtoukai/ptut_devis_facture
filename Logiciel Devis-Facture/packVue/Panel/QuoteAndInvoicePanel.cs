@@ -14,8 +14,6 @@ namespace Logiciel_Devis_Facture.packVue.Panel
         private myButton addQuote_InvoiceButton;
         private SearchBar sbar;
         private Company entreprise;
-        //private System.Windows.Forms.ListBox listDevis;
-        //private System.Windows.Forms.ListBox listFacture;
         private DataGridView quoteList;
         private DataGridView invoiceList;
 
