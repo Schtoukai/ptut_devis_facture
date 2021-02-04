@@ -32,7 +32,7 @@ namespace Logiciel_Devis_Facture
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelName = new System.Windows.Forms.Label();
             this.labelAddress = new System.Windows.Forms.Label();
             this.buttonValidate = new System.Windows.Forms.Button();
@@ -82,8 +82,14 @@ namespace Logiciel_Devis_Facture
             this.labelAdditionnalAddress = new System.Windows.Forms.Label();
             this.textBoxZip = new System.Windows.Forms.TextBox();
             this.labelZip = new System.Windows.Forms.Label();
+            this.amountButton = new System.Windows.Forms.RadioButton();
+            this.percentageButton = new System.Windows.Forms.RadioButton();
+            this.promoGroupBox = new System.Windows.Forms.GroupBox();
+            this.doctypeGroupBox = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.itemGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantitySelector)).BeginInit();
+            this.promoGroupBox.SuspendLayout();
+            this.doctypeGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelName
@@ -111,7 +117,7 @@ namespace Logiciel_Devis_Facture
             // buttonValidate
             // 
             this.buttonValidate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonValidate.Location = new System.Drawing.Point(1054, 768);
+            this.buttonValidate.Location = new System.Drawing.Point(1079, 766);
             this.buttonValidate.Margin = new System.Windows.Forms.Padding(4);
             this.buttonValidate.Name = "buttonValidate";
             this.buttonValidate.Size = new System.Drawing.Size(193, 37);
@@ -264,7 +270,7 @@ namespace Logiciel_Devis_Facture
             // 
             this.isInvoiceButton.AutoSize = true;
             this.isInvoiceButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.isInvoiceButton.Location = new System.Drawing.Point(714, 137);
+            this.isInvoiceButton.Location = new System.Drawing.Point(13, 17);
             this.isInvoiceButton.Name = "isInvoiceButton";
             this.isInvoiceButton.Size = new System.Drawing.Size(99, 29);
             this.isInvoiceButton.TabIndex = 20;
@@ -276,7 +282,7 @@ namespace Logiciel_Devis_Facture
             // 
             this.isQuoteButton.AutoSize = true;
             this.isQuoteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.isQuoteButton.Location = new System.Drawing.Point(870, 137);
+            this.isQuoteButton.Location = new System.Drawing.Point(156, 17);
             this.isQuoteButton.Name = "isQuoteButton";
             this.isQuoteButton.Size = new System.Drawing.Size(82, 29);
             this.isQuoteButton.TabIndex = 21;
@@ -391,14 +397,14 @@ namespace Logiciel_Devis_Facture
             this.Quantity,
             this.TVA,
             this.TTCTotal});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.itemGrid.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.itemGrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.itemGrid.Location = new System.Drawing.Point(45, 436);
             this.itemGrid.Name = "itemGrid";
             this.itemGrid.ReadOnly = true;
@@ -480,7 +486,7 @@ namespace Logiciel_Devis_Facture
             // textBoxTTCTotal
             // 
             this.textBoxTTCTotal.Enabled = false;
-            this.textBoxTTCTotal.Location = new System.Drawing.Point(831, 777);
+            this.textBoxTTCTotal.Location = new System.Drawing.Point(847, 776);
             this.textBoxTTCTotal.Name = "textBoxTTCTotal";
             this.textBoxTTCTotal.Size = new System.Drawing.Size(133, 22);
             this.textBoxTTCTotal.TabIndex = 38;
@@ -490,7 +496,7 @@ namespace Logiciel_Devis_Facture
             // 
             this.labelTTCTotal.AutoSize = true;
             this.labelTTCTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTTCTotal.Location = new System.Drawing.Point(696, 774);
+            this.labelTTCTotal.Location = new System.Drawing.Point(712, 773);
             this.labelTTCTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTTCTotal.Name = "labelTTCTotal";
             this.labelTTCTotal.Size = new System.Drawing.Size(132, 25);
@@ -500,7 +506,7 @@ namespace Logiciel_Devis_Facture
             // textBoxHTTotal
             // 
             this.textBoxHTTotal.Enabled = false;
-            this.textBoxHTTotal.Location = new System.Drawing.Point(504, 778);
+            this.textBoxHTTotal.Location = new System.Drawing.Point(520, 777);
             this.textBoxHTTotal.Name = "textBoxHTTotal";
             this.textBoxHTTotal.Size = new System.Drawing.Size(133, 22);
             this.textBoxHTTotal.TabIndex = 40;
@@ -510,7 +516,7 @@ namespace Logiciel_Devis_Facture
             // 
             this.labelHTTotal.AutoSize = true;
             this.labelHTTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelHTTotal.Location = new System.Drawing.Point(379, 774);
+            this.labelHTTotal.Location = new System.Drawing.Point(395, 773);
             this.labelHTTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelHTTotal.Name = "labelHTTotal";
             this.labelHTTotal.Size = new System.Drawing.Size(118, 25);
@@ -519,7 +525,7 @@ namespace Logiciel_Devis_Facture
             // 
             // textBoxPromo
             // 
-            this.textBoxPromo.Location = new System.Drawing.Point(175, 779);
+            this.textBoxPromo.Location = new System.Drawing.Point(124, 776);
             this.textBoxPromo.Name = "textBoxPromo";
             this.textBoxPromo.Size = new System.Drawing.Size(133, 22);
             this.textBoxPromo.TabIndex = 42;
@@ -530,12 +536,12 @@ namespace Logiciel_Devis_Facture
             // 
             this.labelPromo.AutoSize = true;
             this.labelPromo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPromo.Location = new System.Drawing.Point(61, 775);
+            this.labelPromo.Location = new System.Drawing.Point(40, 773);
             this.labelPromo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPromo.Name = "labelPromo";
-            this.labelPromo.Size = new System.Drawing.Size(107, 25);
+            this.labelPromo.Size = new System.Drawing.Size(77, 25);
             this.labelPromo.TabIndex = 41;
-            this.labelPromo.Text = "Remise (€)";
+            this.labelPromo.Text = "Remise";
             // 
             // quantitySelector
             // 
@@ -602,11 +608,60 @@ namespace Logiciel_Devis_Facture
             this.labelZip.TabIndex = 47;
             this.labelZip.Text = "Code postal";
             // 
+            // amountButton
+            // 
+            this.amountButton.AutoSize = true;
+            this.amountButton.Checked = true;
+            this.amountButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.amountButton.Location = new System.Drawing.Point(6, 12);
+            this.amountButton.Name = "amountButton";
+            this.amountButton.Size = new System.Drawing.Size(39, 24);
+            this.amountButton.TabIndex = 49;
+            this.amountButton.TabStop = true;
+            this.amountButton.Text = "€";
+            this.amountButton.UseVisualStyleBackColor = true;
+            this.amountButton.CheckedChanged += new System.EventHandler(this.amountButton_CheckedChanged);
+            // 
+            // percentageButton
+            // 
+            this.percentageButton.AutoSize = true;
+            this.percentageButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.percentageButton.Location = new System.Drawing.Point(6, 34);
+            this.percentageButton.Name = "percentageButton";
+            this.percentageButton.Size = new System.Drawing.Size(45, 24);
+            this.percentageButton.TabIndex = 50;
+            this.percentageButton.TabStop = true;
+            this.percentageButton.Text = "%";
+            this.percentageButton.UseVisualStyleBackColor = true;
+            this.percentageButton.CheckedChanged += new System.EventHandler(this.percentageButton_CheckedChanged);
+            // 
+            // promoGroupBox
+            // 
+            this.promoGroupBox.Controls.Add(this.amountButton);
+            this.promoGroupBox.Controls.Add(this.percentageButton);
+            this.promoGroupBox.Location = new System.Drawing.Point(263, 753);
+            this.promoGroupBox.Name = "promoGroupBox";
+            this.promoGroupBox.Size = new System.Drawing.Size(58, 67);
+            this.promoGroupBox.TabIndex = 51;
+            this.promoGroupBox.TabStop = false;
+            // 
+            // doctypeGroupBox
+            // 
+            this.doctypeGroupBox.Controls.Add(this.isQuoteButton);
+            this.doctypeGroupBox.Controls.Add(this.isInvoiceButton);
+            this.doctypeGroupBox.Location = new System.Drawing.Point(714, 118);
+            this.doctypeGroupBox.Name = "doctypeGroupBox";
+            this.doctypeGroupBox.Size = new System.Drawing.Size(251, 52);
+            this.doctypeGroupBox.TabIndex = 52;
+            this.doctypeGroupBox.TabStop = false;
+            // 
             // Create_PDF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1318, 823);
+            this.Controls.Add(this.doctypeGroupBox);
+            this.Controls.Add(this.promoGroupBox);
             this.Controls.Add(this.textBoxZip);
             this.Controls.Add(this.labelZip);
             this.Controls.Add(this.textBoxAdditionnalAddress);
@@ -631,8 +686,6 @@ namespace Logiciel_Devis_Facture
             this.Controls.Add(this.textBoxUnitPrice);
             this.Controls.Add(this.labelUnitPrice);
             this.Controls.Add(this.labelSelectedItem);
-            this.Controls.Add(this.isQuoteButton);
-            this.Controls.Add(this.isInvoiceButton);
             this.Controls.Add(this.dateTimePicker);
             this.Controls.Add(this.labelDate);
             this.Controls.Add(this.labelNewInvoice);
@@ -658,6 +711,10 @@ namespace Logiciel_Devis_Facture
             this.Text = "Nouveau document";
             ((System.ComponentModel.ISupportInitialize)(this.itemGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantitySelector)).EndInit();
+            this.promoGroupBox.ResumeLayout(false);
+            this.promoGroupBox.PerformLayout();
+            this.doctypeGroupBox.ResumeLayout(false);
+            this.doctypeGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -806,5 +863,17 @@ namespace Logiciel_Devis_Facture
         private DataGridViewTextBoxColumn Quantity;
         private DataGridViewTextBoxColumn TVA;
         private DataGridViewTextBoxColumn TTCTotal;
+        private RadioButton amountButton;
+        public RadioButton getAmountButton()
+        {
+            return amountButton;
+        }
+        private RadioButton percentageButton;
+        public RadioButton getPercentageButton()
+        {
+            return percentageButton;
+        }
+        private GroupBox promoGroupBox;
+        private GroupBox doctypeGroupBox;
     }
 }

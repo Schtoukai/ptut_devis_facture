@@ -259,13 +259,23 @@ namespace Logiciel_Devis_Facture.packModele
 
                 PdfPCell sousTotalLabel = new PdfPCell(new Paragraph("Sous-Total"));
                 tabRecap.AddCell(sousTotalLabel);
-                PdfPCell sousTotalValue = new PdfPCell(new Paragraph(form.getSousTotal()));
+                PdfPCell sousTotalValue = new PdfPCell(new Paragraph(form.getSousTotal().ToString() + "€"));
                 tabRecap.AddCell(sousTotalValue);
 
-                PdfPCell remiseLabel = new PdfPCell(new Paragraph("Remise"));
-                tabRecap.AddCell(remiseLabel);
-                PdfPCell remiseValue = new PdfPCell(new Paragraph(form.getTextBoxPromo().Text + "€"));
-                tabRecap.AddCell(remiseValue);
+                if(form.getAmountButton().Checked == true)
+                {
+                    PdfPCell remiseLabel = new PdfPCell(new Paragraph("Remise (€)"));
+                    tabRecap.AddCell(remiseLabel);
+                    PdfPCell remiseValue = new PdfPCell(new Paragraph(form.getTextBoxPromo().Text + "€"));
+                    tabRecap.AddCell(remiseValue);
+                }
+                else
+                {
+                    PdfPCell remiseLabel = new PdfPCell(new Paragraph("Remise" + " (" + form.getTextBoxPromo().Text + "%)"));
+                    tabRecap.AddCell(remiseLabel);
+                    PdfPCell remiseValue = new PdfPCell(new Paragraph((form.getSousTotal() * float.Parse(form.getTextBoxPromo().Text) / 100).ToString() + "€"));
+                    tabRecap.AddCell(remiseValue);
+                }
 
                 PdfPCell totalHTLabel = new PdfPCell(new Paragraph("Total Facture HT"));
                 tabRecap.AddCell(totalHTLabel);

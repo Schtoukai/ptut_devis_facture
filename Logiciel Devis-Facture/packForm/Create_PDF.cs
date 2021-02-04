@@ -145,7 +145,17 @@ namespace Logiciel_Devis_Facture
                     HTTotal += unitPrice * quantity;
                 }
             }
-            textBoxHTTotal.Text = (Math.Round(HTTotal, 2) - float.Parse(textBoxPromo.Text)).ToString();
+            if (textBoxPromo.Text != "")
+            {
+                if (amountButton.Checked == true)
+                {
+                    textBoxHTTotal.Text = (Math.Round(HTTotal, 2) - float.Parse(textBoxPromo.Text)).ToString();
+                }
+                else
+                {
+                    textBoxHTTotal.Text = (Math.Round(HTTotal, 2) - (float.Parse(textBoxPromo.Text) / 100 * Math.Round(HTTotal, 2))).ToString();
+                }
+            }
         }
 
         private void setTTCTotal()
@@ -159,10 +169,20 @@ namespace Logiciel_Devis_Facture
                     TTCTotal += TTCPrice;
                 }
             }
-            textBoxTTCTotal.Text = (Math.Round(TTCTotal, 2) - float.Parse(textBoxPromo.Text)).ToString();
+            if (textBoxPromo.Text != "")
+            {
+                if (amountButton.Checked == true)
+                {
+                    textBoxTTCTotal.Text = (Math.Round(TTCTotal, 2) - float.Parse(textBoxPromo.Text)).ToString();
+                }
+                else
+                {
+                    textBoxTTCTotal.Text = (Math.Round(TTCTotal, 2) - (float.Parse(textBoxPromo.Text) / 100 * Math.Round(TTCTotal, 2))).ToString();
+                }
+            }
         }
 
-        public string getSousTotal()
+        public float getSousTotal()
         {
             float HTTotal = 0;
             float unitPrice = 0;
@@ -174,7 +194,7 @@ namespace Logiciel_Devis_Facture
                     HTTotal += unitPrice * quantity;
                 }
             }
-            return Math.Round(HTTotal, 2).ToString() + "€";
+            return (float)Math.Round(HTTotal, 2);
         }
 
         public string getTotalTVA()
@@ -225,6 +245,24 @@ namespace Logiciel_Devis_Facture
                     this.setHTTotal();
                     this.setTTCTotal();
                 }
+            }
+        }
+
+        private void amountButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if(amountButton.Checked == true)
+            {
+                this.setHTTotal();
+                this.setTTCTotal();
+            }
+        }
+
+        private void percentageButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (percentageButton.Checked == true)
+            {
+                this.setHTTotal();
+                this.setTTCTotal();
             }
         }
     }
