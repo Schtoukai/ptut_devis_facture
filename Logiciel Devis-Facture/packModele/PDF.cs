@@ -61,7 +61,7 @@ namespace Logiciel_Devis_Facture.packModele
             }
             if (form.getIsInvoiceButton().Checked == false && form.getIsQuoteButton().Checked == false)
             {
-                MessageBox.Show("Informations manquantes.");
+                MessageBox.Show("Veuillez sélectionner un type de document.");
                 return false;
             }
             //S'ils sont remplis
@@ -72,13 +72,21 @@ namespace Logiciel_Devis_Facture.packModele
                 PdfWriter writer = PdfWriter.GetInstance(pdf, new FileStream(pdfName, FileMode.Create));
                 pdf.Open();
 
+                PdfPTable header = new PdfPTable(2);
+                header.HorizontalAlignment = Element.ALIGN_LEFT;
+                header.WidthPercentage = 100;
+                header.SetWidths(new float[] { 45, 55 });
+
                 //Ajout du logo de l'entreprise
-                if(entreprise.getCompLogo().getPathing() != null)
+                if (entreprise.getCompLogo().getPathing() != null)
                 {
                     Image logo = Image.GetInstance(Directory.GetCurrentDirectory() + "\\Logo\\" + entreprise.getCompLogo().getName() + entreprise.getCompLogo().getFormat());
-                    float scalePercent = (((pdf.PageSize.Width / logo.Width) * 100) - 37);
+                    float scalePercent = (((pdf.PageSize.Width / logo.Width) * 100) - 50);
                     logo.ScalePercent(scalePercent);
-                    pdf.Add(logo);
+                    PdfPCell logoCell = new PdfPCell(logo);
+                    logoCell.Border = 0;
+                    logoCell.HorizontalAlignment = Element.ALIGN_LEFT;
+                    header.AddCell(logoCell);
                 }
 
                 //On initialise un spacer
@@ -87,50 +95,6 @@ namespace Logiciel_Devis_Facture.packModele
                     SpacingBefore = 5f,
                     SpacingAfter = 10f,
                 };
-
-                //Informations de l'entreprise
-                PdfPTable companyInfo = new PdfPTable(1);
-
-                PdfPCell companyName = new PdfPCell(new Paragraph(entreprise.getCompanyName()));
-                companyName.Border = 0;
-                companyInfo.AddCell(companyName);
-
-                PdfPCell companyStreet = new PdfPCell(new Paragraph(entreprise.getStreet()));
-                companyStreet.Border = 0;
-                companyInfo.AddCell(companyStreet);
-
-                if(entreprise.getAdditionnal() != null)
-                {
-                    PdfPCell companyAdditionnal = new PdfPCell(new Paragraph(entreprise.getAdditionnal()));
-                    companyAdditionnal.Border = 0;
-                    companyInfo.AddCell(companyAdditionnal);
-                }
-
-                PdfPCell companyCity = new PdfPCell(new Paragraph(entreprise.getZip() + ", " + entreprise.getCity()));
-                companyCity.Border = 0;
-                companyInfo.AddCell(companyCity);
-
-                string tel = entreprise.getPhone();
-                if(tel.Length == 10)
-                {
-                    tel = entreprise.getPhone().Insert(2, " ").Insert(5, " ").Insert(8, " ").Insert(11, " ");
-                }
-                PdfPCell companyPhone = new PdfPCell(new Paragraph(tel));
-                companyPhone.Border = 0;
-                companyInfo.AddCell(companyPhone);
-
-                PdfPCell companyMail = new PdfPCell(new Paragraph(entreprise.getMail()));
-                companyMail.Border = 0;
-                companyInfo.AddCell(companyMail);
-
-                PdfPCell companyWebsite = new PdfPCell(new Paragraph(entreprise.getWebsite()));
-                companyWebsite.Border = 0;
-                companyInfo.AddCell(companyWebsite);
-
-                companyInfo.WidthPercentage = 50;
-                companyInfo.HorizontalAlignment = Element.ALIGN_LEFT;
-
-                pdf.Add(companyInfo);
 
                 //Informations du client
                 PdfPTable clientInfo = new PdfPTable(1);
@@ -143,7 +107,7 @@ namespace Logiciel_Devis_Facture.packModele
                 clientStreet.Border = 0;
                 clientInfo.AddCell(clientStreet);
 
-                if(form.getTextBoxAdditionnalAddress().Text != "")
+                if (form.getTextBoxAdditionnalAddress().Text != "")
                 {
                     PdfPCell additionnalAddress = new PdfPCell(new Paragraph(form.getTextBoxAdditionnalAddress().Text));
                     additionnalAddress.Border = 0;
@@ -166,7 +130,56 @@ namespace Logiciel_Devis_Facture.packModele
                 clientCadre.AddCell(clientInfo);
                 clientCadre.HorizontalAlignment = Element.ALIGN_RIGHT;
                 clientCadre.WidthPercentage = 45;
-                pdf.Add(clientCadre);
+
+                header.AddCell(clientInfo);
+
+                //Informations de l'entreprise
+                PdfPTable companyInfo = new PdfPTable(1);
+
+                PdfPCell companyName = new PdfPCell(new Paragraph(entreprise.getCompanyName()));
+                companyName.Border = 0;
+                companyInfo.AddCell(companyName);
+
+                PdfPCell companyStreet = new PdfPCell(new Paragraph(entreprise.getStreet()));
+                companyStreet.Border = 0;
+                companyInfo.AddCell(companyStreet);
+
+                if (entreprise.getAdditionnal() != null)
+                {
+                    PdfPCell companyAdditionnal = new PdfPCell(new Paragraph(entreprise.getAdditionnal()));
+                    companyAdditionnal.Border = 0;
+                    companyInfo.AddCell(companyAdditionnal);
+                }
+
+                PdfPCell companyCity = new PdfPCell(new Paragraph(entreprise.getZip() + ", " + entreprise.getCity()));
+                companyCity.Border = 0;
+                companyInfo.AddCell(companyCity);
+
+                string tel = entreprise.getPhone();
+                if (tel != null && tel.Length == 10)
+                {
+                    tel = entreprise.getPhone().Insert(2, " ").Insert(5, " ").Insert(8, " ").Insert(11, " ");
+                }
+                PdfPCell companyPhone = new PdfPCell(new Paragraph(tel));
+                companyPhone.Border = 0;
+                companyInfo.AddCell(companyPhone);
+
+                PdfPCell companyMail = new PdfPCell(new Paragraph(entreprise.getMail()));
+                companyMail.Border = 0;
+                companyInfo.AddCell(companyMail);
+
+                PdfPCell companyWebsite = new PdfPCell(new Paragraph(entreprise.getWebsite()));
+                companyWebsite.Border = 0;
+                companyInfo.AddCell(companyWebsite);
+
+                PdfPCell companyInfoCell = new PdfPCell(companyInfo);
+                companyInfoCell.Border = 0;
+                header.AddCell(companyInfoCell);
+
+                PdfPCell voidCell = new PdfPCell();
+                voidCell.Border = 0;
+                header.AddCell(voidCell);
+                pdf.Add(header);
 
                 //Spacer
                 pdf.Add(spacer);
@@ -252,7 +265,35 @@ namespace Logiciel_Devis_Facture.packModele
                 pdf.Add(spacer);
                 pdf.Add(spacer);
 
-                //Tabeau récapitulatif
+                //Partie récapitulative
+                PdfPTable recap = new PdfPTable(2);
+                recap.WidthPercentage = 100;
+                recap.SetWidths(new float[] { 60, 40 });
+
+                PdfPTable conditionRecap = new PdfPTable(1);
+
+                PdfPCell validTime = new PdfPCell(new Paragraph("Durée de validité du devis : 30 jours"));
+                validTime.Border = 0;
+                conditionRecap.AddCell(validTime);
+
+                PdfPCell acompte = new PdfPCell(new Paragraph("Acompte à verser lors de la commande : 30%"));
+                acompte.Border = 0;
+                conditionRecap.AddCell(acompte);
+
+                PdfPCell solde = new PdfPCell(new Paragraph("Solde : au début des travaux"));
+                solde.Border = 0;
+                conditionRecap.AddCell(solde);
+
+                PdfPCell payement = new PdfPCell(new Paragraph("Mode de paiement : Chèque - Virement"));
+                payement.Border = 0;
+                conditionRecap.AddCell(payement);
+
+                PdfPCell worksDuration = new PdfPCell(new Paragraph("Durée des travaux : X jours"));
+                worksDuration.Border = 0;
+                conditionRecap.AddCell(worksDuration);
+
+                recap.AddCell(conditionRecap);
+
                 PdfPTable tabRecap = new PdfPTable(2);
                 tabRecap.WidthPercentage = 40;
                 tabRecap.HorizontalAlignment = Element.ALIGN_RIGHT;
@@ -292,7 +333,31 @@ namespace Logiciel_Devis_Facture.packModele
                 PdfPCell totalTTCValue = new PdfPCell(new Paragraph(form.getTextBoxTTCTotal().Text + "€"));
                 tabRecap.AddCell(totalTTCValue);
 
-                pdf.Add(tabRecap);
+                PdfPCell cellTabRecap = new PdfPCell(tabRecap);
+                cellTabRecap.Border = 0;
+                recap.AddCell(cellTabRecap);
+
+                pdf.Add(recap);
+                pdf.Add(spacer);
+                //Phrase de fin
+                Paragraph endPhrase = new Paragraph("En votre aimable règlement de cette facture");
+                pdf.Add(endPhrase);
+
+                pdf.Add(spacer);
+                pdf.Add(spacer);
+                pdf.Add(spacer);
+                pdf.Add(spacer);
+
+                //Mentions légales
+                Paragraph tiret = new Paragraph("------------------------------------------------------------------------------------------------------------------------------");
+                pdf.Add(tiret);
+                Paragraph mentions = new Paragraph(new Chunk("SASU au Capital de 45 000€ - Siret " + entreprise.getSiret() + " - RCS 8425656950 - Code APE 4933C - N° de TVA intracommunotaire FR845123632147 " +
+                "Assurance professionnelle AXELLIANCE - La couverture géographique du contrat ou de la garantie (Article 22-2 de la loi n°96-603 du juillet 1996). Nous vous rappelons que toute somme " +
+                "non payées à sa date d'exigibilité produira de plein droit des intérêts de retard équivalents au triple du taux d'intérêts légal de l'année en cours ainsi que le paiement d'une somme" +
+                " de 40€ due au titre des frais de recouvrement."));
+                mentions.Alignment = Element.ALIGN_JUSTIFIED;
+                mentions.Font = FontFactory.GetFont("Calibri", 7);
+                pdf.Add(mentions);
 
                 //On valide le PDF
                 pdf.Close();
