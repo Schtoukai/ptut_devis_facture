@@ -10,9 +10,10 @@ namespace Logiciel_Devis_Facture
         public Create_PDF()
         {
             InitializeComponent();
-
+    
             entreprise.querryMaterials();
             loadMaterials(entreprise.getListMaterials());
+            this.textBoxNumero.Text = (entreprise.querryNumero() + 1).ToString();
         }
 
         private void buttonValidate_Click(object sender, EventArgs e)
@@ -216,8 +217,6 @@ namespace Logiciel_Devis_Facture
 
         private void listItem_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //entreprise.querryMaterials();
-            //loadMaterials(entreprise.getListMaterials());
             if(listItem.SelectedItem != null)
             {
                 textBoxUnitPrice.Text = entreprise.getListMaterials()[listItem.SelectedIndex].getPrice().ToString();

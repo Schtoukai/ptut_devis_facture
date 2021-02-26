@@ -384,7 +384,7 @@ namespace Logiciel_Devis_Facture.packModele
         /*                                                      *
         *           Fonction pour le numéro du PDF              * 
         *                                                       */
-        /*public int querryNumero()
+        public int querryNumero()
         {
             string Querry = "SELECT max(idInvoice) FROM invoice;";
             try
@@ -393,26 +393,25 @@ namespace Logiciel_Devis_Facture.packModele
                 connection.Open();
                 MySqlDataAdapter da = new MySqlDataAdapter(Querry, connection);
                 DataSet ds = new DataSet();
-                da.Fill(ds, "materials");
-                DataTable dt = ds.Tables["materials"];
-                listMaterials.Clear();
+                da.Fill(ds, "invoice");
+                DataTable dt = ds.Tables["invoice"];
+                int a = -1;
                 foreach (DataRow row in dt.Rows)
                 {
-                    Materials a = new Materials(int.Parse(row[0].ToString()), row[1].ToString(), float.Parse(row[2].ToString()), float.Parse(row[3].ToString()));
-                    listMaterials.Add(a);
+                    a = int.Parse(row[0].ToString());
                 }
+                return a;
             }
             catch (Exception c)
             {
                 Console.WriteLine(c.Message);
-                return 0;
+                return -1;
             }
             finally
             {
                 if (connection != null)
                     connection.Close();
             }
-            return 1;
-        }*/
+        }
     }
 }

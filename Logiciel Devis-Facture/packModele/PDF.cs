@@ -81,7 +81,7 @@ namespace Logiciel_Devis_Facture.packModele
                 if (entreprise.getCompLogo().getPathing() != null)
                 {
                     Image logo = Image.GetInstance(Directory.GetCurrentDirectory() + "\\Logo\\" + entreprise.getCompLogo().getName() + entreprise.getCompLogo().getFormat());
-                    float scalePercent = (((pdf.PageSize.Width / logo.Width) * 100) - 50);
+                    float scalePercent = (((pdf.PageSize.Width / logo.Width) * 100) - 80);
                     logo.ScalePercent(scalePercent);
                     PdfPCell logoCell = new PdfPCell(logo);
                     logoCell.Border = 0;
@@ -365,16 +365,21 @@ namespace Logiciel_Devis_Facture.packModele
                 pdf.Add(spacer);
 
                 //Mentions légales
-                Paragraph tiret = new Paragraph("------------------------------------------------------------------------------------------------------------------------------");
-                pdf.Add(tiret);
+                PdfPTable footer = new PdfPTable(1);
+                footer.WidthPercentage = 100;
+
+                PdfPCell tiret = new PdfPCell(new Paragraph("---------------------------------------------------------------------------------------------------------------------------------"));
+                tiret.Border = 0;
+                footer.AddCell(tiret);
                 Paragraph mentions = new Paragraph(new Chunk("SASU au Capital de 45 000€ - Siret " + entreprise.getSiret() + " - RCS 8425656950 - Code APE 4933C - N° de TVA intracommunotaire FR845123632147 " +
                 "Assurance professionnelle AXELLIANCE - La couverture géographique du contrat ou de la garantie (Article 22-2 de la loi n°96-603 du juillet 1996). Nous vous rappelons que toute somme " +
                 "non payées à sa date d'exigibilité produira de plein droit des intérêts de retard équivalents au triple du taux d'intérêts légal de l'année en cours ainsi que le paiement d'une somme" +
                 " de 40€ due au titre des frais de recouvrement."));
-                mentions.Alignment = Element.ALIGN_JUSTIFIED;
                 mentions.Font = FontFactory.GetFont("Calibri", 7);
-                pdf.Add(mentions);
-
+                PdfPCell mentionsCell = new PdfPCell(mentions);
+                mentionsCell.Border = 0;
+                footer.AddCell(mentionsCell);
+                pdf.Add(footer);
                 //On valide le PDF
                 pdf.Close();
 
