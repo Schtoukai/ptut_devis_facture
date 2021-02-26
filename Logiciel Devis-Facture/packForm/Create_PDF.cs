@@ -173,11 +173,11 @@ namespace Logiciel_Devis_Facture
             {
                 if (amountButton.Checked == true)
                 {
-                    textBoxTTCTotal.Text = (Math.Round(TTCTotal, 2) - float.Parse(textBoxPromo.Text)).ToString();
+                    textBoxTTCTotal.Text = Math.Round((Math.Round(TTCTotal, 2) - float.Parse(textBoxPromo.Text)), 2).ToString();
                 }
                 else
                 {
-                    textBoxTTCTotal.Text = (Math.Round(TTCTotal, 2) - (float.Parse(textBoxPromo.Text) / 100 * Math.Round(TTCTotal, 2))).ToString();
+                    textBoxTTCTotal.Text = Math.Round((Math.Round(TTCTotal, 2) - (float.Parse(textBoxPromo.Text) / 100 * Math.Round(TTCTotal, 2))), 2).ToString();
                 }
             }
         }

@@ -131,7 +131,8 @@ namespace Logiciel_Devis_Facture.packModele
                 clientCadre.HorizontalAlignment = Element.ALIGN_RIGHT;
                 clientCadre.WidthPercentage = 45;
 
-                header.AddCell(clientInfo);
+                PdfPCell voidCell = new PdfPCell();
+                voidCell.Border = 0;
 
                 //Informations de l'entreprise
                 PdfPTable companyInfo = new PdfPTable(1);
@@ -174,11 +175,11 @@ namespace Logiciel_Devis_Facture.packModele
 
                 PdfPCell companyInfoCell = new PdfPCell(companyInfo);
                 companyInfoCell.Border = 0;
-                header.AddCell(companyInfoCell);
 
-                PdfPCell voidCell = new PdfPCell();
-                voidCell.Border = 0;
                 header.AddCell(voidCell);
+                header.AddCell(companyInfoCell);
+                header.AddCell(clientInfo);
+
                 pdf.Add(header);
 
                 //Spacer
@@ -272,9 +273,18 @@ namespace Logiciel_Devis_Facture.packModele
 
                 PdfPTable conditionRecap = new PdfPTable(1);
 
-                PdfPCell validTime = new PdfPCell(new Paragraph("Durée de validité du devis : 30 jours"));
-                validTime.Border = 0;
-                conditionRecap.AddCell(validTime);
+                if (form.getIsInvoiceButton().Checked == true)
+                {
+                    PdfPCell deadline = new PdfPCell(new Paragraph("Facture à régler avant le : " + form.getTextBoxDateTimePicker().Value.AddMonths(1).ToShortDateString()));
+                    deadline.Border = 0;
+                    conditionRecap.AddCell(deadline);
+                }
+                else
+                {
+                    PdfPCell validTime = new PdfPCell(new Paragraph("Durée de validité du devis : 30 jours"));
+                    validTime.Border = 0;
+                    conditionRecap.AddCell(validTime);
+                }
 
                 PdfPCell acompte = new PdfPCell(new Paragraph("Acompte à verser lors de la commande : 30%"));
                 acompte.Border = 0;
@@ -288,9 +298,7 @@ namespace Logiciel_Devis_Facture.packModele
                 payement.Border = 0;
                 conditionRecap.AddCell(payement);
 
-                PdfPCell worksDuration = new PdfPCell(new Paragraph("Durée des travaux : X jours"));
-                worksDuration.Border = 0;
-                conditionRecap.AddCell(worksDuration);
+                conditionRecap.AddCell(voidCell);
 
                 recap.AddCell(conditionRecap);
 
@@ -340,8 +348,16 @@ namespace Logiciel_Devis_Facture.packModele
                 pdf.Add(recap);
                 pdf.Add(spacer);
                 //Phrase de fin
-                Paragraph endPhrase = new Paragraph("En votre aimable règlement de cette facture");
-                pdf.Add(endPhrase);
+                if (form.getIsInvoiceButton().Checked == true)
+                {
+                    Paragraph endPhrase = new Paragraph("En votre aimable règlement de cette facture");
+                    pdf.Add(endPhrase);
+                }
+                else
+                {
+                    Paragraph endPhrase = new Paragraph("En votre aimable acceptation de ce devis");
+                    pdf.Add(endPhrase);
+                }
 
                 pdf.Add(spacer);
                 pdf.Add(spacer);
