@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
+using Logiciel_Devis_Facture.packModele;
+using System.Data;
 
 namespace Logiciel_Devis_Facture.packVue.Panel
 {
@@ -16,17 +18,18 @@ namespace Logiciel_Devis_Facture.packVue.Panel
 
         public CustomerPanel()
         {
-            //list = new System.Windows.Forms.ListBox();
             addCustomerButton = new myButton();
             sbar = new SearchBar();
             clientList = new DataGridView();
-            clientList.ColumnCount = 3;
-            clientList.Columns[0].Name = "Numéro";
+            clientList.ColumnCount = 4;
+            clientList.Columns[0].Name = "Nom";
             clientList.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            clientList.Columns[1].Name = "Nom";
+            clientList.Columns[1].Name = "Adresse";
             clientList.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            clientList.Columns[2].Name = "Date";
+            clientList.Columns[2].Name = "Mail";
             clientList.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            clientList.Columns[3].Name = "Téléphone";
+            clientList.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             clientList.RowHeadersVisible = false;
             clientList.AllowUserToAddRows = false;
             clientList.AllowUserToDeleteRows = false;
@@ -35,14 +38,12 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             {
                 header.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }
-            clientList.ClearSelection();
-            clientList.Columns[1].Name = "Nom";
-            clientList.Columns[2].Name = "Date";
             this.Controls.Add(this.addCustomerButton);
             this.Controls.Add(this.sbar);
             this.Controls.Add(this.clientList);
             addCustomerButton.Text = "Ajouter un Client";
             addCustomerButton.BackColor = Color.Lime;
+            sbar.TextChanged += new System.EventHandler(TextChanged_Sbar);
         }
 
         public void addItem(String str)
@@ -80,6 +81,19 @@ namespace Logiciel_Devis_Facture.packVue.Panel
         public override void SetFontSize(int size)
         {
             throw new NotImplementedException();
+        }
+
+        private void TextChanged_Sbar(object sender, EventArgs e)
+        {
+            DataTable table = Client.selectCustomer(sbar.Text);
+            clientList.Rows.Clear();
+            foreach (DataRow row in table.Rows)
+            {
+                string[] adress = { row[2].ToString(), row[3].ToString(), row[4].ToString(), row[5].ToString() };
+                Client c = new Client(row[0].ToString(), row[1].ToString(), adress, row[6].ToString(), row[7].ToString());
+                clientList.Rows.Add(c.getName(),c.getAdress(),c.getMail(),c.getPhone());
+            }
+            clientList.Refresh();
         }
     }
 }
