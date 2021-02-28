@@ -204,7 +204,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
 
             logoButton = new myButton();
             saveButton = new myButton();
-            saveButton.Text = "Sauvegarder ?";
+            saveButton.Text = "Sauvegardé";
             saveButton.Enabled = false;
             saveButton.BackColor = Color.Empty;
             cancelButton = new myButton();
@@ -399,7 +399,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
 
             Console.WriteLine("Condition: " + (!name.Text.Length.Equals(0) && !address.Text.Length.Equals(0) && !additionalAddress.Text.Length.Equals(0) && !zip.Text.Length.Equals(0) && !city.Text.Length.Equals(0)));
 
-            if((!name.Text.Length.Equals(0) && (!address.Text.Length.Equals(0) && !address.ForeColor.Equals(Color.Gray)) && (!additionalAddress.Text.Length.Equals(0) && !additionalAddress.ForeColor.Equals(Color.Gray)) && (!zip.Text.Length.Equals(0) && !zip.ForeColor.Equals(Color.Gray)) && (!city.Text.Length.Equals(0) && !city.ForeColor.Equals(Color.Gray))) && (!c_name.Equals(name.Text) || !c_address.Equals(address.Text) && !address.ForeColor.Equals(Color.Gray) || !c_additional.Equals(additionalAddress.Text) && !additionalAddress.ForeColor.Equals(Color.Gray) || !c_zip.Equals(zip.Text) && !zip.ForeColor.Equals(Color.Gray) || !c_city.Equals(city.Text) && !city.ForeColor.Equals(Color.Gray) || !c_phone.Equals(phone.Text) || !c_mail.Equals(mailBegin.Text + at.Text + mailEnd.Text) || !mailEnd.Text.Equals(textMailEnd) || !c_website.Equals(website.Text) || !c_siret.Equals(siret.Text) || !c_logo.Equals(logo.Text)))
+            if((!name.Text.Length.Equals(0) && (!address.Text.Length.Equals(0) && !address.ForeColor.Equals(Color.Gray)) && (!zip.Text.Length.Equals(0) && !zip.ForeColor.Equals(Color.Gray)) && (!city.Text.Length.Equals(0) && !city.ForeColor.Equals(Color.Gray))) && (!c_name.Equals(name.Text) || !c_address.Equals(address.Text) && !address.ForeColor.Equals(Color.Gray) || !c_additional.Equals(additionalAddress.Text) || !c_zip.Equals(zip.Text) && !zip.ForeColor.Equals(Color.Gray) || !c_city.Equals(city.Text) && !city.ForeColor.Equals(Color.Gray) || !c_phone.Equals(phone.Text) || !c_mail.Equals(mailBegin.Text + at.Text + mailEnd.Text) || !mailEnd.Text.Equals(textMailEnd) || !c_website.Equals(website.Text) || !c_siret.Equals(siret.Text) || !c_logo.Equals(logo.Text)))
             {
                 saveButton.BackColor = Color.Lime;
                 saveButton.Text = "Sauvegarder ?";
@@ -408,6 +408,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             else 
             {
                 saveButton.BackColor = Color.Empty;
+                saveButton.Text = "Sauvegardé";
                 saveButton.Enabled = false;
             }
         }
@@ -497,7 +498,10 @@ namespace Logiciel_Devis_Facture.packVue.Panel
                 {
                     c_name = name.Text;
                     c_address = address.Text;
-                    c_additional = additionalAddress.Text;
+                    if (additionalAddress.ForeColor.Equals(Color.Gray))
+                        c_additional = "";
+                    else
+                        c_additional = additionalAddress.Text;
                     c_zip = zip.Text;
                     c_city = city.Text;
                     c_phone = phone.Text;
@@ -519,11 +523,6 @@ namespace Logiciel_Devis_Facture.packVue.Panel
                         }
                         if (company.updateCompanyTable(c_siret, c_name, c_address, c_additional, c_zip, c_city, c_mail, c_phone, c_website, c_name))
                         {
-                            File.Delete(Path.Combine(newPath, c_name + extension));
-                            File.Copy(c_logo, Path.Combine(newPath, c_name + extension), true);
-                        }
-                        if (company.updateCompanyTable(c_siret, c_name, c_address, c_additional, c_zip, c_city, c_mail, c_phone, c_website, c_name))
-                        {
                             saveButton.BackColor = Color.Empty;
                             saveButton.Text = "Sauvegardé";
                             saveButton.Enabled = false;
@@ -537,7 +536,10 @@ namespace Logiciel_Devis_Facture.packVue.Panel
                     c_siret = siret.Text;
                     c_name = name.Text;
                     c_address = address.Text;
-                    c_additional = additionalAddress.Text;
+                    if(additionalAddress.ForeColor.Equals(Color.Gray))
+                        c_additional = "";
+                    else
+                        c_additional = additionalAddress.Text;
                     c_zip = zip.Text;
                     c_city = city.Text;
                     c_phone = phone.Text;
