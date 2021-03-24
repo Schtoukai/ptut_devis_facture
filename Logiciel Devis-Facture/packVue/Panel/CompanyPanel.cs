@@ -146,7 +146,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             website = new SearchBar();
             c_website = company.getWebsite();
             website.Text = c_website;
-            website.MaxLength = 25;
+            website.MaxLength = 45;
             logo = new SearchBar();
             if(company.getCompLogo() != null)
             {
@@ -251,7 +251,8 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             mailBegin.SetSize((elementWidth - at.Width) / 2, 0);
             mailBegin.TextChanged += new System.EventHandler(TextField_TextChanged);
             at.SetFontSize(fontHeight);
-            mailEnd.Font = new System.Drawing.Font(Font.Name, fontHeight);
+            if (fontHeight > 0)
+                mailEnd.Font = new System.Drawing.Font(Font.Name, fontHeight);
             mailEnd.Size = new System.Drawing.Size((elementWidth - at.Width) / 2, 0);
             mailEnd.TextChanged += new System.EventHandler(TextField_TextChanged);
             website.SetFontSize(fontHeight);
@@ -263,21 +264,29 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             logo.SetFontSize(fontHeight);
             logo.SetSize(elementWidth * 3 / 4, 0);
             logo.TextChanged += new System.EventHandler(TextField_TextChanged);
-            titleLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Bold);
+            if (fontHeight > 0)
+                titleLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Bold);
             titleLabel.AutoSize = true;
-            nameLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
+            if (fontHeight > 0)
+                nameLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
             nameLabel.AutoSize = true;
-            addressLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
+            if (fontHeight > 0)
+                addressLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
             addressLabel.AutoSize = true;
-            phoneLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
+            if (fontHeight > 0)
+                phoneLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
             phoneLabel.AutoSize = true;
-            mailLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
+            if (fontHeight > 0)
+                mailLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
             mailLabel.AutoSize = true;
-            websiteLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
+            if (fontHeight > 0)
+                websiteLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
             websiteLabel.AutoSize = true;
-            siretLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
+            if (fontHeight > 0)
+                siretLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
             siretLabel.AutoSize = true;
-            logoLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
+            if (fontHeight > 0)
+                logoLabel.Font = new Font("Arial", (float)(fontHeight * PointToEm), FontStyle.Regular);
             logoLabel.AutoSize = true;
             logoButton.SetSize(elementWidth / 4, logoLabel.Height);
             saveButton.SetSize(elementWidth / 4, 2 * logoLabel.Height);
@@ -482,6 +491,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
                     if (company.getCompLogo().updateLogoTable(c_logo,newPath,extension))
                     {
                         string path = Path.Combine(newPath, c_name + extension);
+                        path = path.Replace("/", "\\");
                         if (!path.Equals(c_logo))
                         {
                             File.Delete(Path.Combine(newPath, c_name + extension));

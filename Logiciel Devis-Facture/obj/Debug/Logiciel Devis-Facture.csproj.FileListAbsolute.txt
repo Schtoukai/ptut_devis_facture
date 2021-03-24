@@ -18,38 +18,6 @@ C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\obj\Debug\
 C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\obj\Debug\Logiciel Devis-Facture.exe
 C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\obj\Debug\Logiciel Devis-Facture.pdb
 C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\obj\Debug\Logiciel_Devis_Facture.Logiciel_Devis_Facture.resources
-C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\Logiciel Devis-Facture.exe.config
-C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\Logiciel Devis-Facture.exe
-C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\Logiciel Devis-Facture.pdb
-C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\obj\Debug\Logiciel Devis-Facture.csprojAssemblyReference.cache
-C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\obj\Debug\Logiciel_Devis_Facture.Logiciel_Devis_Facture.resources
-C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\obj\Debug\Logiciel_Devis_Facture.Properties.Resources.resources
-C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\obj\Debug\Logiciel Devis-Facture.csproj.GenerateResource.cache
-C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\obj\Debug\Logiciel Devis-Facture.csproj.CoreCompileInputs.cache
-C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\obj\Debug\Logiciel Devis-Facture.exe
-C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\obj\Debug\Logiciel Devis-Facture.pdb
-C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\BouncyCastle.Crypto.dll
-C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\itextsharp.dll
-C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\itextsharp.xml
-C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\obj\Debug\Logiciel_Devis_Facture.Create_PDF.resources
-C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\obj\Debug\Logiciel Devis-Facture.csproj.CopyComplete
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\obj\Debug\Logiciel_Devis_Facture.Create_PDF.resources
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\BouncyCastle.Crypto.dll
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\itextsharp.dll
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\itextsharp.xml
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\obj\Debug\Logiciel Devis-Facture.csproj.CopyComplete
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\MySqlConnector.dll
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\System.Buffers.dll
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\System.Memory.dll
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\System.Numerics.Vectors.dll
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\System.Threading.Tasks.Extensions.dll
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\MySqlConnector.xml
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\System.Buffers.xml
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\System.Memory.xml
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\System.Numerics.Vectors.xml
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\33684\Documents\0_IUT\2_A\GitHub\Ptut\ptut_devis_facture\Logiciel Devis-Facture\bin\Debug\Logiciel Devis-Facture.exe.config
 C:\Users\33684\Documents\0_IUT\2_A\GitHub\Ptut\ptut_devis_facture\Logiciel Devis-Facture\bin\Debug\Logiciel Devis-Facture.exe
 C:\Users\33684\Documents\0_IUT\2_A\GitHub\Ptut\ptut_devis_facture\Logiciel Devis-Facture\bin\Debug\Logiciel Devis-Facture.pdb
@@ -77,30 +45,44 @@ C:\Users\33684\Documents\0_IUT\2_A\GitHub\Ptut\ptut_devis_facture\Logiciel Devis
 C:\Users\33684\Documents\0_IUT\2_A\GitHub\Ptut\ptut_devis_facture\Logiciel Devis-Facture\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\33684\Documents\0_IUT\2_A\GitHub\Ptut\ptut_devis_facture\Logiciel Devis-Facture\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\33684\Documents\0_IUT\2_A\GitHub\Ptut\ptut_devis_facture\Logiciel Devis-Facture\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\Logiciel Devis-Facture.exe.config
+C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\Logiciel Devis-Facture.exe
+C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\Logiciel Devis-Facture.pdb
+C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\Google.Protobuf.dll
+C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\itextsharp.dll
+C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\MySql.Data.dll
 C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\MySqlConnector.dll
+C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\Renci.SshNet.dll
 C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\System.Buffers.dll
 C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\System.Memory.dll
 C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\System.Numerics.Vectors.dll
 C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\Zstandard.Net.dll
+C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\Google.Protobuf.pdb
+C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\Google.Protobuf.xml
+C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\itextsharp.xml
+C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\K4os.Compression.LZ4.xml
+C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\K4os.Compression.LZ4.Streams.xml
+C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\MySql.Data.xml
 C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\MySqlConnector.xml
+C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\Renci.SshNet.xml
 C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\System.Buffers.xml
 C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\System.Memory.xml
 C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\bin\Debug\System.Threading.Tasks.Extensions.xml
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\Google.Protobuf.dll
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\K4os.Compression.LZ4.dll
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\K4os.Compression.LZ4.Streams.dll
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\K4os.Hash.xxHash.dll
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\MySql.Data.dll
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\Renci.SshNet.dll
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\Ubiety.Dns.Core.dll
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\Zstandard.Net.dll
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\Google.Protobuf.pdb
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\Google.Protobuf.xml
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\K4os.Compression.LZ4.xml
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\K4os.Compression.LZ4.Streams.xml
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\K4os.Hash.xxHash.xml
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\MySql.Data.xml
-C:\Users\enzol\OneDrive\Documents\IUT\PTUT\git\Logiciel Devis-Facture\bin\Debug\Renci.SshNet.xml
+C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\obj\Debug\Logiciel_Devis_Facture.Logiciel_Devis_Facture.resources
+C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\obj\Debug\Logiciel_Devis_Facture.Create_PDF.resources
+C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\obj\Debug\Logiciel_Devis_Facture.Properties.Resources.resources
+C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\obj\Debug\Logiciel Devis-Facture.csproj.GenerateResource.cache
+C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\obj\Debug\Logiciel Devis-Facture.csproj.CoreCompileInputs.cache
+C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\obj\Debug\Logiciel Devis-Facture.csproj.CopyComplete
+C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\obj\Debug\Logiciel Devis-Facture.exe
+C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\obj\Debug\Logiciel Devis-Facture.pdb
+C:\Users\julie\Desktop\IUT Info\2A\PTUT GIT\Logiciel Devis-Facture\obj\Debug\Logiciel Devis-Facture.csprojAssemblyReference.cache

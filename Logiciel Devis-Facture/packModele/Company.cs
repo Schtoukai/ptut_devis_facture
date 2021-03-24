@@ -15,10 +15,11 @@ namespace Logiciel_Devis_Facture.packModele
         private string nameCompany;
         private string website;
         private Logo compLogo;
-        private List<PDF> listInvoice;
+        private List<PDF> listPDF = new List<PDF>();
         private List<Client> listClient = new List<Client>();
-        private string connstring = @"server=localhost;user id=root;password=R@a[i?G++{iPynQ;database=invoiceDatabase"; // tant que la bd n'est pas crée on ne la précise pas
+        private string connstring = @"server=localhost;user id=root;password=root;database=invoiceDatabase"; // tant que la bd n'est pas crée on ne la précise pas
         private MySqlConnection connection;
+        private List<Materials> listMaterials = new List<Materials>();
 
         public Company()
         {
@@ -60,13 +61,13 @@ namespace Logiciel_Devis_Facture.packModele
             this.siret = siret;
         }
 
-        Company(string siret,string street,string city,string mail,string phone, Logo compLogo, List<PDF> listInvoice)
+        Company(string siret, string street, string city, string mail, string phone, Logo compLogo, List<PDF> listPDF)
         {
             this.siret = siret;
             this.mail = mail;
             this.phone = phone;
             this.compLogo = compLogo;
-            this.listInvoice = listInvoice;
+            this.listPDF = listPDF;
         }
 
         public Logo getCompLogo()
@@ -120,6 +121,11 @@ namespace Logiciel_Devis_Facture.packModele
             return website;
         }
 
+        public List<Materials> getListMaterials()
+        {
+            return listMaterials;
+        }
+
         public List<Client> getListClient()
         {
             return listClient;
@@ -158,7 +164,7 @@ namespace Logiciel_Devis_Facture.packModele
         }
 
         /*                                                      *
-        *             Fonction d'update Entreprise         * 
+        *             Fonction d'update Entreprise              * 
         *                                                      */
         public bool updateCompanyTable(string siret, string name, string address, string additional, string zip, string city, string mail, string phone, string website, string logo)
         {
@@ -198,7 +204,7 @@ namespace Logiciel_Devis_Facture.packModele
             }
             catch (Exception c)
             {
-                Console.WriteLine(c);
+                Console.WriteLine(c.Message);
                 return false;
             }
             finally
@@ -211,11 +217,11 @@ namespace Logiciel_Devis_Facture.packModele
 
 
         /*                                                      *
-         *             Fonction de rechercher de client         * 
+         *             Fonction de recherche de client         * 
          *                                                      */
         public bool querryClient()
         {
-            /*string Querry = "SELECT * FROM customer LIMIT 5;";
+            string Querry = "SELECT * FROM customer LIMIT 5;";
             try
             {
                 connection = new MySqlConnection(connstring);
@@ -227,25 +233,30 @@ namespace Logiciel_Devis_Facture.packModele
                 listClient.Clear();
                 foreach (DataRow row in dt.Rows)
                 {
-                    Client a = new Client(int.Parse(row[0].ToString()), row[1].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString());
+                    string[] b = new string[4];
+                    b[0] = row[2].ToString();
+                    b[1] = row[3].ToString();
+                    b[2] = row[4].ToString();
+                    b[3] = row[5].ToString();
+                    Client a = new Client(int.Parse(row[0].ToString()), row[1].ToString(), b, row[6].ToString(), row[7].ToString());
                     listClient.Add(a);
                 }
             }
             catch (Exception c)
             {
-                System.Console.WriteLine("ok : "+c);
+                Console.WriteLine(c.Message);
                 return false;
             }
             finally
             {
                 if (connection != null)
                     connection.Close();
-            }*/
+            }
             return true;
         }
         public bool querryClient(string toQuerry)
         {
-            /*string Querry = "SELECT * FROM customer";
+            string Querry = "SELECT * FROM customer";
             if (toQuerry != "")
             {
                 if (toQuerry[0] >= 'A' && toQuerry[0] <= 'Z')
@@ -272,21 +283,135 @@ namespace Logiciel_Devis_Facture.packModele
                 listClient.Clear();
                 foreach (DataRow row in dt.Rows)
                 {
-                    Client a = new Client( int.Parse(row[0].ToString()), row[1].ToString(), row[2].ToString(), row[3].ToString(),  row[4].ToString());
+                    string[] b = new string[4];
+                    b[0] = row[2].ToString();
+                    b[1] = row[3].ToString();
+                    b[2] = row[4].ToString();
+                    b[3] = row[5].ToString();
+                    Client a = new Client(int.Parse(row[0].ToString()), row[1].ToString(), b, row[6].ToString(), row[7].ToString());
                     listClient.Add(a);
                 }
             }
             catch (Exception c)
             {
-                System.Console.WriteLine(c.Message);
+                Console.WriteLine(c.Message);
                 return false;
             }
             finally
             {
                 if (connection != null)
                     connection.Close();
-            }*/
+            }
             return true;
+        }
+
+        /*                                                      *
+        *             Fonction de recherche de Materiaux       * 
+        *                                                       */
+        public bool querryMaterials()
+        {
+            string Querry = "SELECT idMaterials, nameMaterials, price, taux FROM materials join legislation on idLegislation=typeLegislation LIMIT 5;";
+            try
+            {
+                connection = new MySqlConnection(connstring);
+                connection.Open();
+                MySqlDataAdapter da = new MySqlDataAdapter(Querry, connection);
+                DataSet ds = new DataSet();
+                da.Fill(ds, "materials");
+                DataTable dt = ds.Tables["materials"];
+                listMaterials.Clear();
+                foreach (DataRow row in dt.Rows)
+                {
+                    Materials a = new Materials(int.Parse(row[0].ToString()), row[1].ToString(), float.Parse(row[2].ToString()), float.Parse(row[3].ToString()));
+                    listMaterials.Add(a);
+                }
+            }
+            catch (Exception c)
+            {
+                Console.WriteLine(c.Message);
+                return false;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
+            return true;
+        }
+        public bool querryMaterials(string toQuerry)
+        {
+            string Querry = "SELECT idMaterials, nameMaterials, price, taux FROM materials join legislation on idLegislation=typeLegislation";
+            if (toQuerry != "")
+            {
+                if (toQuerry[0] > 'A' && toQuerry[0] < 'Z')
+                    toQuerry += "%;";
+                if (toQuerry[0] > 'a' && toQuerry[0] < 'z')
+                    toQuerry = "%" + toQuerry + "%;";
+                else
+                    return false;
+                Querry += " Where nameMaterials LIKE" + toQuerry;
+            }
+            else
+                Querry += " LIMIT 5;";
+            try
+            {
+                connection = new MySqlConnection(connstring);
+                connection.Open();
+                MySqlDataAdapter da = new MySqlDataAdapter(Querry, connection);
+                DataSet ds = new DataSet();
+                da.Fill(ds, "materials");
+                DataTable dt = ds.Tables["materials"];
+                listMaterials.Clear();
+                foreach (DataRow row in dt.Rows)
+                {
+                    Materials a = new Materials(int.Parse(row[0].ToString()), row[1].ToString(), float.Parse(row[2].ToString()), float.Parse(row[3].ToString()));
+                    listMaterials.Add(a);
+                }
+            }
+            catch (Exception c)
+            {
+                Console.WriteLine(c.Message);
+                return false;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
+            return true;
+        }
+
+        /*                                                      *
+        *           Fonction pour le numéro du PDF              * 
+        *                                                       */
+        public int querryNumero()
+        {
+            string Querry = "SELECT max(idInvoice) FROM invoice;";
+            try
+            {
+                connection = new MySqlConnection(connstring);
+                connection.Open();
+                MySqlDataAdapter da = new MySqlDataAdapter(Querry, connection);
+                DataSet ds = new DataSet();
+                da.Fill(ds, "invoice");
+                DataTable dt = ds.Tables["invoice"];
+                int a = -1;
+                foreach (DataRow row in dt.Rows)
+                {
+                    a = int.Parse(row[0].ToString());
+                }
+                return a;
+            }
+            catch (Exception c)
+            {
+                Console.WriteLine(c.Message);
+                return -1;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
         }
     }
 }

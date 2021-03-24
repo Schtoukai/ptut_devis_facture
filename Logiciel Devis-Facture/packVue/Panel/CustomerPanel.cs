@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using Logiciel_Devis_Facture.packForm;
 
 namespace Logiciel_Devis_Facture.packVue.Panel
 {
@@ -23,6 +24,7 @@ namespace Logiciel_Devis_Facture.packVue.Panel
             this.Controls.Add(this.list);
             addCustomerButton.Text = "Ajouter un Client";
             addCustomerButton.BackColor = Color.Lime;
+            this.initEventHandler();
         }
 
         public void addItem(String str)
@@ -55,6 +57,17 @@ namespace Logiciel_Devis_Facture.packVue.Panel
         public override void SetMargin(int left, int top, int right, int bottom)
         {
             throw new NotImplementedException();
+        }
+     
+        private void addCustomerButton_Click(object sender, EventArgs e)
+        {
+            AddClient newClientWindow = new AddClient();
+            newClientWindow.Show();
+        }
+
+        public void initEventHandler()
+        {
+            this.addCustomerButton.Click += new System.EventHandler(this.addCustomerButton_Click);
         }
 
         public override void SetFontSize(int size)
